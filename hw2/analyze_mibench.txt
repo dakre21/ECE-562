@@ -1,0 +1,94 @@
+Group member:
+Benchmark: 
+Base IPC:
+Best IPC: 
+IPC improvement (%): 
+Best IPC configuration (size KB, assoc-way, line size B):
+Base dCache miss rate:
+Best dCache miss rate: 
+dCache miss rate improvement (%):
+Best dCache configuration (size KB, assoc-way, line size B): 
+
+
+Group member:
+Benchmark: 
+Base IPC:
+Best IPC: 
+IPC improvement (%): 
+Best IPC configuration (size KB, assoc-way, line size B):
+Base dCache miss rate:
+Best dCache miss rate: 
+dCache miss rate improvement (%):
+Best dCache configuration (size KB, assoc-way, line size B):
+
+
+Group member:
+Benchmark: 
+Base IPC:
+Best IPC: 
+IPC improvement (%): 
+Best IPC configuration (size KB, assoc-way, line size B):
+Base dCache miss rate:
+Best dCache miss rate: 
+dCache miss rate improvement (%):
+Best dCache configuration (size KB, assoc-way, line size B):
+
+
+Group member:
+Benchmark: 
+Base IPC:
+Best IPC: 
+IPC improvement (%): 
+Best IPC configuration (size KB, assoc-way, line size B):
+Base dCache miss rate:
+Best dCache miss rate: 
+dCache miss rate improvement (%):
+Best dCache configuration (size KB, assoc-way, line size B):
+
+
+Group member:
+Benchmark: 
+Base IPC:
+Best IPC: 
+IPC improvement (%): 
+Best IPC configuration (size KB, assoc-way, line size B):
+Base dCache miss rate:
+Best dCache miss rate: 
+dCache miss rate improvement (%):
+Best dCache configuration (size KB, assoc-way, line size B):
+
+
+Group member:
+Benchmark: 
+Base IPC:
+Best IPC: 
+IPC improvement (%): 
+Best IPC configuration (size KB, assoc-way, line size B):
+Base dCache miss rate:
+Best dCache miss rate: 
+dCache miss rate improvement (%):
+Best dCache configuration (size KB, assoc-way, line size B):
+
+
+Group member:
+Benchmark: 
+Base IPC:
+Best IPC: 
+IPC improvement (%): 
+Best IPC configuration (size KB, assoc-way, line size B):
+Base dCache miss rate:
+Best dCache miss rate: 
+dCache miss rate improvement (%):
+Best dCache configuration (size KB, assoc-way, line size B):
+
+
+Group member:
+Benchmark: 
+Base IPC:
+Best IPC: 
+IPC improvement (%): 
+Best IPC configuration (size KB, assoc-way, line size B):
+Base dCache miss rate:
+Best dCache miss rate: 
+dCache miss rate improvement (%):
+Best dCache configuration (size KB, assoc-way, line size B):
