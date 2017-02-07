@@ -57,7 +57,7 @@ do
                         echo  "Starting fft benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
                         eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/fft_${i}_${j}_${l}.txt  ././../../MiBench/fft 4 4096"
                         echo  "Starting fft inverse benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/fft_${i}_${j}_${l}.txt  ././../../MiBench/fft 4 8192 -i"
+                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/fft_inv_${i}_${j}_${l}.txt  ././../../MiBench/fft 4 8192 -i"
                       done
     done
 
@@ -111,9 +111,9 @@ do
                 for((l = 1; l<=4; l=$((l*2))))
                      do
                         echo  "Starting rijndael ENCODE benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rijndael_${i}_${j}_${l}.txt  ././../../MiBench/rijndael ././../../MiBench/Benchmarks/security/rijndael/input_small.asc Results/output_small_${i}_${j}_${l}.enc e 1234567890abcdeffedcba09876543211234567890abcdeffedcba0987654321"
+                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rijndael_encode_${i}_${j}_${l}.txt  ././../../MiBench/rijndael ././../../MiBench/Benchmarks/security/rijndael/input_small.asc Results/output_small_${i}_${j}_${l}.enc e 1234567890abcdeffedcba09876543211234567890abcdeffedcba0987654321"
                         echo  "Starting rijndael DECODE benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rijndael_${i}_${j}_${l}.txt  ././../../MiBench/rijndael Results/output_small_${i}_${j}_${l}.enc d 1234567890abcdeffedcba09876543211234567890abcdeffedcba0987654321"
+                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rijndael_decode_${i}_${j}_${l}.txt  ././../../MiBench/rijndael Results/output_small_${i}_${j}_${l}.enc d 1234567890abcdeffedcba09876543211234567890abcdeffedcba0987654321"
                       done
     done
 
