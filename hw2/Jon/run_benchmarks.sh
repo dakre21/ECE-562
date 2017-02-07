@@ -9,7 +9,7 @@ echo "Starting Benchmarks:"
 #Each benchmark has it's own loop to reduce complexity and technical debt
 
 echo "${RED}#########################Starting Benchmark (crc)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -27,7 +27,7 @@ do
 done
 
 echo "${RED}#########################Starting Benchmark (dijkstra_small)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -45,7 +45,7 @@ do
 done
 
 echo "${RED}#########################Starting Benchmark (fft)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -65,7 +65,7 @@ do
 done
 
 echo "${RED}#########################Starting Benchmark (qsort_small)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -83,7 +83,7 @@ do
 done
 
 echo "${RED}#########################Starting Benchmark (rawcaudio)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -101,7 +101,7 @@ do
 done
 
 echo "${RED}#########################Starting Benchmark (rijndael)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -121,7 +121,7 @@ do
 done
 
 echo "${RED}#########################Starting Benchmark (search_large)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -139,7 +139,7 @@ do
 done
 
 echo "${RED}#########################Starting Benchmark (sha)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
