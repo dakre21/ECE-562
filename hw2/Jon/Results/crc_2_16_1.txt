@@ -250,5 +250,4 @@ mem.page_count                   29 # total number of pages allocated
 mem.page_mem                   116k # total size of memory pages allocated
 mem.ptab_misses                  37 # total first level page table misses
 mem.ptab_accesses        3522911522 # total page table accesses
-mem.ptab_miss_rate           0.0000 # first level page table miss rate
-
+mem.ptab_miss_rate 0.0000 # first level page table miss rate
