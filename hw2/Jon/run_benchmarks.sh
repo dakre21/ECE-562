@@ -8,7 +8,7 @@ echo "Starting Benchmarks:"
 #Each benchmark is ran in all permutations in the nested for loops
 #Each benchmark has it's own loop to reduce complexity and technical debt
 
-echo "${RED}#########################Starting Benchmark (crc)#########################${NC}"
+echo -e "${RED}#########################Starting Benchmark (crc)#########################${NC}"
 for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
@@ -26,7 +26,7 @@ do
 
 done
 
-echo "${RED}#########################Starting Benchmark (dijkstra_small)#########################${NC}"
+echo -e "${RED}#########################Starting Benchmark (dijkstra_small)#########################${NC}"
 for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
@@ -44,7 +44,7 @@ do
 
 done
 
-echo "${RED}#########################Starting Benchmark (fft)#########################${NC}"
+echo -e "${RED}#########################Starting Benchmark (fft)#########################${NC}"
 for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
@@ -64,7 +64,7 @@ do
 
 done
 
-echo "${RED}#########################Starting Benchmark (qsort_small)#########################${NC}"
+echo -e "${RED}#########################Starting Benchmark (qsort_small)#########################${NC}"
 for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
@@ -82,7 +82,7 @@ do
 
 done
 
-echo "${RED}#########################Starting Benchmark (rawcaudio)#########################${NC}"
+echo -e "${RED}#########################Starting Benchmark (rawcaudio)#########################${NC}"
 for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
@@ -93,14 +93,14 @@ do
                 for((l = 1; l<=4; l=$((l*2))))
                      do
                         echo  "Starting rawcaudio benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rawcaudio_${i}_${j}_${l}.txt  ././../../MiBench/rawcaudio < ././../../MiBench/Benchmarks/telecomm/adpcm/data/small.pcm"
+                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rawcaudio_${i}_${j}_${l}.txt  ././../../MiBench/rawcaudio < ././../../MiBench/Benchmarks/telecomm/adpcm/data/small.pcm > Results/rawcaudio_${i}_${j}_${l}.dat"
                       done
     done
 
 
 done
 
-echo "${RED}#########################Starting Benchmark (rijndael)#########################${NC}"
+echo -e "${RED}#########################Starting Benchmark (rijndael)#########################${NC}"
 for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
@@ -113,14 +113,14 @@ do
                         echo  "Starting rijndael ENCODE benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
                         eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rijndael_encode_${i}_${j}_${l}.txt  ././../../MiBench/rijndael ././../../MiBench/Benchmarks/security/rijndael/input_small.asc Results/output_small_${i}_${j}_${l}.enc e 1234567890abcdeffedcba09876543211234567890abcdeffedcba0987654321"
                         echo  "Starting rijndael DECODE benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rijndael_decode_${i}_${j}_${l}.txt  ././../../MiBench/rijndael Results/output_small_${i}_${j}_${l}.enc d 1234567890abcdeffedcba09876543211234567890abcdeffedcba0987654321"
+                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rijndael_decode_${i}_${j}_${l}.txt  ././../../MiBench/rijndael Results/output_small_${i}_${j}_${l}.enc Results/output_small_${i}_${j}_${l}.dec d 1234567890abcdeffedcba09876543211234567890abcdeffedcba0987654321"
                       done
     done
 
 
 done
 
-echo "${RED}#########################Starting Benchmark (search_large)#########################${NC}"
+echo -e "${RED}#########################Starting Benchmark (search_large)#########################${NC}"
 for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
@@ -138,7 +138,7 @@ do
 
 done
 
-echo "${RED}#########################Starting Benchmark (sha)#########################${NC}"
+echo -e "${RED}#########################Starting Benchmark (sha)#########################${NC}"
 for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
