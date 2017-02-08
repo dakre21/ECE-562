@@ -47,3 +47,4 @@ fabric.properties
 
 # Don't polute git with my Jetbrains Stuff
 .idea/
+cmake-build-debug
