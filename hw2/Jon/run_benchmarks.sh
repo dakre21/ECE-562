@@ -9,7 +9,7 @@ echo "Starting Benchmarks:"
 #Each benchmark has it's own loop to reduce complexity and technical debt
 
 echo -e "${RED}#########################Starting Benchmark (crc)#########################${NC}"
-for((i = 2048; i<=8192; i=$((i*2))))
+for((i = 2; i<=8; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -27,7 +27,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (dijkstra_small)#########################${NC}"
-for((i = 2048; i<=8192; i=$((i*2))))
+for((i = 2; i<=8; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -45,7 +45,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (fft)#########################${NC}"
-for((i = 2048; i<=8192; i=$((i*2))))
+for((i = 2; i<=8; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -57,7 +57,7 @@ do
                         echo  "Starting fft benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
                         eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/fft_${i}_${j}_${l}.txt  ././../../MiBench/fft 4 4096"
                         echo  "Starting fft inverse benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/fft_inv_${i}_${j}_${l}.txt  ././../../MiBench/fft 4 8192 -i"
+                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/fft_inv_${i}_${j}_${l}.txt  ././../../MiBench/fft 4 8 -i"
                       done
     done
 
@@ -65,7 +65,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (qsort_small)#########################${NC}"
-for((i = 2048; i<=8192; i=$((i*2))))
+for((i = 2; i<=8; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -83,7 +83,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (rawcaudio)#########################${NC}"
-for((i = 2048; i<=8192; i=$((i*2))))
+for((i = 2; i<=8; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -101,7 +101,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (rijndael)#########################${NC}"
-for((i = 2048; i<=8192; i=$((i*2))))
+for((i = 2; i<=8; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -121,7 +121,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (search_large)#########################${NC}"
-for((i = 2048; i<=8192; i=$((i*2))))
+for((i = 2; i<=8; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -139,7 +139,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (sha)#########################${NC}"
-for((i = 2048; i<=8192; i=$((i*2))))
+for((i = 2; i<=8; i=$((i*2))))
 do
     #echo i="$i"
 
