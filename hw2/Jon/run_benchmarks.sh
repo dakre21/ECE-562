@@ -9,7 +9,7 @@ echo "Starting Benchmarks:"
 #Each benchmark has it's own loop to reduce complexity and technical debt
 
 echo -e "${RED}#########################Starting Benchmark (crc)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -18,8 +18,9 @@ do
             #echo  j="$j"
                 for((l = 1; l<=4; l=$((l*2))))
                      do
-                        echo  "Starting crc benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/crc_${i}_${j}_${l}.txt  ././../../MiBench/crc ././../../MiBench/Benchmarks/telecomm/adpcm/data/large.pcm"
+                        s=$(($i / $j / $l))
+                        echo  "Starting crc benchmark with cache size of ${i}: number of sets ${s}, line size ${j} and associativity of ${l}"
+                        #eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${s}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/crc_${s}_${j}_${l}.txt  ././../../MiBench/crc ././../../MiBench/Benchmarks/telecomm/adpcm/data/large.pcm"
                       done
     done
 
@@ -27,7 +28,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (dijkstra_small)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -36,8 +37,9 @@ do
             #echo  j="$j"
                 for((l = 1; l<=4; l=$((l*2))))
                      do
-                        echo  "Starting dijkstra_small benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/dijkstra_small_${i}_${j}_${l}.txt  ././../../MiBench/dijkstra_small ././../../MiBench/Benchmarks/network/dijkstra/input.dat"
+                        s=$(($i / $j / $l))
+                        echo  "Starting dijkstra_small benchmark with cache size of ${i}: number of sets ${i}, line size ${j} and associativity of ${l}"
+                        #eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${s}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/dijkstra_small_${s}_${j}_${l}.txt  ././../../MiBench/dijkstra_small ././../../MiBench/Benchmarks/network/dijkstra/input.dat"
                       done
     done
 
@@ -45,7 +47,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (fft)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -54,10 +56,11 @@ do
             #echo  j="$j"
                 for((l = 1; l<=4; l=$((l*2))))
                      do
-                        echo  "Starting fft benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/fft_${i}_${j}_${l}.txt  ././../../MiBench/fft 4 4096"
-                        echo  "Starting fft inverse benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/fft_inv_${i}_${j}_${l}.txt  ././../../MiBench/fft 4 8 -i"
+                        s=$(($i / $j / $l))
+                        echo  "Starting fft benchmark with cache size of ${i}: number of sets ${i}, line size ${j} and associativity of ${l}"
+                        #eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${s}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/fft_${s}_${j}_${l}.txt  ././../../MiBench/fft 4 4096"
+                        echo  "Starting fft inverse benchmark with cache size of ${i}: number of sets ${i}, line size ${j} and associativity of ${l}"
+                        #eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${s}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/fft_inv_${s}_${j}_${l}.txt  ././../../MiBench/fft 4 8 -i"
                       done
     done
 
@@ -65,7 +68,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (qsort_small)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -74,8 +77,9 @@ do
             #echo  j="$j"
                 for((l = 1; l<=4; l=$((l*2))))
                      do
-                        echo  "Starting qsort_small benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/qsort_small_${i}_${j}_${l}.txt  ././../../MiBench/qsort_small ././../../MiBench/Benchmarks/automotive/qsort/input_small.dat"
+                        s=$(($i / $j / $l))
+                        echo  "Starting qsort_small benchmark with cache size of ${i}: number of sets ${i}, line size ${j} and associativity of ${l}"
+                        #eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${s}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/qsort_small_${s}_${j}_${l}.txt  ././../../MiBench/qsort_small ././../../MiBench/Benchmarks/automotive/qsort/input_small.dat"
                       done
     done
 
@@ -83,7 +87,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (rawcaudio)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -92,8 +96,9 @@ do
             #echo  j="$j"
                 for((l = 1; l<=4; l=$((l*2))))
                      do
-                        echo  "Starting rawcaudio benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rawcaudio_${i}_${j}_${l}.txt  ././../../MiBench/rawcaudio < ././../../MiBench/Benchmarks/telecomm/adpcm/data/small.pcm > Results/rawcaudio_${i}_${j}_${l}.dat"
+                        s=$(($i / $j / $l))
+                        echo  "Starting rawcaudio benchmark with cache size of ${i}: number of sets ${i}, line size ${j} and associativity of ${l}"
+                        #eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${s}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rawcaudio_${s}_${j}_${l}.txt  ././../../MiBench/rawcaudio < ././../../MiBench/Benchmarks/telecomm/adpcm/data/small.pcm > Results/rawcaudio_${s}_${j}_${l}.dat"
                       done
     done
 
@@ -101,7 +106,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (rijndael)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -110,10 +115,11 @@ do
             #echo  j="$j"
                 for((l = 1; l<=4; l=$((l*2))))
                      do
-                        echo  "Starting rijndael ENCODE benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rijndael_encode_${i}_${j}_${l}.txt  ././../../MiBench/rijndael ././../../MiBench/Benchmarks/security/rijndael/input_small.asc Results/output_small_${i}_${j}_${l}.enc e 1234567890abcdeffedcba09876543211234567890abcdeffedcba0987654321"
-                        echo  "Starting rijndael DECODE benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rijndael_decode_${i}_${j}_${l}.txt  ././../../MiBench/rijndael Results/output_small_${i}_${j}_${l}.enc Results/output_small_${i}_${j}_${l}.dec d 1234567890abcdeffedcba09876543211234567890abcdeffedcba0987654321"
+                        s=$(($i / $j / $l))
+                        echo  "Starting rijndael ENCODE benchmark with cache size of ${i}: number of sets ${i}, line size ${j} and associativity of ${l}"
+                        #eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${s}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rijndael_encode_${s}_${j}_${l}.txt  ././../../MiBench/rijndael ././../../MiBench/Benchmarks/security/rijndael/input_small.asc Results/output_small_${s}_${j}_${l}.enc e 1234567890abcdeffedcba09876543211234567890abcdeffedcba0987654321"
+                        echo  "Starting rijndael DECODE benchmark with cache size of ${i}: number of sets ${i}, line size ${j} and associativity of ${l}"
+                        #eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${s}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/rijndael_decode_${s}_${j}_${l}.txt  ././../../MiBench/rijndael Results/output_small_${s}_${j}_${l}.enc Results/output_small_${s}_${j}_${l}.dec d 1234567890abcdeffedcba09876543211234567890abcdeffedcba0987654321"
                       done
     done
 
@@ -121,7 +127,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (search_large)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -130,8 +136,9 @@ do
             #echo  j="$j"
                 for((l = 1; l<=4; l=$((l*2))))
                      do
-                        echo  "Starting search_large benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/search_large_${i}_${j}_${l}.txt  ././../../MiBench/search_large"
+                        s=$(($i / $j / $l))
+                        echo  "Starting search_large benchmark with cache size of ${i}: number of sets ${i}, line size ${j} and associativity of ${l}"
+                        #eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${s}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/search_large_${s}_${j}_${l}.txt  ././../../MiBench/search_large"
                       done
     done
 
@@ -139,7 +146,7 @@ do
 done
 
 echo -e "${RED}#########################Starting Benchmark (sha)#########################${NC}"
-for((i = 2; i<=8; i=$((i*2))))
+for((i = 2048; i<=8192; i=$((i*2))))
 do
     #echo i="$i"
 
@@ -148,8 +155,9 @@ do
             #echo  j="$j"
                 for((l = 1; l<=4; l=$((l*2))))
                      do
-                        echo  "Starting sha benchmark with cache size of ${i}, line size ${j} and associativity of ${l}"
-                        eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${i}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/sha_${i}_${j}_${l}.txt  ././../../MiBench/sha ././../../MiBench/Benchmarks/security/sha/input_small.asc"
+                        s=$(($i / $j / $l))
+                        echo  "Starting sha benchmark with cache size of ${i}: number of sets ${i}, line size ${j} and associativity of ${l}"
+                        #eval "././../../simplesim-3.0/sim-outorder -cache:il1 il1:8:64:4:l -cache:dl1 dl1:${s}:${j}:${l}:l -cache:il1lat 1 -cache:dl1lat 1 -mem:lat 80 2 -issue:inorder -redir:sim Results/sha_${s}_${j}_${l}.txt  ././../../MiBench/sha ././../../MiBench/Benchmarks/security/sha/input_small.asc"
                       done
     done
 
