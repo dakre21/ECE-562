@@ -1,11 +1,16 @@
 #!/bin/bash
 
-cd Results/csv
-rm *.txt 2>/dev/null;
+
+ExecDirectory=$(pwd);
+DataDirectory="Results/csv"
+
+rm ExecDirectory."/".DataDirectory."/"*.txt 2>/dev/null;
 rm *.dat 2>/dev/null;
 rm *.dec 2>/dev/null;
 rm *.enc 2>/dev/null;
 
+# Create the output folders where the data will be generated
+# then move the benchmark files into their corresponding directories
 folder1="data_crc";
 folder2="data_dijkstra";
 folder3="data_fft_inv";
@@ -16,49 +21,46 @@ folder7="data_rijndael";
 folder8="data_search";
 folder9="data_sha";
 
-mkdir -p $folder1;
-mv crc* $folder1 2>/dev/null;
+mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder1;
+mv $ExecDirectory"/"$DataDirectory"/"crc* $ExecDirectory"/"$DataDirectory"/"$folder1 2>/dev/null;
 
-mkdir -p $folder2;
-mv dijkstra* $folder2 2>/dev/null;
+mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder2;
+mv $ExecDirectory"/"$DataDirectory"/"dijkstra* $ExecDirectory"/"$DataDirectory"/"$folder2 2>/dev/null;
 
-mkdir -p $folder3;
-mv fft_inv* $folder3 2>/dev/null;
+mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder3;
+mv $ExecDirectory"/"$DataDirectory"/"fft_inv* $ExecDirectory"/"$DataDirectory"/"$folder3 2>/dev/null;
 
-mkdir -p $folder4;
-mv fft* $folder4 2>/dev/null;
+mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder4;
+mv $ExecDirectory"/"$DataDirectory"/"fft* $ExecDirectory"/"$DataDirectory"/"$folder4 2>/dev/null;
 
-mkdir -p $folder5;
-mv qsort* $folder5 2>/dev/null;
+mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder5;
+mv $ExecDirectory"/"$DataDirectory"/"qsort* $ExecDirectory"/"$DataDirectory"/"$folder5 2>/dev/null;
 
-mkdir -p $folder6;
-mv rawcaudio* $folder6 2>/dev/null;
+mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder6;
+mv $ExecDirectory"/"$DataDirectory"/"rawcaudio* $ExecDirectory"/"$DataDirectory"/"$folder6 2>/dev/null;
 
-mkdir -p $folder7;
-mv rijndael* $folder7 2>/dev/null;
+mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder7;
+mv $ExecDirectory"/"$DataDirectory"/"rijndael* $ExecDirectory"/"$DataDirectory"/"$folder7 2>/dev/null;
 
-mkdir -p $folder8;
-mv search* $folder8 2>/dev/null;
+mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder8;
+mv $ExecDirectory"/"$DataDirectory"/"search* $ExecDirectory"/"$DataDirectory"/"$folder8 2>/dev/null;
 
-mkdir -p $folder8;
-mv search* $folder8 2>/dev/null;
+mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder8;
+mv $ExecDirectory"/"$DataDirectory"/"search* $ExecDirectory"/"$DataDirectory"/"$folder8 2>/dev/null;
 
-mkdir -p $folder9;
-mv sha* $folder9 2>/dev/null;
+mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder9;
+mv $ExecDirectory"/"$DataDirectory"/"sha* $ExecDirectory"/"$DataDirectory"/"$folder9 2>/dev/null;
 
 
-
-cd ../..
-pwd
-perl generateOutput.pl $folder1 > $folder1."_metrics.txt";
-perl generateOutput.pl $folder2 > $folder2."_metrics.txt";
-perl generateOutput.pl $folder3 > $folder3."_metrics.txt";
-perl generateOutput.pl $folder4 > $folder4."_metrics.txt";
-perl generateOutput.pl $folder5 > $folder5."_metrics.txt";
-perl generateOutput.pl $folder6 > $folder6."_metrics.txt";
-perl generateOutput.pl $folder7 > $folder7."_metrics.txt";
-perl generateOutput.pl $folder8 > $folder8."_metrics.txt";
-perl generateOutput.pl $folder9 > $folder9."_metrics.txt";
+perl $ExecDirectory"/"generateOutput.pl $ExecDirectory"/"$DataDirectory"/"$folder1 > $folder1"_metrics.txt";
+perl $ExecDirectory"/"generateOutput.pl $ExecDirectory"/"$DataDirectory"/"$folder2 > $folder2"_metrics.txt";
+perl $ExecDirectory"/"generateOutput.pl $ExecDirectory"/"$DataDirectory"/"$folder3 > $folder3"_metrics.txt";
+perl $ExecDirectory"/"generateOutput.pl $ExecDirectory"/"$DataDirectory"/"$folder4 > $folder4"_metrics.txt";
+perl $ExecDirectory"/"generateOutput.pl $ExecDirectory"/"$DataDirectory"/"$folder5 > $folder5"_metrics.txt";
+perl $ExecDirectory"/"generateOutput.pl $ExecDirectory"/"$DataDirectory"/"$folder6 > $folder6"_metrics.txt";
+perl $ExecDirectory"/"generateOutput.pl $ExecDirectory"/"$DataDirectory"/"$folder7 > $folder7"_metrics.txt";
+perl $ExecDirectory"/"generateOutput.pl $ExecDirectory"/"$DataDirectory"/"$folder8 > $folder8"_metrics.txt";
+perl $ExecDirectory"/"generateOutput.pl $ExecDirectory"/"$DataDirectory"/"$folder9 > $folder9"_metrics.txt";
 
 
 

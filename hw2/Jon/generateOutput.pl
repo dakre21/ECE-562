@@ -1,28 +1,20 @@
 #!/usr/bin/perl
 
-#use warnings;
-#use strict;
-
 $| = 1;
 use Cwd;
 
-my $set = $ARGV[0];
-
-my $pwd = cwd();
+my $directory = $ARGV[0];
 
 my @tmp;
-
-
 my %CacheStats;
 
-my $directory = $pwd."/Results/csv/".$set;
+
+my $directory = $directory;
 
 opendir (DIR, $directory) or die $!;
 my $count = 0;
 while (my $file = readdir(DIR)) 
 {
-
-	#my @values = split('_', $file);
 
 	if ($file ne '.' && $file ne '..')
 	{
