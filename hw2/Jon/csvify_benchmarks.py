@@ -18,7 +18,7 @@ def csvify():
     dir = "./Results/"
     benchmarks = ["crc", "dijkstra_small", "fft","fft_inv", "qsort_small", "rawcaudio", "rijndael_decode","rijndael_encode", "search_large", "sha"]
     line_sizes = [16, 32, 64]
-    cache_sizes = [2, 4, 8]
+    num_sets = [8, 16, 32, 64, 128, 256, 512]
     associativity = [1, 2, 4]
     out_ext = ".csv"
     in_ext = ".txt"
@@ -31,14 +31,13 @@ def csvify():
     cols = ["IPC", "Miss_Rate"]
 
     # Iterate through outputs generated from bashrc, and grab IPC/dCache Miss Rates
-    # Going to iterate through all combinations... some will not be found (e.g. when bank size exceeds cache size, this is an invalid case...)
     for i in range(len(benchmarks)):
-	for x in range(len(cache_sizes)):
+	for x in range(len(num_sets)):
             for y in range(len(line_sizes)):
                 for z in range(len(associativity)):
 		    flag = True
-                    in_file = dir + benchmarks[i] + "_" + str(cache_sizes[x]) + "_" + str(line_sizes[y]) + "_" + str(associativity[z]) + in_ext
-		    out_file = dir + benchmarks[i] + "_" + str(cache_sizes[x]) + "_" + str(line_sizes[y]) + "_" + str(associativity[z]) + out_ext
+                    in_file = dir + benchmarks[i] + "_" + str(num_sets[x]) + "_" + str(line_sizes[y]) + "_" + str(associativity[z]) + in_ext
+		    out_file = dir + benchmarks[i] + "_" + str(num_sets[x]) + "_" + str(line_sizes[y]) + "_" + str(associativity[z]) + out_ext
 		    try:
 		        with open(in_file) as inf:
 			    for line in inf:
