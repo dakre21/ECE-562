@@ -2,12 +2,12 @@
 
 
 ExecDirectory=$(pwd);
-DataDirectory="Results/csv"
+DataDirectory="Results"
 
-rm ExecDirectory."/".DataDirectory."/"*.txt 2>/dev/null;
-rm *.dat 2>/dev/null;
-rm *.dec 2>/dev/null;
-rm *.enc 2>/dev/null;
+rm $ExecDirectory"/"$DataDirectory"/"*.txt 2>/dev/null;
+rm $ExecDirectory"/"$DataDirectory"/"*.dat 2>/dev/null;
+rm $ExecDirectory"/"$DataDirectory"/"*.dec 2>/dev/null;
+rm $ExecDirectory"/"$DataDirectory"/"*.enc 2>/dev/null;
 
 # Create the output folders where the data will be generated
 # then move the benchmark files into their corresponding directories

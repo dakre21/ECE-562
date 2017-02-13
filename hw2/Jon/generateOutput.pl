@@ -117,8 +117,10 @@ foreach my $name (sort keys %CacheStats)
     }
 	
 }
-
+if ($CacheStats{$baseCase}{IPC} > 0)
+{
 my $ipcImprovement = (($CacheStats{$indexToBestIpc}{IPC} - $CacheStats{$baseCase}{IPC}) / $CacheStats{$baseCase}{IPC}) * 100;
+}
 print "Benchmark              = ", $CacheStats{$indexToBestIpc}{BENCH},"\n";
 print "Base IPC               = ", $CacheStats{$baseCase}{IPC},"\n";
 print "Best IPC               = ", $CacheStats{$indexToBestIpc}{IPC},"\n";
