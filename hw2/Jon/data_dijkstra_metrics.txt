@@ -1,0 +1,22 @@
+Benchmark              = dijkstrasmall
+Base IPC               = 0.7411
+Best IPC               = 0.7411
+Rate Improvement (%)   = 0
+Best IPC config        = NUM_OF_SETS   : 32
+                         LINESIZE      : 64
+                         ASSOCIATIVITY : 4
+
+Benchmark              = dijkstrasmall
+Base CacheMiss Rate    = 0.0061
+Best CacheMiss Rate    = 0.0061
+Rate Improvement (%)   = 0
+Best CacheMiss config  = NUM_OF_SETS   : 32
+                         LINESIZE      : 64
+                         ASSOCIATIVITY : 4
+Base Config Results:
+IPC               = 0.7411
+CACHEMISS         = 0.0061
+NUM_OF_SETS       = 32
+LINESIZE          = 64
+ASSOCIATIVITY     = 4
+BENCH             = dijkstrasmall

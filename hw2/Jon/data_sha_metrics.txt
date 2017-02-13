@@ -1,0 +1,22 @@
+Benchmark              = sha
+Base IPC               = 1.0904
+Best IPC               = 1.0904
+Rate Improvement (%)   = 0
+Best IPC config        = NUM_OF_SETS   : 64
+                         LINESIZE      : 32
+                         ASSOCIATIVITY : 2
+
+Benchmark              = sha
+Base CacheMiss Rate    = 0.0052
+Best CacheMiss Rate    = 0.0031
+Rate Improvement (%)   = 40.3846153846154
+Best CacheMiss config  = NUM_OF_SETS   : 128
+                         LINESIZE      : 64
+                         ASSOCIATIVITY : 1
+Base Config Results:
+IPC               = 1.0904
+CACHEMISS         = 0.0052
+NUM_OF_SETS       = 32
+LINESIZE          = 64
+ASSOCIATIVITY     = 4
+BENCH             = sha
