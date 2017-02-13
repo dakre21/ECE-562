@@ -16,7 +16,7 @@ import csv
 def csvify():
     # Forward declarations
     dir = "./Results/"
-    benchmarks = ["crc", "dijkstra_small", "fft","fft_inv", "qsort_small", "rawcaudio", "rijndael_decode","rijndael_encode", "search_large", "sha"]
+    benchmarks = ["crc", "dijkstra_small", "fft","fftinv", "qsortsmall", "rawcaudio", "rijndaeldecode","rijndaelencode", "search_large", "sha"]
     line_sizes = [16, 32, 64]
     num_sets = [8, 16, 32, 64, 128, 256, 512]
     associativity = [1, 2, 4]
