@@ -137,8 +137,6 @@ print "                         ASSOCIATIVITY : ",$CacheStats{$indexToBestIpc}{A
 
 print "\n";
 
-print $CacheStats{$baseCase}{CACHEMISS},"\n";
-
 if ($CacheStats{$baseCase}{CACHEMISS} > 0)
 {
 	my $missImprovement = (($CacheStats{$baseCase}{CACHEMISS} - $CacheStats{$indexToBestMissRate}{CACHEMISS}) / $CacheStats{$baseCase}{CACHEMISS}) * 100;
