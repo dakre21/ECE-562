@@ -28,7 +28,7 @@ mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder2;
 mv $ExecDirectory"/"$DataDirectory"/"dijkstra* $ExecDirectory"/"$DataDirectory"/"$folder2 2>/dev/null;
 
 mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder3;
-mv $ExecDirectory"/"$DataDirectory"/"fft_inv* $ExecDirectory"/"$DataDirectory"/"$folder3 2>/dev/null;
+mv $ExecDirectory"/"$DataDirectory"/"fftinv* $ExecDirectory"/"$DataDirectory"/"$folder3 2>/dev/null;
 
 mkdir -p $ExecDirectory"/"$DataDirectory"/"$folder4;
 mv $ExecDirectory"/"$DataDirectory"/"fft* $ExecDirectory"/"$DataDirectory"/"$folder4 2>/dev/null;
