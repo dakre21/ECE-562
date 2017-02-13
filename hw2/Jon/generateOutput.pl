@@ -117,9 +117,10 @@ foreach my $name (sort keys %CacheStats)
     }
 	
 }
+my $ipcImprovement=0;
 if ($CacheStats{$baseCase}{IPC} > 0)
 {
-my $ipcImprovement = (($CacheStats{$indexToBestIpc}{IPC} - $CacheStats{$baseCase}{IPC}) / $CacheStats{$baseCase}{IPC}) * 100;
+	$ipcImprovement = (($CacheStats{$indexToBestIpc}{IPC} - $CacheStats{$baseCase}{IPC}) / $CacheStats{$baseCase}{IPC}) * 100;
 }
 print "Benchmark              = ", $CacheStats{$indexToBestIpc}{BENCH},"\n";
 print "Base IPC               = ", $CacheStats{$baseCase}{IPC},"\n";
@@ -131,9 +132,10 @@ print "                         ASSOCIATIVITY : ",$CacheStats{$indexToBestIpc}{A
 
 print "\n";
 
+my $missImprovement=0;
 if ($CacheStats{$baseCase}{CACHEMISS} > 0)
 {
-	my $missImprovement = (($CacheStats{$baseCase}{CACHEMISS} - $CacheStats{$indexToBestMissRate}{CACHEMISS}) / $CacheStats{$baseCase}{CACHEMISS}) * 100;
+	$missImprovement = (($CacheStats{$baseCase}{CACHEMISS} - $CacheStats{$indexToBestMissRate}{CACHEMISS}) / $CacheStats{$baseCase}{CACHEMISS}) * 100;
 }
 
 print "Benchmark              = ", $CacheStats{$indexToBestMissRate}{BENCH},"\n";
