@@ -7,7 +7,7 @@ CFLAGS= -O3 -Wall -pg -g $(CDEFS) -I${INCLUDE_DIRS} -L${LIB_DIRS}
 LIBS= -lrt -lpthread
 CPPLIBS= -L/usr/lib 
 
-HFILES= set_affinity.h
+HFILES= set_affinity.h calc_delta.h
 CFILES= fib.c
 CPPFILES= 
 LINK= 
