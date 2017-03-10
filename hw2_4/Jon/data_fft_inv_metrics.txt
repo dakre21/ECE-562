@@ -1,0 +1,22 @@
+Benchmark              = fftinv
+Base IPC               = 0.5969
+Best IPC               = 0.5969
+Rate Improvement (%)   = 0
+Best IPC config        = NUM_OF_SETS   : 32
+                         LINESIZE      : 64
+                         ASSOCIATIVITY : 4
+
+Benchmark              = fftinv
+Base CacheMiss Rate    = 0.0121
+Best CacheMiss Rate    = 0.0121
+Rate Improvement (%)   = 0
+Best CacheMiss config  = NUM_OF_SETS   : 32
+                         LINESIZE      : 64
+                         ASSOCIATIVITY : 4
+Base Config Results:
+IPC               = 0.5969
+CACHEMISS         = 0.0121
+NUM_OF_SETS       = 32
+LINESIZE          = 64
+ASSOCIATIVITY     = 4
+BENCH             = fftinv

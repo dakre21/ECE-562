@@ -1,0 +1,22 @@
+Benchmark              = qsortsmall
+Base IPC               = 0.5631
+Best IPC               = 0.5631
+Rate Improvement (%)   = 0
+Best IPC config        = NUM_OF_SETS   : 32
+                         LINESIZE      : 64
+                         ASSOCIATIVITY : 4
+
+Benchmark              = qsortsmall
+Base CacheMiss Rate    = 0.0332
+Best CacheMiss Rate    = 0.0331
+Rate Improvement (%)   = 0.301204819277117
+Best CacheMiss config  = NUM_OF_SETS   : 64
+                         LINESIZE      : 64
+                         ASSOCIATIVITY : 2
+Base Config Results:
+IPC               = 0.5631
+CACHEMISS         = 0.0332
+NUM_OF_SETS       = 32
+LINESIZE          = 64
+ASSOCIATIVITY     = 4
+BENCH             = qsortsmall
