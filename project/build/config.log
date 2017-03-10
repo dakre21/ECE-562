@@ -1,6 +1,6 @@
-# project waf (1.9.8) configured on Thu Mar  9 17:32:58 2017 by
+# project waf (1.9.8) configured on Thu Mar  9 19:11:22 2017 by
 # waf 1.9.8 (abi 99, python 20706f0 on linux2)
-# using ./waf configure
+# using ./waf configure clean build
 #
 ----------------------------------------
 Setting top to
