@@ -14,6 +14,7 @@ struct timespec start_time = {0, 0};
 struct timespec stop_time = {0, 0};
 static struct timespec sleep_time = {0, 10000000}; // 10^7ns or 10ms
 static struct timespec remaining_time = {0, 0};
+uint32_t fib = 0, fib0 = 0, fib1 = 1;
 
 int calc_delta()
 {
@@ -30,7 +31,6 @@ int calc_delta()
 
 void calc_fib()
 {
-  uint32_t fib = 0, fib0 = 0, fib1 = 1;
   int i = 0;
   int time = 0;
 
@@ -39,6 +39,8 @@ void calc_fib()
     clock_gettime(CLOCK_REALTIME, &start_time);
     nanosleep(&sleep_time, &remaining_time);
     fib = fib0 + fib1;
+    fib0 = fib1;
+    fib1 = fib;
     clock_gettime(CLOCK_REALTIME, &stop_time);
     time = calc_delta();
     printf("Fib num = %u at position %d and total process took %d\n", fib, i, time);
