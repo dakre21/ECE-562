@@ -1,10 +1,3 @@
-#include <sched.h>
-#include <sys/sysinfo.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
 #include <pthread.h>
 #include <time.h>
 #include <set_affinity.h>
@@ -60,7 +53,6 @@ void calc_fib()
 int main (int argc, char *argv[])
 {
   int num_procs = get_nprocs_conf();
-  printf("%s argv\n", argv[1]);
 
   // TODO: Setup pthread env
   if (argv[1] == NULL)
