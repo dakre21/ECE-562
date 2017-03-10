@@ -3,3 +3,5 @@ Threw this together... hopefully will be a useful example moving forward.
 TODOS:
 1) Double check process is pinning to core properly
 2) Update high_prio programs to be actually running at highest prio.. right now they're just at norm
+3) Put calc delta in a header to be shared accross other benchmarks (similar to affinity lib)
+4) Add pthread lib

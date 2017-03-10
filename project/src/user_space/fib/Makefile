@@ -1,47 +1,28 @@
-INCLUDE_DIRS = 
-LIB_DIRS = 
+INCLUDE_DIRS =./../inc
+LIB_DIRS =./../lib
 CC=g++
 
 CDEFS=
-CFLAGS= -O3 -Wall -pg -g $(INCLUDE_DIRS) $(CDEFS) 
+CFLAGS= -O3 -Wall -pg -g $(CDEFS) -I${INCLUDE_DIRS} -L${LIB_DIRS}
 LIBS= -lrt -lpthread
 CPPLIBS= -L/usr/lib 
 
-HFILES= 
-CFILES= 
+HFILES= set_affinity.h
+CFILES= fib.c
 CPPFILES= 
 LINK= 
 
-CFILES1 = fib_high_prio_smp.c
-CFILES2 = fib_norm_prio_smp.c
-CFILES3 = fib_high_prio_smp_locked.c
-CFILES4 = fib_norm_prio_smp_locked.c
-
 SRCS= ${HFILES} ${CFILES}
-
-COBJS1= ${CFILES1}
-COBJS2= ${CFILES2}
-COBJS3= ${CFILES3}
-COBJS4= ${CFILES4}
 
 CPPOBJS= ${CPPFILES:.cpp=.o}
 
-all:	 fib_high_prio_smp fib_norm_prio_smp fib_high_prio_smp_locked fib_norm_prio_smp_locked
+all:	 fib
 
 clean:
-	-rm -f *.o *.d fib_high_prio_smp fib_norm_prio_smp fib_high_prio_smp_locked fib_norm_prio_smp_locked
+	-rm -f *.o *.d fib
 
-fib_high_prio_smp: fib_high_prio_smp.o
-	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $(COBJS1) $(LIBS)
-
-fib_norm_prio_smp: fib_norm_prio_smp.o
-	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $(COBJS2) $(LIBS)
-
-fib_high_prio_smp_locked: fib_high_prio_smp_locked.o
-	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $(COBJS3) $(LIBS)
-
-fib_norm_prio_smp_locked: fib_norm_prio_smp_locked.o
-	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $(COBJS4) $(LIBS)
+fib: fib.o
+	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $(CFILES) $(LIBS)
 
 distclean:
 	-rm -f *.o *.d
