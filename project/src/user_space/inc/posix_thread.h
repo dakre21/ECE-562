@@ -3,6 +3,16 @@
 #include <stdio.h>
 #include <sched.h>
 
+/*
+ * Author: David Akre
+ * Date: 3/11/2017
+ *
+ * Description: posix_thread is an interface that will create and kill pthreads
+ * for any given program. Natively, this interface will give threads highest or
+ * near highest priority to run at according to sched_fifo policy.
+ *
+ */
+
 #define MAX_THREADS 10
 
 // Fwd declaration of pthreads
@@ -16,6 +26,13 @@ thread_params params[MAX_THREADS];
 pthread_attr_t sched_attr[MAX_THREADS];
 struct sched_param rt_params[MAX_THREADS];
 
+// Description: kill pthreads in execution
+//
+// Inputs:
+// - num_threads (int)
+//
+// Outputs:
+// - T/F (bool)
 bool kill_pthreads(int num_threads)
 {
   int i = 0;
@@ -32,6 +49,14 @@ bool kill_pthreads(int num_threads)
   return true;
 }
 
+// Description: create pthreads for a program
+//
+// Inputs:
+// - num_threads (int)
+// - entry_point (void*)
+//
+// Outputs:
+// - T/F (bool)
 bool create_pthreads(int num_threads, void* (*entry_point)(void*))
 {
   if (num_threads > MAX_THREADS)
@@ -40,7 +65,7 @@ bool create_pthreads(int num_threads, void* (*entry_point)(void*))
     return false;
   }
 
-   int rt_max_prio = sched_get_priority_max(SCHED_FIFO);
+  int rt_max_prio = sched_get_priority_max(SCHED_FIFO);
 
   pthread_attr_init(&sched_attr[0]); // Init thread attributes
   pthread_attr_setinheritsched(&sched_attr[0], PTHREAD_EXPLICIT_SCHED); // Set inherit sched policy

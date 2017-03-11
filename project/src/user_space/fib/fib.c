@@ -4,14 +4,24 @@
 #include <stall_cpu.h>
 #include <string.h>
 
+/*
+ * Author: David Akre
+ * Date: 3/11/2017
+ *
+ * Description: fib is a simple benchmark that will calculate the fibonacci sequence for 
+ * a defined number of cycles. In the int main function, the user can give input to what 
+ * kind of configuration this process should execute under.
+ *
+ */
+
 #define NUM_FIB_CYCLES 50
 
+// Fwd declaration of vars
 struct timespec start_time = {0, 0};
 struct timespec stop_time = {0, 0};
-//static struct timespec sleep_time = {0, 10000000}; // 10^7ns or 10ms
-//static struct timespec remaining_time = {0, 0};
 uint32_t fib = 0, fib0 = 0, fib1 = 1;
 
+// Function to calculate fibonacci sequence
 void calc_fib()
 {
   int i = 0;
@@ -20,17 +30,18 @@ void calc_fib()
   for (; i < NUM_FIB_CYCLES; i++)
   {
     clock_gettime(CLOCK_REALTIME, &start_time);
-    //nanosleep(&sleep_time, &remaining_time);
     fib = fib0 + fib1;
     fib0 = fib1;
     fib1 = fib;
     clock_gettime(CLOCK_REALTIME, &stop_time);
     time = calc_delta(&start_time, &stop_time);
+
     // Fib num will exceed what int can actually store... so ignore result we can about time
     printf("INFO: Fib num = %u at position %d and total process took %d\n", fib, i, time);
   }
 }
 
+// Function pointer for pthreads to execute at (just calls calc_fib())
 void* calc_fib_entry(void* thread_id)
 {
   calc_fib();  

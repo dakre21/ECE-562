@@ -7,6 +7,22 @@
 #include <sys/wait.h>
 #include <sys/sysinfo.h>
 
+/*
+ * Author: David Akre
+ * Date: 3/11/2017
+ *
+ * Description: set_affinity is an interface that will pin a number of processors
+ * to a specific process context (whatever process that is calling it)
+ *
+ */
+
+// Description: Pin process to a number of processors
+//
+// Inputs:
+// - req_cpus (int)
+//
+// Outputs:
+// - T/F (bool)
 bool setup_affinity(int req_cpus)
 {
   cpu_set_t set;
