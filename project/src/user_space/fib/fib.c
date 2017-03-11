@@ -33,7 +33,6 @@ void calc_fib()
 
 void* calc_fib_entry(void* thread_id)
 {
-  printf("Thread %d calc fib\n", *(int*)thread_id);
   calc_fib();  
 
   return thread_id;
