@@ -1,0 +1,10 @@
+Steps:
+1) First run setup_gem5.sh which takes around 10 mins
+2) Second run setup_env.sh (this will get kicked off in 
+initial setup, but if you run into errors building gem5 
+for a target you'll need to redo your pathing
+3) Run "scons build/X86/gem5.opt" or "scons build/ARM/gem5.opt"
+
+-- NOT FINISHED --
+Getting build error on proto, may need to rebuild w/ diff config & environment
+
