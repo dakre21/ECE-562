@@ -21,16 +21,11 @@ sudo apt-get install m4
 echo ""
 echo "Installing zlib"
 echo ""
-cd ~
-git clone https://github.com/madler/zlib
-cd zlib
-./configure
-make
-sudo make install
-cd ~
+sudo apt-get install --reinstall zlibc zlib1g zlib1g-dev
 echo ""
 echo "Installing protobuf"
 echo ""
+cd ~
 git clone https://github.com/google/protobuf
 echo ""
 echo "Installing protobuf dependencies"
@@ -39,7 +34,7 @@ sudo apt-get install autoconf automake libtool curl make g++ unzip
 echo ""
 cd protobuf
 ./autogen.sh
-./configure
+./configure --prefix=/usr
 make
 make check
 sudo make install
@@ -53,11 +48,6 @@ sudo apt-get install python-dev
 echo "Installing tcmalloc"
 echo ""
 sudo apt-get install tcmalloc
-echo ""
-echo "Setting up environment"
-echo ""
-./setup_env.sh
-echo ""
 echo ""
 echo "Installing mercurial if you want to pull in updates from source"
 echo ""
