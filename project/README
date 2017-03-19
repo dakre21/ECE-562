@@ -11,3 +11,21 @@ SIM
 DOCS
 - Contains project related research documents
 
+TODOs:
+Benchmarks
+- Might need more than just fib to test against (i.e. add more benchmarks)
+
+Simulation
+- Create directory to redirect outputs from tracing/gem5 to start correlating results
+into a centralized place
+-- Also run different lttng combinations against benchmarks to gather more metrics
+- Make a customized gem5 script to run against benchmarks
+
+Analytics
+- Roll out script to correlate metrics produced from simulations into csv & potentially graph results
+
+Kernel
+- Look into a suitable kernel to potentially look into improvements to make it more RT
+-- Debian might be easier since its relatively small and easier to debug w/ when
+making improvements (i.e. sideload onto raspberry pi)
+

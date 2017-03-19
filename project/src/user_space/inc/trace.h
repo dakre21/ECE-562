@@ -1,3 +1,11 @@
+/* Author: David Akre
+ * Date: 3/19/2017
+ *
+ * Description: Header function to be used in a generic manner to add
+ * tracing to c/c++ benchmarks and executed against the sim_lttng_rt.py 
+ * script
+ */
+
 #undef TRACEPOINT_PROVIDER
 #define TRACEPOINT_PROVIDER benchmark
 
