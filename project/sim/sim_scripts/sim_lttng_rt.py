@@ -1,11 +1,18 @@
 #!/usr/bin/env python
 
+# Author: David Akre
+# Date: 3/18/2017
+#
+# Description: This script takes in an executable benchmark and other arguments
+# to run lttng properly
+
 import os
 import subprocess
 import sys
 import time
 from argparse import ArgumentParser
 
+# Main method to invoke lttng traces
 def trace_process():
   in_file, filt, type_of_trace = parse_inputs()
 
