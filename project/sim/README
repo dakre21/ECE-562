@@ -1,10 +1,36 @@
-Steps:
+GEM5 Build/Run
+
+Build Steps:
 1) First run setup_gem5.sh which takes around 10 mins
 2) Second run setup_env.sh (this will get kicked off in 
 initial setup, but if you run into errors building gem5 
 for a target you'll need to redo your pathing
 3) Run "scons build/X86/gem5.opt" or "scons build/ARM/gem5.opt"
 
--- NOT FINISHED --
-Getting build error on proto, may need to rebuild w/ diff config & environment
+Run Steps:
+1) Out of the box example w/ se.py script-- build/X86/gem5.opt configes/example/se.py -c tests/test-progs/hello/bin/x86/linux/hello
+
+LTTNG
+
+Build Steps:
+1) Run setup_lttng.sh
+2) Add yourself to a linux tracing group so you don't have to run as root
+
+Run Steps:
+1) Userspace
+- ./sim_lttng_rt.py -i <benchmark-executable> -t userspace
+2) Kernel
+- ./sim_lttng_rt.py -i <benchmark-executable> -t kernel -f <optional-filter>
+
+Trace results live in home/<user>/lttng-traces
+
+Getting output from traces:
+1) Run babeltrace or lttng view (lttng view you must have session still alive to view)
+- babeltrace ~/lttng-traces/<trace-output-dir>
+-- You can also grep certain results from the stdout
+- lttng view ~/lttng-traces/<trace-output-dir>
+
+TODOs:
+1) Make a gem5 script to work with fib (maybe first w/ nrt version)
+
 
