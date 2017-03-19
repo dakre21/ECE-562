@@ -43,7 +43,7 @@ while (my $file = readdir(DIR))
 
 			$CacheStats{ $count } = 
 			{
-				IPC		=> $tmp[0],
+				CACHEACCESS     => $tmp[0],
 				CACHEMISS	=> $tmp[1],
 				NUM_OF_SETS	=> $size,
 				LINESIZE	=> $line_size,
@@ -56,9 +56,9 @@ while (my $file = readdir(DIR))
 
 }
 
-my $indexToBestIpc = 0;
+my $indexToHighestCacheAccess = 0;
 my $indexToBestMissRate = 1;
-my $tmpIPC = 0;
+my $tmpCacheAccess = 0;
 my $tmpMiss = 1;
 my $baseCase = 0;
 
@@ -72,13 +72,13 @@ foreach my $name (sort keys %CacheStats)
     foreach my $subject (keys %{ $CacheStats{$name} }) 
     {
 
-	if ($subject eq IPC)
+	if ($subject eq CACHEACCESS)
 	{
 		
-		if ($CacheStats{$name}{$subject} gt $tmpIPC)
+		if ($CacheStats{$name}{$subject} lt $tmpCacheAccess)
 		{
-			$tmpIPC = $CacheStats{$name}{$subject};
-			$indexToBestIpc = $name;
+			$tmpCacheAccess = $CacheStats{$name}{$subject};
+			$indexToHighestCacheAccess = $name;
 		}	
 	} 
 
@@ -118,17 +118,18 @@ foreach my $name (sort keys %CacheStats)
 	
 }
 my $ipcImprovement=0;
-if ($CacheStats{$baseCase}{IPC} > 0)
+if ($CacheStats{$baseCase}{CACHEACCESS} > 0)
 {
-	$ipcImprovement = (($CacheStats{$indexToBestIpc}{IPC} - $CacheStats{$baseCase}{IPC}) / $CacheStats{$baseCase}{IPC}) * 100;
+	$ipcImprovement = (($CacheStats{$indexToHighestCacheAccess}{CACHEACCESS} - $CacheStats{$baseCase}{CACHEACCESS}) / $CacheStats{$baseCase}{CACHEACCESS}) * 100;
 }
-print "Benchmark              = ", $CacheStats{$indexToBestIpc}{BENCH},"\n";
-print "Base IPC               = ", $CacheStats{$baseCase}{IPC},"\n";
-print "Best IPC               = ", $CacheStats{$indexToBestIpc}{IPC},"\n";
+print "Benchmark              = ", $CacheStats{$indexToHighestCacheAccess}{BENCH},"\n";
+print "Base CACHEACCESS       = ", $CacheStats{$baseCase}{CACHEACCESS},"\n";
+print "Best CACHEACCESS       = ", $CacheStats{$indexToHighestCacheAccess}{CACHEACCESS},"\n";
 print "Rate Improvement (%)   = ", $ipcImprovement,"\n";
-print "Best IPC config        = NUM_OF_SETS   : ",$CacheStats{$indexToBestIpc}{NUM_OF_SETS},"\n";
-print "                         LINESIZE      : ",$CacheStats{$indexToBestIpc}{LINESIZE},"\n"; 
-print "                         ASSOCIATIVITY : ",$CacheStats{$indexToBestIpc}{ASSOCIATIVITY},"\n";
+print "Best CACHEACCESS config = NUM_OF_SETS   : ",$CacheStats{$indexToHighestCacheAccess}{NUM_OF_SETS},"\n";
+print "                          LINESIZE      : ",$CacheStats{$indexToHighestCacheAccess}{LINESIZE},"\n"; 
+print "                          ASSOCIATIVITY : ",$CacheStats{$indexToHighestCacheAccess}{ASSOCIATIVITY},"\n";
+
 
 print "\n";
 
@@ -148,7 +149,7 @@ print "                         ASSOCIATIVITY : ",$CacheStats{$indexToBestMissRa
 
 
 print "Base Config Results:\n";
-print "IPC               = ", $CacheStats{$baseCase}{IPC},"\n";
+print "CACHEACCESS       = ", $CacheStats{$baseCase}{CACHEACCESS},"\n";
 print "CACHEMISS         = ", $CacheStats{$baseCase}{CACHEMISS},"\n";
 print "NUM_OF_SETS       = ", $CacheStats{$baseCase}{NUM_OF_SETS},"\n";
 print "LINESIZE          = ", $CacheStats{$baseCase}{LINESIZE},"\n";
