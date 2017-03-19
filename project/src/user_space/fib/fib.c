@@ -4,6 +4,10 @@
 #include <stall_cpu.h>
 #include <string.h>
 
+#define TRACEPOINT_CREATE_PROBES
+#define TRACEPOINT_DEFINE
+#include <trace.h>
+
 /*
  * Author: David Akre
  * Date: 3/11/2017
@@ -37,7 +41,8 @@ void calc_fib()
     time = calc_delta(&start_time, &stop_time);
 
     // Fib num will exceed what int can actually store... so ignore result we can about time
-    printf("INFO: Fib num = %u at position %d and total process took %d\n", fib, i, time);
+    //printf("INFO: Fib num = %u at position %d and total process took %d\n", fib, i, time);
+    tracepoint(benchmark, my_tracepoint, (int)time, "Fib iteration caclulation timestamp");
   }
 }
 

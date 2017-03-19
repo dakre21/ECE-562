@@ -4,11 +4,11 @@ CC=g++
 
 CDEFS=
 CFLAGS= -O3 -Wall -pg -g $(CDEFS) -I${INCLUDE_DIRS} -L${LIB_DIRS}
-LIBS= -lrt -lpthread
+LIBS= -lrt -lpthread -ldl -llttng-ust
 CPPLIBS= -L/usr/lib 
 
-HFILES= set_affinity.h calc_delta.h posix_thread.h stall_cpu.h
-CFILES= fib.c
+HFILES= set_affinity.h calc_delta.h posix_thread.h stall_cpu.h trace.h
+CFILES= fib.c 
 CPPFILES= 
 LINK= 
 
@@ -21,7 +21,7 @@ all:	 fib
 clean:
 	-rm -f *.o *.d fib
 
-fib: fib.o
+fib: fib.o 
 	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $(CFILES) $(LIBS)
 
 distclean:

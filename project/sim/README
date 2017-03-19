@@ -5,3 +5,6 @@ initial setup, but if you run into errors building gem5
 for a target you'll need to redo your pathing
 3) Run "scons build/X86/gem5.opt" or "scons build/ARM/gem5.opt"
 
+-- NOT FINISHED --
+Getting build error on proto, may need to rebuild w/ diff config & environment
+
