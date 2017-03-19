@@ -1,1 +1,13 @@
-Just using make right now... we can switch to a better build tool if we all want
+Layout:
+
+SRC
+- Contains relative benchmarks, libraries, and interfaces in c/c++
+- Soon to contain a kernel...
+
+SIM
+- Contains gem5 simulator and relative scripts to run against different executables
+- Contians lttng script to trace userspace or kernel events given a user space application
+
+DOCS
+- Contains project related research documents
+
