@@ -51,6 +51,11 @@ void* calc_fib_entry(void* thread_id)
 {
   calc_fib();  
 
+  if (kill_pthreads(1) == false)
+  {
+    exit(-1);
+  }
+
   return thread_id;
 }
 
@@ -99,11 +104,6 @@ int main (int argc, char *argv[])
   if (hprio == true)
   {
     if (create_pthreads(1, calc_fib_entry) == false)
-    {
-      exit(-1);
-    }
-
-    if (kill_pthreads(1) == false)
     {
       exit(-1);
     }

@@ -36,6 +36,8 @@ struct sched_param rt_params[MAX_THREADS];
 bool kill_pthreads(int num_threads)
 {
   int i = 0;
+  pthread_exit(&num_threads);
+
   for (; i < num_threads; i++)
   {
     if (pthread_join(threads[i], NULL) != 0)
@@ -43,9 +45,15 @@ bool kill_pthreads(int num_threads)
       printf("ERROR: Could not kill thread execution\n");
       return false;
     }
+    
   }
 
-  pthread_exit(NULL);
+  if (pthread_attr_destroy(&sched_attr[MAX_THREADS]) != 0)
+  {
+      printf("ERROR: Could not destroy thread attributes\n");
+      return false;
+  }
+
   return true;
 }
 
