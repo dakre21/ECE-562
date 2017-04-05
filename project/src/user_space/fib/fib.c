@@ -18,7 +18,7 @@
  *
  */
 
-#define NUM_FIB_CYCLES 1000
+#define NUM_FIB_CYCLES 1000000
 
 // Fwd declaration of vars
 struct timespec start_time = {0, 0};
@@ -68,6 +68,7 @@ void* calc_fib_entry(void* thread_id)
 */
 int main (int argc, char *argv[])
 {
+  printf("FIB pid %d\n", getpid());
   int num_procs = get_nprocs_conf();
   bool hprio = false;
   

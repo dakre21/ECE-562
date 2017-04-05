@@ -21,6 +21,14 @@ Run Steps:
 - ./sim_lttng_rt.py -i <benchmark-executable> -t userspace
 2) Kernel
 - ./sim_lttng_rt.py -i <benchmark-executable> -t kernel -f <optional-filter>
+** Advanced Steps for kernel:
+- ./sim_lttng_rt.py -i fib -t kernel -f perf:cpu:cycles -o output 
+-- The above will redirect babeltrace results into a csv file located in lttng_sim_ouputs
+- ./sim_lttng_rt.py -i fib -t kernel -f perf:cpu:cycles -o output -opts 1
+-- The above will also do the same but also give the input executable an input argument
+
+** The below is somewhat deprecated now since its bundled into the sim script, but I will keep
+it here for advisory sake.
 
 Trace results live in home/<user>/lttng-traces
 

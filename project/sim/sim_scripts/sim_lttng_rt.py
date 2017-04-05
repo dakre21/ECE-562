@@ -14,67 +14,59 @@ from argparse import ArgumentParser
 
 # Main method to invoke lttng traces
 def trace_process():
-  in_file, filt, type_of_trace = parse_inputs()
-
-  '''
-  pwd = ""
-  subprocess.call("pwd > tmp", shell=True)
-  with open("tmp") as tmp:
-    for line in tmp:
-      pwd = line 
-  '''
+  in_file, filt, type_of_trace, out_file, opts = parse_inputs()
 
   create_cmd = "lttng create " + str(in_file) + "-" + str(type_of_trace)
   print create_cmd
   if type_of_trace == "userspace":
-    # Part 1 setup trace
+    # Part 1 Setup trace
     print "Setting up lttng trace in user space"
-    #subprocess.call("lttng create " + str(in_file) + "-" + str(type_of_trace) + " --output " + str(pwd) + "/simulations/lttng", shell=True)
     subprocess.call(create_cmd, shell=True)
     subprocess.call("lttng enable-event -u --all", shell=True)
-  
-    # Part 2 start trace
-    print "Starting lttng trace"
-    subprocess.call("lttng start", shell=True)
-    subprocess.call("./../../src/user_space/" + str(in_file) + "/" + str(in_file), shell=True)
-    subprocess.call("lttng stop", shell=True)
-    subprocess.call("lttng destroy", shell=True)
-    #subprocess.call("rm tmp", shell=True)
 
   elif type_of_trace == "kernel":
+    # Part 1 Setup trace (always filter by pid)
     print "Setting up lttng trace in kernel"
-    # Part 1 setup trace
+
     if filt != None:
       subprocess.call(create_cmd, shell=True)
       subprocess.call("lttng enable-event -k --all", shell=True)
-      subprocess.call("lttng add-context -k -t " + str(filt), shell=True)
+      subprocess.call("lttng add-context -k -t pid -t " + str(filt), shell=True)
     else:
       subprocess.call(create_cmd, shell=True)
       subprocess.call("lttng enable-event -k --all", shell=True)
   
-    # Part 2 start trace
-    print "Starting lttng trace"
-    #TODO: Figure out why the pid is null here
-    #subprocess.call("./../../src/user_space/" + str(in_file) + "/" + str(in_file), shell=True)
-    #subprocess.call("lttng track -k --pid `pidof " + str(in_file) + "`", shell=True)
-    subprocess.call("lttng start", shell=True)
-    subprocess.call("./../../src/user_space/" + str(in_file) + "/" + str(in_file), shell=True)
-    subprocess.call("lttng stop", shell=True)
-    subprocess.call("lttng destroy", shell=True)
-    #subprocess.call("rm tmp", shell=True)
-
   else:
     print "ERROR: Unsupported type, run -h for help"
     sys.exit()
-    
-  print "Stopping lttng trace"
+ 
+  # Part 2 Start lttng trace
+  print "Starting lttng trace"
+  subprocess.call("lttng start", shell=True)
+  if opts == None:
+    subprocess.call("sudo ./../../src/user_space/" + str(in_file) + "/" + str(in_file), shell=True)
+  else:
+    subprocess.call("sudo ./../../src/user_space/" + str(in_file) + "/" + str(in_file) + " " + str(opts), shell=True)
+
+  # Part 3 Stop lttng trace
+  subprocess.call("lttng stop", shell=True)
+  subprocess.call("lttng destroy", shell=True)
+
+  # Part 4 Redirect output to csv file & clean up
+  print "Stopping lttng trace and starting up babeltrace to redirect tracing output to csv"
+  subprocess.call("babeltrace ~/lttng-traces/* > " + "./lttng_sim_outputs/" + out_file + ".csv", shell=True)
+  print "Cleaning up work area"
+  subprocess.call("rm -rf ~/lttng-traces/*", shell=True)
+  subprocess.call("rm *.out", shell=True)
 
 def parse_inputs():
   parser = ArgumentParser()
   parser.add_argument("-i", "--input", help="Input executable file (e.g. fib)")
   parser.add_argument("-t", "--type", help="Available tracing types are: userspace or kernel")
   parser.add_argument("-f", "--filter", help = "Filter options to be passed into lttng (e.g. pid)")
-  parser.add_argument("-d", "--destroy", help= "Destroy previous trace session")
+  parser.add_argument("-o", "--output", help="Output file name")
+  parser.add_argument("-opt", "--options", help="Options to executable")
+  #parser.add_argument("-d", "--destroy", help= "Destroy previous trace session")
 
   try:
     args = parser.parse_args()
@@ -82,17 +74,22 @@ def parse_inputs():
     print "ERROR: Not enough input arguments provided... run -h on this script for help"
     sys.exit()
 
+  '''
   if args.destroy != None:
     print "Attempting to destroy lttng trace session"
     subprocess.call("lttng destroy " + str(args.destroy), shell=True)
     sys.exit()
-
+  '''
 
   if args.input == None or args.type == None:
     print "ERROR: Not enough input arguments provided... run -h on this script for help"
     sys.exit()
 
-  return args.input,  args.filter, args.type
+  if args.output == None:
+    print "ERROR: Must provide an output file name without an extension"
+    sys.exit()
+
+  return args.input,  args.filter, args.type, args.output, args.options
 
 trace_process()
 

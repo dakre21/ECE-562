@@ -16,9 +16,9 @@ Benchmarks
 - Might need more than just fib to test against (i.e. add more benchmarks)
 
 Simulation
-- Create directory to redirect outputs from tracing/gem5 to start correlating results
-into a centralized place
--- Also run different lttng combinations against benchmarks to gather more metrics
+- Start running different "add-context" combinations against the executables
+-- Fix error "Error: perf:cpu:cycles: Add kernel context failed" or any input filter to script... 
+currently not adding a second context for some reason
 - Make a customized gem5 script to run against benchmarks
 
 Analytics
