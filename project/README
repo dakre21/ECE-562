@@ -20,6 +20,7 @@ Simulation
 -- Fix error "Error: perf:cpu:cycles: Add kernel context failed" or any input filter to script... 
 currently not adding a second context for some reason
 - Make a customized gem5 script to run against benchmarks
+- Additionally, run simulations on ARM targets like the pi or tegra (get metrics noting ARM target to be used for analytics)
 
 Analytics
 - Roll out script to correlate metrics produced from simulations into csv & potentially graph results
