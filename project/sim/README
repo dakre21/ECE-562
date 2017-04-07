@@ -24,7 +24,7 @@ Run Steps:
 ** Advanced Steps for kernel:
 - ./sim_lttng_rt.py -i fib -t kernel -f perf:cpu:cycles -o output 
 -- The above will redirect babeltrace results into a csv file located in lttng_sim_ouputs
-- ./sim_lttng_rt.py -i fib -t kernel -f perf:cpu:cycles -o output -opts 1
+- ./sim_lttng_rt.py -i fib -t kernel -f perf:cpu:cycles -o output -opt 1
 -- The above will also do the same but also give the input executable an input argument
 
 ** The below is somewhat deprecated now since its bundled into the sim script, but I will keep

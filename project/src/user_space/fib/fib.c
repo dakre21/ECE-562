@@ -18,7 +18,7 @@
  *
  */
 
-#define NUM_FIB_CYCLES 1000000
+#define NUM_FIB_CYCLES 100000000
 
 // Fwd declaration of vars
 struct timespec start_time = {0, 0};

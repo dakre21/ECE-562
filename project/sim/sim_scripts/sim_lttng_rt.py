@@ -56,8 +56,8 @@ def trace_process():
   print "Stopping lttng trace and starting up babeltrace to redirect tracing output to csv"
   subprocess.call("babeltrace ~/lttng-traces/* > " + "./lttng_sim_outputs/" + out_file + ".csv", shell=True)
   print "Cleaning up work area"
-  subprocess.call("rm -rf ~/lttng-traces/*", shell=True)
-  subprocess.call("rm *.out", shell=True)
+  subprocess.call("sudo rm -rf ~/lttng-traces/*", shell=True)
+  subprocess.call("sudo rm *.out", shell=True)
 
 def parse_inputs():
   parser = ArgumentParser()
