@@ -19,7 +19,8 @@
  *
  */
 
-#define NUM_FIB_CYCLES 1000
+#define NUM_FIB_CYCLES 1000000
+#define NSECS_PER_CC   0.357 // 2.8 GHz CPU Clock
 
 // Fwd declaration of vars
 struct timespec start_time = {0, 0};
@@ -57,8 +58,8 @@ void calc_fib()
     time = calc_delta(&start_time, &stop_time);
     cycles = get_cpu_cycles();
 
-    ipc = (float)(instr_count) / ((float)(cycles) - (float)(prev_cycles));
-    cpi = ((float)(cycles) - (float)(prev_cycles)) / (float)(instr_count);
+    cpi = ((float)time / ((float)instr_count * 0.357));
+    ipc = (1 / cpi);
 
     // Fib num will exceed what int can actually store... so ignore result we can about time
     // NOTE: CPI and IPC (this is per process not overall CPU instructions executed) 

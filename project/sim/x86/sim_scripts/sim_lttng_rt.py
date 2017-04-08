@@ -43,10 +43,13 @@ def trace_process():
   # Part 2 Start lttng trace
   print "Starting lttng trace"
   subprocess.call("lttng start", shell=True)
+  handle = subprocess.Popen("top -d 0.01 > ./../lttng_sim_outputs/temp.out", shell=True)
   if opts == None:
     subprocess.call("sudo ./../../../src/user_space/src/x86/" + str(in_file) + "/" + str(in_file), shell=True)
   else:
     subprocess.call("sudo ./../../../src/user_space/src/x86/" + str(in_file) + "/" + str(in_file) + " " + str(opts), shell=True)
+  handle.terminate()
+  handle.kill()
 
   # Part 3 Stop lttng trace
   subprocess.call("lttng stop", shell=True)
@@ -54,8 +57,11 @@ def trace_process():
 
   # Part 4 Redirect output to csv file & clean up
   print "Stopping lttng trace and starting up babeltrace to redirect tracing output to csv"
-  subprocess.call("babeltrace ~/lttng-traces/* > " + "./../lttng_sim_outputs/" + out_file + ".csv", shell=True)
+  subprocess.call("babeltrace ~/lttng-traces/* > " + "./../lttng_sim_outputs/" + str(out_file) + ".csv", shell=True)
+  print "Redirecting cpu and memory utilization to output file"
+  subprocess.call("grep " + str(in_file) + " ./../lttng_sim_outputs/temp.out > ./../lttng_sim_outputs/" + str(out_file) + ".out", shell=True)
   print "Cleaning up work area"
+  subprocess.call("sudo rm -f ./../lttng_sim_outputs/temp.out", shell=True)
   subprocess.call("sudo rm -rf ~/lttng-traces/*", shell=True)
   subprocess.call("sudo rm -rf gmon.out", shell=True)
 
@@ -66,20 +72,12 @@ def parse_inputs():
   parser.add_argument("-f", "--filter", help = "Filter options to be passed into lttng (e.g. pid)")
   parser.add_argument("-o", "--output", help="Output file name")
   parser.add_argument("-opt", "--options", help="Options to executable")
-  #parser.add_argument("-d", "--destroy", help= "Destroy previous trace session")
 
   try:
     args = parser.parse_args()
   except:
     print "ERROR: Not enough input arguments provided... run -h on this script for help"
     sys.exit()
-
-  '''
-  if args.destroy != None:
-    print "Attempting to destroy lttng trace session"
-    subprocess.call("lttng destroy " + str(args.destroy), shell=True)
-    sys.exit()
-  '''
 
   if args.input == None or args.type == None:
     print "ERROR: Not enough input arguments provided... run -h on this script for help"
