@@ -3,6 +3,7 @@
 #include <posix_thread.h>
 #include <stall_cpu.h>
 #include <string.h>
+#include <cpu_stats.h>
 
 #define TRACEPOINT_CREATE_PROBES
 #define TRACEPOINT_DEFINE
@@ -30,6 +31,7 @@ void calc_fib()
 {
   int i = 0;
   int time = 0;
+  unsigned int cycles = 0;
 
   for (; i < NUM_FIB_CYCLES; i++)
   {
@@ -37,12 +39,14 @@ void calc_fib()
     fib = fib0 + fib1;
     fib0 = fib1;
     fib1 = fib;
+
     clock_gettime(CLOCK_REALTIME, &stop_time);
     time = calc_delta(&start_time, &stop_time);
+    cycles = get_cpu_cycles();
 
     // Fib num will exceed what int can actually store... so ignore result we can about time
-    //printf("INFO: Fib num = %u at position %d and total process took %d\n", fib, i, time);
-    tracepoint(benchmark, my_tracepoint, (int)time, "Fib iteration caclulation timestamp");
+    //printf("INFO: Fib num = %u at position %d, total process took %d, and the cpu cycles are: %u\n", fib, i, time, cycles);
+    tracepoint(benchmark, my_tracepoint, (int)time, cycles, "Fib iteration caclulation timestampi and cpu cycle count");
   }
 }
 

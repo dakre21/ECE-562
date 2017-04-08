@@ -6,6 +6,7 @@
  * script
  */
 
+#ifdef __x86_64__ || __amd64__
 #undef TRACEPOINT_PROVIDER
 #define TRACEPOINT_PROVIDER benchmark
 
@@ -21,15 +22,20 @@ TRACEPOINT_EVENT(
     benchmark,
     my_tracepoint,
     TP_ARGS(
-        int, my_timestamp_arg,
-        char*, my_trace_description_arg
+        int, timestamp,
+        unsigned int, cpu_cycles,
+        char*, trace_description
     ),
     TP_FIELDS(
-        ctf_integer(int, my_timestamp_field, my_timestamp_arg)
-        ctf_string(my_trace_description_field, my_trace_description_arg)
+        ctf_integer(int, timestamp_field, timestamp)
+        ctf_integer(unsigned int, cpu_cycles_field, cpu_cycles)
+        ctf_string(trace_description_field, trace_description)
     )
 )
 
 #endif
 
 #include <lttng/tracepoint-event.h>
+#else
+#endif
+
