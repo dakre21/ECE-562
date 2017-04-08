@@ -1,0 +1,15 @@
+Threw this together... hopefully will be a useful example moving forward.
+
+TODOS:
+1) Double check process is pinning to core properly
+
+Explanation:
+- Look through the code, fib can be setup in unicore or multicore environment ran at diff priorities.
+- Don't pay too much attention to fib result, after sometime the result will be corrupted due to the 
+space of int/uint, pay more attention to the timestamps after calculating fib.
+- Context switching occurs when we're not creating a thread within our process context and setting it
+to the highest priority (you get unpredictable response time)
+- Stalling cpu with a sleep will cause more context switching.. try to stall away from these because of 
+this... if you have to use a stall thats cool, just use the "stall_cpu" lib in inc I made
+
+-- David Akre

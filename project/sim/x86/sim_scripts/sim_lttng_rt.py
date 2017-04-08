@@ -44,9 +44,9 @@ def trace_process():
   print "Starting lttng trace"
   subprocess.call("lttng start", shell=True)
   if opts == None:
-    subprocess.call("sudo ./../../../src/user_space/" + str(in_file) + "/" + str(in_file), shell=True)
+    subprocess.call("sudo ./../../../src/user_space/x86/" + str(in_file) + "/" + str(in_file), shell=True)
   else:
-    subprocess.call("sudo ./../../../src/user_space/" + str(in_file) + "/" + str(in_file) + " " + str(opts), shell=True)
+    subprocess.call("sudo ./../../../src/user_space/x86/" + str(in_file) + "/" + str(in_file) + " " + str(opts), shell=True)
 
   # Part 3 Stop lttng trace
   subprocess.call("lttng stop", shell=True)
