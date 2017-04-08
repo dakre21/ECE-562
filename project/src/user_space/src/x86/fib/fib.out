@@ -1,0 +1,1773 @@
+
+./fib.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <_ZL37__event_probe__benchmark___tracepointPvPcjijff>:
+#if !defined(_TRACE_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
+#define _TRACE_H
+
+#include <lttng/tracepoint.h>
+
+TRACEPOINT_EVENT(
+   0:	41 57                	push   %r15
+   2:	41 56                	push   %r14
+   4:	41 55                	push   %r13
+   6:	41 54                	push   %r12
+   8:	49 89 fc             	mov    %rdi,%r12
+   b:	55                   	push   %rbp
+   c:	53                   	push   %rbx
+   d:	48 81 ec 58 01 00 00 	sub    $0x158,%rsp
+  14:	48 8b 5f 08          	mov    0x8(%rdi),%rbx
+  18:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  1f:	00 00 
+  21:	48 89 84 24 48 01 00 	mov    %rax,0x148(%rsp)
+  28:	00 
+  29:	31 c0                	xor    %eax,%eax
+  2b:	89 54 24 08          	mov    %edx,0x8(%rsp)
+  2f:	89 4c 24 0c          	mov    %ecx,0xc(%rsp)
+  33:	f3 0f 11 44 24 10    	movss  %xmm0,0x10(%rsp)
+  39:	48 8b 43 18          	mov    0x18(%rbx),%rax
+  3d:	f3 0f 11 4c 24 14    	movss  %xmm1,0x14(%rsp)
+  43:	8b 00                	mov    (%rax),%eax
+  45:	85 c0                	test   %eax,%eax
+  47:	0f 84 1e 02 00 00    	je     26b <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x26b>
+  4d:	8b 43 08             	mov    0x8(%rbx),%eax
+  50:	85 c0                	test   %eax,%eax
+  52:	0f 84 13 02 00 00    	je     26b <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x26b>
+  58:	8b 47 10             	mov    0x10(%rdi),%eax
+  5b:	85 c0                	test   %eax,%eax
+  5d:	0f 84 08 02 00 00    	je     26b <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x26b>
+  63:	4c 8b 3d 00 00 00 00 	mov    0x0(%rip),%r15        # 6a <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x6a>
+  6a:	4d 85 ff             	test   %r15,%r15
+  6d:	0f 84 f8 01 00 00    	je     26b <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x26b>
+  73:	49 83 7f 18 00       	cmpq   $0x0,0x18(%r15)
+  78:	0f 84 ed 01 00 00    	je     26b <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x26b>
+  7e:	48 8d 57 68          	lea    0x68(%rdi),%rdx
+                pos = p, p = cds_list_entry(pos->member.next, __typeof__(*pos), member))
+
+static inline
+int cds_list_empty(struct cds_list_head *head)
+{
+	return head == head->next;
+  82:	48 8b 7f 68          	mov    0x68(%rdi),%rdi
+  86:	49 89 f5             	mov    %rsi,%r13
+  89:	45 89 c6             	mov    %r8d,%r14d
+  8c:	48 39 fa             	cmp    %rdi,%rdx
+  8f:	0f 85 1f 02 00 00    	jne    2b4 <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x2b4>
+  95:	4c 89 7c 24 18       	mov    %r15,0x18(%rsp)
+  9a:	4d 85 ed             	test   %r13,%r13
+  9d:	0f 84 fd 01 00 00    	je     2a0 <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x2a0>
+  a3:	4c 89 ef             	mov    %r13,%rdi
+  a6:	e8 00 00 00 00       	callq  ab <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0xab>
+  ab:	48 8d 50 01          	lea    0x1(%rax),%rdx
+  af:	48 8d 68 15          	lea    0x15(%rax),%rbp
+      && (!__builtin_constant_p (__ch) || __ch != 0))
+    {
+      __warn_memset_zero_len ();
+      return __dest;
+    }
+  return __builtin___memset_chk (__dest, __ch, __len, __bos0 (__dest));
+  b3:	4c 8d 7c 24 30       	lea    0x30(%rsp),%r15
+  b8:	31 c0                	xor    %eax,%eax
+  ba:	b9 07 00 00 00       	mov    $0x7,%ecx
+  bf:	48 89 54 24 70       	mov    %rdx,0x70(%rsp)
+  c4:	4c 89 ff             	mov    %r15,%rdi
+  c7:	f3 48 ab             	rep stos %rax,%es:(%rdi)
+  ca:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
+  cf:	4c 89 64 24 30       	mov    %r12,0x30(%rsp)
+  d4:	48 8b 7b 10          	mov    0x10(%rbx),%rdi
+  d8:	ff 50 28             	callq  *0x28(%rax)
+  db:	48 89 44 24 38       	mov    %rax,0x38(%rsp)
+  e0:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # e7 <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0xe7>
+  e7:	49 8b 7c 24 28       	mov    0x28(%r12),%rdi
+  ec:	ff 50 28             	callq  *0x28(%rax)
+  ef:	48 89 44 24 40       	mov    %rax,0x40(%rsp)
+  f4:	48 8b 43 50          	mov    0x50(%rbx),%rax
+  f8:	48 8d bc 24 d0 00 00 	lea    0xd0(%rsp),%rdi
+  ff:	00 
+			      struct channel *chan, void *priv,
+			      size_t data_size, int largest_align,
+			      int cpu, struct lttng_ust_shm_handle *handle,
+			      void *priv2)
+{
+	ctx->chan = chan;
+ 100:	48 8b 0b             	mov    (%rbx),%rcx
+ 103:	c7 84 24 38 01 00 00 	movl   $0x0,0x138(%rsp)
+ 10a:	00 00 00 00 
+	ctx->priv = priv;
+ 10e:	4c 89 a4 24 d8 00 00 	mov    %r12,0xd8(%rsp)
+ 115:	00 
+	ctx->data_size = data_size;
+ 116:	48 89 ac 24 e8 00 00 	mov    %rbp,0xe8(%rsp)
+ 11d:	00 
+	ctx->largest_align = largest_align;
+	ctx->cpu = cpu;
+	ctx->rflags = 0;
+	ctx->handle = handle;
+ 11e:	48 89 84 24 e0 00 00 	mov    %rax,0xe0(%rsp)
+ 125:	00 
+ 126:	48 8b 84 24 88 01 00 	mov    0x188(%rsp),%rax
+ 12d:	00 
+			      struct channel *chan, void *priv,
+			      size_t data_size, int largest_align,
+			      int cpu, struct lttng_ust_shm_handle *handle,
+			      void *priv2)
+{
+	ctx->chan = chan;
+ 12e:	48 89 8c 24 d0 00 00 	mov    %rcx,0xd0(%rsp)
+ 135:	00 
+	ctx->priv = priv;
+	ctx->data_size = data_size;
+	ctx->largest_align = largest_align;
+ 136:	c7 84 24 f0 00 00 00 	movl   $0x1,0xf0(%rsp)
+ 13d:	01 00 00 00 
+	ctx->cpu = cpu;
+ 141:	c7 84 24 f4 00 00 00 	movl   $0xffffffff,0xf4(%rsp)
+ 148:	ff ff ff ff 
+	ctx->rflags = 0;
+ 14c:	c7 84 24 20 01 00 00 	movl   $0x0,0x120(%rsp)
+ 153:	00 00 00 00 
+ 157:	48 89 84 24 28 01 00 	mov    %rax,0x128(%rsp)
+ 15e:	00 
+ 15f:	48 8b 43 40          	mov    0x40(%rbx),%rax
+	ctx->handle = handle;
+	ctx->ctx_len = sizeof(struct lttng_ust_lib_ring_buffer_ctx);
+ 163:	c7 84 24 24 01 00 00 	movl   $0x78,0x124(%rsp)
+ 16a:	78 00 00 00 
+	ctx->ip = 0;
+	ctx->priv2 = priv2;
+ 16e:	4c 89 bc 24 30 01 00 	mov    %r15,0x130(%rsp)
+ 175:	00 
+ 176:	41 8b 34 24          	mov    (%r12),%esi
+ 17a:	ff 50 20             	callq  *0x20(%rax)
+ 17d:	85 c0                	test   %eax,%eax
+ 17f:	0f 88 e6 00 00 00    	js     26b <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x26b>
+ 185:	4d 85 ed             	test   %r13,%r13
+ 188:	b8 00 00 00 00       	mov    $0x0,%eax
+ 18d:	48 8b 54 24 70       	mov    0x70(%rsp),%rdx
+ 192:	4c 0f 44 e8          	cmove  %rax,%r13
+ 196:	48 8b 43 40          	mov    0x40(%rbx),%rax
+ 19a:	48 8d bc 24 d0 00 00 	lea    0xd0(%rsp),%rdi
+ 1a1:	00 
+ 1a2:	4c 89 ee             	mov    %r13,%rsi
+ 1a5:	f6 40 10 01          	testb  $0x1,0x10(%rax)
+ 1a9:	0f 85 e1 00 00 00    	jne    290 <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x290>
+ 1af:	ff 50 30             	callq  *0x30(%rax)
+ 1b2:	8b 44 24 08          	mov    0x8(%rsp),%eax
+ 1b6:	ba 04 00 00 00       	mov    $0x4,%edx
+ 1bb:	48 8d 74 24 20       	lea    0x20(%rsp),%rsi
+ 1c0:	48 8d bc 24 d0 00 00 	lea    0xd0(%rsp),%rdi
+ 1c7:	00 
+ 1c8:	89 44 24 20          	mov    %eax,0x20(%rsp)
+ 1cc:	48 8b 43 40          	mov    0x40(%rbx),%rax
+ 1d0:	ff 50 30             	callq  *0x30(%rax)
+ 1d3:	8b 44 24 0c          	mov    0xc(%rsp),%eax
+ 1d7:	ba 04 00 00 00       	mov    $0x4,%edx
+ 1dc:	48 8d 74 24 20       	lea    0x20(%rsp),%rsi
+ 1e1:	48 8d bc 24 d0 00 00 	lea    0xd0(%rsp),%rdi
+ 1e8:	00 
+ 1e9:	89 44 24 20          	mov    %eax,0x20(%rsp)
+ 1ed:	48 8b 43 40          	mov    0x40(%rbx),%rax
+ 1f1:	ff 50 30             	callq  *0x30(%rax)
+ 1f4:	48 8b 43 40          	mov    0x40(%rbx),%rax
+ 1f8:	ba 04 00 00 00       	mov    $0x4,%edx
+ 1fd:	48 8d 74 24 20       	lea    0x20(%rsp),%rsi
+ 202:	48 8d bc 24 d0 00 00 	lea    0xd0(%rsp),%rdi
+ 209:	00 
+ 20a:	44 89 74 24 20       	mov    %r14d,0x20(%rsp)
+ 20f:	ff 50 30             	callq  *0x30(%rax)
+ 212:	48 8b 43 40          	mov    0x40(%rbx),%rax
+ 216:	f3 0f 10 54 24 10    	movss  0x10(%rsp),%xmm2
+ 21c:	f3 0f 11 54 24 20    	movss  %xmm2,0x20(%rsp)
+ 222:	ba 04 00 00 00       	mov    $0x4,%edx
+ 227:	48 8d 74 24 20       	lea    0x20(%rsp),%rsi
+ 22c:	48 8d bc 24 d0 00 00 	lea    0xd0(%rsp),%rdi
+ 233:	00 
+ 234:	ff 50 30             	callq  *0x30(%rax)
+ 237:	48 8b 43 40          	mov    0x40(%rbx),%rax
+ 23b:	f3 0f 10 5c 24 14    	movss  0x14(%rsp),%xmm3
+ 241:	48 8d bc 24 d0 00 00 	lea    0xd0(%rsp),%rdi
+ 248:	00 
+ 249:	f3 0f 11 5c 24 20    	movss  %xmm3,0x20(%rsp)
+ 24f:	ba 04 00 00 00       	mov    $0x4,%edx
+ 254:	48 8d 74 24 20       	lea    0x20(%rsp),%rsi
+ 259:	ff 50 30             	callq  *0x30(%rax)
+ 25c:	48 8b 43 40          	mov    0x40(%rbx),%rax
+ 260:	48 8d bc 24 d0 00 00 	lea    0xd0(%rsp),%rdi
+ 267:	00 
+ 268:	ff 50 28             	callq  *0x28(%rax)
+ 26b:	48 8b 84 24 48 01 00 	mov    0x148(%rsp),%rax
+ 272:	00 
+ 273:	64 48 33 04 25 28 00 	xor    %fs:0x28,%rax
+ 27a:	00 00 
+ 27c:	75 31                	jne    2af <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x2af>
+ 27e:	48 81 c4 58 01 00 00 	add    $0x158,%rsp
+ 285:	5b                   	pop    %rbx
+ 286:	5d                   	pop    %rbp
+ 287:	41 5c                	pop    %r12
+ 289:	41 5d                	pop    %r13
+ 28b:	41 5e                	pop    %r14
+ 28d:	41 5f                	pop    %r15
+ 28f:	c3                   	retq   
+ 290:	ff 50 58             	callq  *0x58(%rax)
+ 293:	e9 1a ff ff ff       	jmpq   1b2 <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x1b2>
+ 298:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+ 29f:	00 
+ 2a0:	bd 1b 00 00 00       	mov    $0x1b,%ebp
+ 2a5:	ba 07 00 00 00       	mov    $0x7,%edx
+ 2aa:	e9 04 fe ff ff       	jmpq   b3 <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0xb3>
+ 2af:	e8 00 00 00 00       	callq  2b4 <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x2b4>
+ 2b4:	4d 85 ed             	test   %r13,%r13
+ 2b7:	b8 00 00 00 00       	mov    $0x0,%eax
+ 2bc:	f3 0f 5a 64 24 10    	cvtss2sd 0x10(%rsp),%xmm4
+ 2c2:	49 0f 45 c5          	cmovne %r13,%rax
+ 2c6:	f3 0f 5a 6c 24 14    	cvtss2sd 0x14(%rsp),%xmm5
+ 2cc:	48 89 54 24 18       	mov    %rdx,0x18(%rsp)
+
+__fortify_function void *
+__NTH (memcpy (void *__restrict __dest, const void *__restrict __src,
+	       size_t __len))
+{
+  return __builtin___memcpy_chk (__dest, __src, __len, __bos0 (__dest));
+ 2d1:	48 89 44 24 70       	mov    %rax,0x70(%rsp)
+ 2d6:	8b 44 24 08          	mov    0x8(%rsp),%eax
+ 2da:	41 8b 6c 24 78       	mov    0x78(%r12),%ebp
+ 2df:	f2 0f 11 a4 24 90 00 	movsd  %xmm4,0x90(%rsp)
+ 2e6:	00 00 
+ 2e8:	f2 0f 11 ac 24 98 00 	movsd  %xmm5,0x98(%rsp)
+ 2ef:	00 00 
+ 2f1:	48 89 44 24 78       	mov    %rax,0x78(%rsp)
+ 2f6:	48 63 44 24 0c       	movslq 0xc(%rsp),%rax
+ 2fb:	48 89 84 24 80 00 00 	mov    %rax,0x80(%rsp)
+ 302:	00 
+ 303:	44 89 f0             	mov    %r14d,%eax
+ 306:	48 89 84 24 88 00 00 	mov    %rax,0x88(%rsp)
+ 30d:	00 
+ 30e:	41 ff 57 28          	callq  *0x28(%r15)
+ 312:	48 8b 54 24 18       	mov    0x18(%rsp),%rdx
+ 317:	4c 8d 78 e8          	lea    -0x18(%rax),%r15
+ 31b:	48 39 c2             	cmp    %rax,%rdx
+ 31e:	74 37                	je     357 <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x357>
+ 320:	48 89 54 24 18       	mov    %rdx,0x18(%rsp)
+ 325:	4c 89 ff             	mov    %r15,%rdi
+ 328:	48 8d 74 24 70       	lea    0x70(%rsp),%rsi
+ 32d:	41 ff 57 08          	callq  *0x8(%r15)
+ 331:	a8 01                	test   $0x1,%al
+ 333:	b8 01 00 00 00       	mov    $0x1,%eax
+ 338:	49 8b 7f 18          	mov    0x18(%r15),%rdi
+ 33c:	0f 45 e8             	cmovne %eax,%ebp
+ 33f:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # 346 <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x346>
+ 346:	ff 50 28             	callq  *0x28(%rax)
+ 349:	48 8b 54 24 18       	mov    0x18(%rsp),%rdx
+ 34e:	4c 8d 78 e8          	lea    -0x18(%rax),%r15
+ 352:	48 39 c2             	cmp    %rax,%rdx
+ 355:	75 c9                	jne    320 <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x320>
+ 357:	85 ed                	test   %ebp,%ebp
+ 359:	0f 84 0c ff ff ff    	je     26b <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x26b>
+ 35f:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # 366 <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x366>
+ 366:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+ 36b:	e9 2a fd ff ff       	jmpq   9a <_ZL37__event_probe__benchmark___tracepointPvPcjijff+0x9a>
+
+0000000000000370 <_Z14setup_affinityi>:
+// - req_cpus (int)
+//
+// Outputs:
+// - T/F (bool)
+bool setup_affinity(int req_cpus)
+{
+ 370:	55                   	push   %rbp
+ 371:	48 89 e5             	mov    %rsp,%rbp
+ 374:	41 54                	push   %r12
+ 376:	53                   	push   %rbx
+ 377:	48 83 c4 80          	add    $0xffffffffffffff80,%rsp
+ 37b:	e8 00 00 00 00       	callq  380 <_Z14setup_affinityi+0x10>
+  cpu_set_t set;
+  CPU_ZERO(&set); // Clear cpu set
+ 380:	31 c0                	xor    %eax,%eax
+ 382:	b9 10 00 00 00       	mov    $0x10,%ecx
+ 387:	4c 8d a5 70 ff ff ff 	lea    -0x90(%rbp),%r12
+// - req_cpus (int)
+//
+// Outputs:
+// - T/F (bool)
+bool setup_affinity(int req_cpus)
+{
+ 38e:	89 fb                	mov    %edi,%ebx
+  cpu_set_t set;
+  CPU_ZERO(&set); // Clear cpu set
+ 390:	4c 89 e7             	mov    %r12,%rdi
+ 393:	f3 48 ab             	rep stos %rax,%es:(%rdi)
+  int num_of_cpus = get_nprocs_conf(); // Get & set the number of available CPUs
+ 396:	e8 00 00 00 00       	callq  39b <_Z14setup_affinityi+0x2b>
+
+  if (req_cpus > num_of_cpus)
+ 39b:	39 d8                	cmp    %ebx,%eax
+ 39d:	7c 51                	jl     3f0 <_Z14setup_affinityi+0x80>
+  }
+
+  int i = 0;
+
+  // Add all available cpus to set  
+  for (; i < req_cpus; i++)
+ 39f:	31 c9                	xor    %ecx,%ecx
+ 3a1:	85 db                	test   %ebx,%ebx
+  {
+    CPU_SET(i, &set); // Add CPU to set
+ 3a3:	b8 01 00 00 00       	mov    $0x1,%eax
+  }
+
+  int i = 0;
+
+  // Add all available cpus to set  
+  for (; i < req_cpus; i++)
+ 3a8:	7e 17                	jle    3c1 <_Z14setup_affinityi+0x51>
+ 3aa:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  {
+    CPU_SET(i, &set); // Add CPU to set
+ 3b0:	48 81 f9 ff 03 00 00 	cmp    $0x3ff,%rcx
+ 3b7:	76 64                	jbe    41d <_Z14setup_affinityi+0xad>
+ 3b9:	48 83 c1 01          	add    $0x1,%rcx
+  }
+
+  int i = 0;
+
+  // Add all available cpus to set  
+  for (; i < req_cpus; i++)
+ 3bd:	39 cb                	cmp    %ecx,%ebx
+ 3bf:	7f ef                	jg     3b0 <_Z14setup_affinityi+0x40>
+  {
+    CPU_SET(i, &set); // Add CPU to set
+  }
+
+  // Use all available CPUs for current process
+  if (sched_setaffinity(getpid(), sizeof(set), &set) == -1)
+ 3c1:	e8 00 00 00 00       	callq  3c6 <_Z14setup_affinityi+0x56>
+ 3c6:	4c 89 e2             	mov    %r12,%rdx
+ 3c9:	be 80 00 00 00       	mov    $0x80,%esi
+ 3ce:	89 c7                	mov    %eax,%edi
+ 3d0:	e8 00 00 00 00       	callq  3d5 <_Z14setup_affinityi+0x65>
+ 3d5:	83 f8 ff             	cmp    $0xffffffff,%eax
+ 3d8:	74 2e                	je     408 <_Z14setup_affinityi+0x98>
+    printf("ERROR: Could not set affinity properly.. check if you are running as root\n");  
+    return false;
+  }
+
+  return true;
+}
+ 3da:	48 83 ec 80          	sub    $0xffffffffffffff80,%rsp
+  {
+    printf("ERROR: Could not set affinity properly.. check if you are running as root\n");  
+    return false;
+  }
+
+  return true;
+ 3de:	b8 01 00 00 00       	mov    $0x1,%eax
+}
+ 3e3:	5b                   	pop    %rbx
+ 3e4:	41 5c                	pop    %r12
+ 3e6:	5d                   	pop    %rbp
+ 3e7:	c3                   	retq   
+ 3e8:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+ 3ef:	00 
+}
+
+__fortify_function int
+printf (const char *__restrict __fmt, ...)
+{
+  return __printf_chk (__USE_FORTIFY_LEVEL - 1, __fmt, __va_arg_pack ());
+ 3f0:	bf 00 00 00 00       	mov    $0x0,%edi
+ 3f5:	e8 00 00 00 00       	callq  3fa <_Z14setup_affinityi+0x8a>
+ 3fa:	48 83 ec 80          	sub    $0xffffffffffffff80,%rsp
+  int num_of_cpus = get_nprocs_conf(); // Get & set the number of available CPUs
+
+  if (req_cpus > num_of_cpus)
+  {
+    printf("Error: Requested number of CPUs that is greater than the amount available\n");
+    return false;
+ 3fe:	31 c0                	xor    %eax,%eax
+    printf("ERROR: Could not set affinity properly.. check if you are running as root\n");  
+    return false;
+  }
+
+  return true;
+}
+ 400:	5b                   	pop    %rbx
+ 401:	41 5c                	pop    %r12
+ 403:	5d                   	pop    %rbp
+ 404:	c3                   	retq   
+ 405:	0f 1f 00             	nopl   (%rax)
+ 408:	bf 00 00 00 00       	mov    $0x0,%edi
+ 40d:	e8 00 00 00 00       	callq  412 <_Z14setup_affinityi+0xa2>
+ 412:	48 83 ec 80          	sub    $0xffffffffffffff80,%rsp
+
+  // Use all available CPUs for current process
+  if (sched_setaffinity(getpid(), sizeof(set), &set) == -1)
+  {
+    printf("ERROR: Could not set affinity properly.. check if you are running as root\n");  
+    return false;
+ 416:	31 c0                	xor    %eax,%eax
+  }
+
+  return true;
+}
+ 418:	5b                   	pop    %rbx
+ 419:	41 5c                	pop    %r12
+ 41b:	5d                   	pop    %rbp
+ 41c:	c3                   	retq   
+  int i = 0;
+
+  // Add all available cpus to set  
+  for (; i < req_cpus; i++)
+  {
+    CPU_SET(i, &set); // Add CPU to set
+ 41d:	48 89 ca             	mov    %rcx,%rdx
+ 420:	48 89 c6             	mov    %rax,%rsi
+ 423:	48 c1 ea 06          	shr    $0x6,%rdx
+ 427:	48 d3 e6             	shl    %cl,%rsi
+ 42a:	48 09 b4 d5 70 ff ff 	or     %rsi,-0x90(%rbp,%rdx,8)
+ 431:	ff 
+ 432:	eb 85                	jmp    3b9 <_Z14setup_affinityi+0x49>
+ 434:	66 66 66 2e 0f 1f 84 	data32 data32 nopw %cs:0x0(%rax,%rax,1)
+ 43b:	00 00 00 00 00 
+
+0000000000000440 <_Z10calc_deltaP8timespecS0_>:
+// - timespec stop_time
+//
+// Outputs:
+// - difference (int)
+int calc_delta(timespec* start_time, timespec* stop_time)
+{
+ 440:	55                   	push   %rbp
+ 441:	48 89 e5             	mov    %rsp,%rbp
+ 444:	e8 00 00 00 00       	callq  449 <_Z10calc_deltaP8timespecS0_+0x9>
+  int diff = (*stop_time).tv_nsec - (*start_time).tv_nsec;
+ 449:	48 8b 46 08          	mov    0x8(%rsi),%rax
+ 44d:	2b 47 08             	sub    0x8(%rdi),%eax
+  {
+    diff = 1000000000 + diff;
+  }
+
+  return diff;
+}
+ 450:	5d                   	pop    %rbp
+  int diff = (*stop_time).tv_nsec - (*start_time).tv_nsec;
+
+  // Sanity check 
+  if (diff < 0)
+  {
+    diff = 1000000000 + diff;
+ 451:	8d 90 00 ca 9a 3b    	lea    0x3b9aca00(%rax),%edx
+ 457:	85 c0                	test   %eax,%eax
+ 459:	0f 48 c2             	cmovs  %edx,%eax
+  }
+
+  return diff;
+}
+ 45c:	c3                   	retq   
+ 45d:	0f 1f 00             	nopl   (%rax)
+
+0000000000000460 <_Z13kill_pthreadsi>:
+// - num_threads (int)
+//
+// Outputs:
+// - T/F (bool)
+bool kill_pthreads(int num_threads)
+{
+ 460:	55                   	push   %rbp
+ 461:	48 89 e5             	mov    %rsp,%rbp
+ 464:	48 83 ec 10          	sub    $0x10,%rsp
+ 468:	e8 00 00 00 00       	callq  46d <_Z13kill_pthreadsi+0xd>
+ 46d:	89 7d fc             	mov    %edi,-0x4(%rbp)
+  int i = 0;
+  pthread_exit(&num_threads);
+ 470:	48 8d 7d fc          	lea    -0x4(%rbp),%rdi
+ 474:	e8 00 00 00 00       	callq  479 <_Z13kill_pthreadsi+0x19>
+ 479:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+
+0000000000000480 <_Z15create_pthreadsiPFPvS_E>:
+// - entry_point (void*)
+//
+// Outputs:
+// - T/F (bool)
+bool create_pthreads(int num_threads, void* (*entry_point)(void*))
+{
+ 480:	55                   	push   %rbp
+ 481:	48 89 e5             	mov    %rsp,%rbp
+ 484:	41 57                	push   %r15
+ 486:	41 56                	push   %r14
+ 488:	41 55                	push   %r13
+ 48a:	41 54                	push   %r12
+ 48c:	53                   	push   %rbx
+ 48d:	48 83 ec 18          	sub    $0x18,%rsp
+ 491:	e8 00 00 00 00       	callq  496 <_Z15create_pthreadsiPFPvS_E+0x16>
+  if (num_threads > MAX_THREADS)
+ 496:	83 ff 0a             	cmp    $0xa,%edi
+// - entry_point (void*)
+//
+// Outputs:
+// - T/F (bool)
+bool create_pthreads(int num_threads, void* (*entry_point)(void*))
+{
+ 499:	41 89 ff             	mov    %edi,%r15d
+ 49c:	48 89 75 c8          	mov    %rsi,-0x38(%rbp)
+  if (num_threads > MAX_THREADS)
+ 4a0:	0f 8f da 00 00 00    	jg     580 <_Z15create_pthreadsiPFPvS_E+0x100>
+  {
+    printf("ERROR: Number of threads requested exceeds maximum %d\n", MAX_THREADS);
+    return false;
+  }
+
+  int rt_max_prio = sched_get_priority_max(SCHED_FIFO);
+ 4a6:	bf 01 00 00 00       	mov    $0x1,%edi
+ 4ab:	e8 00 00 00 00       	callq  4b0 <_Z15create_pthreadsiPFPvS_E+0x30>
+
+  pthread_attr_init(&sched_attr[0]); // Init thread attributes
+ 4b0:	bf 00 00 00 00       	mov    $0x0,%edi
+  {
+    printf("ERROR: Number of threads requested exceeds maximum %d\n", MAX_THREADS);
+    return false;
+  }
+
+  int rt_max_prio = sched_get_priority_max(SCHED_FIFO);
+ 4b5:	41 89 c6             	mov    %eax,%r14d
+
+  pthread_attr_init(&sched_attr[0]); // Init thread attributes
+ 4b8:	e8 00 00 00 00       	callq  4bd <_Z15create_pthreadsiPFPvS_E+0x3d>
+  pthread_attr_setscope(&sched_attr[0], PTHREAD_SCOPE_SYSTEM);
+ 4bd:	31 f6                	xor    %esi,%esi
+ 4bf:	bf 00 00 00 00       	mov    $0x0,%edi
+ 4c4:	e8 00 00 00 00       	callq  4c9 <_Z15create_pthreadsiPFPvS_E+0x49>
+  pthread_attr_setinheritsched(&sched_attr[0], PTHREAD_EXPLICIT_SCHED); // Set inherit sched policy
+ 4c9:	be 01 00 00 00       	mov    $0x1,%esi
+ 4ce:	bf 00 00 00 00       	mov    $0x0,%edi
+ 4d3:	e8 00 00 00 00       	callq  4d8 <_Z15create_pthreadsiPFPvS_E+0x58>
+  pthread_attr_setschedpolicy(&sched_attr[0], SCHED_FIFO); // Set sched policy to FIFO
+ 4d8:	be 01 00 00 00       	mov    $0x1,%esi
+ 4dd:	bf 00 00 00 00       	mov    $0x0,%edi
+ 4e2:	e8 00 00 00 00       	callq  4e7 <_Z15create_pthreadsiPFPvS_E+0x67>
+
+  int i = 0;
+  int rc;
+  for (; i < num_threads; i++)
+ 4e7:	45 85 ff             	test   %r15d,%r15d
+ 4ea:	0f 8e c0 00 00 00    	jle    5b0 <_Z15create_pthreadsiPFPvS_E+0x130>
+ 4f0:	41 83 ef 01          	sub    $0x1,%r15d
+ 4f4:	bb 00 00 00 00       	mov    $0x0,%ebx
+ 4f9:	41 bd 00 00 00 00    	mov    $0x0,%r13d
+ 4ff:	49 8d 47 01          	lea    0x1(%r15),%rax
+ 503:	41 bc 00 00 00 00    	mov    $0x0,%r12d
+ 509:	45 31 ff             	xor    %r15d,%r15d
+ 50c:	48 89 45 c0          	mov    %rax,-0x40(%rbp)
+ 510:	eb 20                	jmp    532 <_Z15create_pthreadsiPFPvS_E+0xb2>
+ 512:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+ 518:	49 83 c7 01          	add    $0x1,%r15
+ 51c:	48 83 c3 04          	add    $0x4,%rbx
+ 520:	49 83 c5 04          	add    $0x4,%r13
+ 524:	49 83 c4 08          	add    $0x8,%r12
+ 528:	4c 3b 7d c0          	cmp    -0x40(%rbp),%r15
+ 52c:	0f 84 7e 00 00 00    	je     5b0 <_Z15create_pthreadsiPFPvS_E+0x130>
+ 532:	44 89 f0             	mov    %r14d,%eax
+  {
+    params[i].thread_id = i;
+    rt_params[i].sched_priority = rt_max_prio - i; 	       // Set sched prio
+    pthread_attr_setschedparam(&sched_attr[0], &rt_params[i]); // Set sched params & attr
+ 535:	4c 89 ee             	mov    %r13,%rsi
+ 538:	bf 00 00 00 00       	mov    $0x0,%edi
+ 53d:	44 29 f8             	sub    %r15d,%eax
+ 540:	44 89 3b             	mov    %r15d,(%rbx)
+ 543:	41 89 45 00          	mov    %eax,0x0(%r13)
+ 547:	e8 00 00 00 00       	callq  54c <_Z15create_pthreadsiPFPvS_E+0xcc>
+    rc = pthread_create(&threads[i], 	           	       // ptr to thread descriptor
+		   	&sched_attr[0],            	       // thread attributes
+ 		   	entry_point,               	       // thread fn entry pt (same for each thread)
+		   	(void*)&(params[i]) 	   	       // params to pass in
+		   	);
+ 54c:	48 8b 55 c8          	mov    -0x38(%rbp),%rdx
+ 550:	48 89 d9             	mov    %rbx,%rcx
+ 553:	be 00 00 00 00       	mov    $0x0,%esi
+ 558:	4c 89 e7             	mov    %r12,%rdi
+ 55b:	e8 00 00 00 00       	callq  560 <_Z15create_pthreadsiPFPvS_E+0xe0>
+    if (rc)
+ 560:	85 c0                	test   %eax,%eax
+ 562:	74 b4                	je     518 <_Z15create_pthreadsiPFPvS_E+0x98>
+ 564:	bf 00 00 00 00       	mov    $0x0,%edi
+ 569:	e8 00 00 00 00       	callq  56e <_Z15create_pthreadsiPFPvS_E+0xee>
+      return false;
+    }
+  } 
+
+  return true;
+}
+ 56e:	48 83 c4 18          	add    $0x18,%rsp
+		   	(void*)&(params[i]) 	   	       // params to pass in
+		   	);
+    if (rc)
+    {
+      printf("ERROR: Failed to create pthread... make sure you are running as root\n");
+      return false;
+ 572:	31 c0                	xor    %eax,%eax
+    }
+  } 
+
+  return true;
+}
+ 574:	5b                   	pop    %rbx
+ 575:	41 5c                	pop    %r12
+ 577:	41 5d                	pop    %r13
+ 579:	41 5e                	pop    %r14
+ 57b:	41 5f                	pop    %r15
+ 57d:	5d                   	pop    %rbp
+ 57e:	c3                   	retq   
+ 57f:	90                   	nop
+ 580:	ba 0a 00 00 00       	mov    $0xa,%edx
+ 585:	be 00 00 00 00       	mov    $0x0,%esi
+ 58a:	bf 01 00 00 00       	mov    $0x1,%edi
+ 58f:	31 c0                	xor    %eax,%eax
+ 591:	e8 00 00 00 00       	callq  596 <_Z15create_pthreadsiPFPvS_E+0x116>
+ 596:	48 83 c4 18          	add    $0x18,%rsp
+bool create_pthreads(int num_threads, void* (*entry_point)(void*))
+{
+  if (num_threads > MAX_THREADS)
+  {
+    printf("ERROR: Number of threads requested exceeds maximum %d\n", MAX_THREADS);
+    return false;
+ 59a:	31 c0                	xor    %eax,%eax
+      return false;
+    }
+  } 
+
+  return true;
+}
+ 59c:	5b                   	pop    %rbx
+ 59d:	41 5c                	pop    %r12
+ 59f:	41 5d                	pop    %r13
+ 5a1:	41 5e                	pop    %r14
+ 5a3:	41 5f                	pop    %r15
+ 5a5:	5d                   	pop    %rbp
+ 5a6:	c3                   	retq   
+ 5a7:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+ 5ae:	00 00 
+ 5b0:	48 83 c4 18          	add    $0x18,%rsp
+      printf("ERROR: Failed to create pthread... make sure you are running as root\n");
+      return false;
+    }
+  } 
+
+  return true;
+ 5b4:	b8 01 00 00 00       	mov    $0x1,%eax
+}
+ 5b9:	5b                   	pop    %rbx
+ 5ba:	41 5c                	pop    %r12
+ 5bc:	41 5d                	pop    %r13
+ 5be:	41 5e                	pop    %r14
+ 5c0:	41 5f                	pop    %r15
+ 5c2:	5d                   	pop    %rbp
+ 5c3:	c3                   	retq   
+ 5c4:	66 66 66 2e 0f 1f 84 	data32 data32 nopw %cs:0x0(%rax,%rax,1)
+ 5cb:	00 00 00 00 00 
+
+00000000000005d0 <_Z9stall_cpuj>:
+// - time (uint)
+//
+// Outputs:
+// - N/A
+void stall_cpu(unsigned int time)
+{
+ 5d0:	55                   	push   %rbp
+ 5d1:	48 89 e5             	mov    %rsp,%rbp
+ 5d4:	48 83 ec 20          	sub    $0x20,%rsp
+ 5d8:	e8 00 00 00 00       	callq  5dd <_Z9stall_cpuj+0xd>
+  if (time <= 0)
+ 5dd:	85 ff                	test   %edi,%edi
+ 5df:	75 07                	jne    5e8 <_Z9stall_cpuj+0x18>
+
+  struct timespec sleep_time = {0, time};
+  struct timespec remaining_time = {0, 0};
+
+  nanosleep(&sleep_time, &remaining_time);
+}
+ 5e1:	c9                   	leaveq 
+ 5e2:	c3                   	retq   
+ 5e3:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+  if (time <= 0)
+  {
+    return;
+  }
+
+  struct timespec sleep_time = {0, time};
+ 5e8:	89 f8                	mov    %edi,%eax
+  struct timespec remaining_time = {0, 0};
+
+  nanosleep(&sleep_time, &remaining_time);
+ 5ea:	48 8d 75 f0          	lea    -0x10(%rbp),%rsi
+ 5ee:	48 8d 7d e0          	lea    -0x20(%rbp),%rdi
+  if (time <= 0)
+  {
+    return;
+  }
+
+  struct timespec sleep_time = {0, time};
+ 5f2:	48 c7 45 e0 00 00 00 	movq   $0x0,-0x20(%rbp)
+ 5f9:	00 
+ 5fa:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  struct timespec remaining_time = {0, 0};
+ 5fe:	48 c7 45 f0 00 00 00 	movq   $0x0,-0x10(%rbp)
+ 605:	00 
+ 606:	48 c7 45 f8 00 00 00 	movq   $0x0,-0x8(%rbp)
+ 60d:	00 
+
+  nanosleep(&sleep_time, &remaining_time);
+ 60e:	e8 00 00 00 00       	callq  613 <_Z9stall_cpuj+0x43>
+}
+ 613:	c9                   	leaveq 
+ 614:	c3                   	retq   
+ 615:	66 66 2e 0f 1f 84 00 	data32 nopw %cs:0x0(%rax,%rax,1)
+ 61c:	00 00 00 00 
+
+0000000000000620 <_Z14get_cpu_cyclesv>:
+
+#include <stdint.h>
+
+// Get cpu cycles from cpu time stamp counter
+uint64_t get_cpu_cycles()
+{
+ 620:	55                   	push   %rbp
+ 621:	48 89 e5             	mov    %rsp,%rbp
+ 624:	e8 00 00 00 00       	callq  629 <_Z14get_cpu_cyclesv+0x9>
+    unsigned int lo, hi;
+    __asm__ __volatile__("rdtsc" : "=a" (lo), "=d" (hi));
+ 629:	0f 31                	rdtsc  
+    return ((uint64_t)hi << 32 | lo);
+ 62b:	89 c0                	mov    %eax,%eax
+ 62d:	48 c1 e2 20          	shl    $0x20,%rdx
+ 631:	48 09 c2             	or     %rax,%rdx
+}
+ 634:	48 89 d0             	mov    %rdx,%rax
+ 637:	5d                   	pop    %rbp
+ 638:	c3                   	retq   
+ 639:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+
+0000000000000640 <_Z8calc_fibv>:
+// 4. Fib sequence = 5 instructions
+// 5. Tracepoint = ~42 to 145 instructions (use this instead of printf because it preempts 
+// the processor and adds significant latency due to the context switch)
+// Total instructions for the loop = 164
+void calc_fib()
+{
+ 640:	55                   	push   %rbp
+ 641:	48 89 e5             	mov    %rsp,%rbp
+ 644:	41 57                	push   %r15
+ 646:	41 56                	push   %r14
+ 648:	41 55                	push   %r13
+ 64a:	41 54                	push   %r12
+ 64c:	53                   	push   %rbx
+ 64d:	48 83 ec 18          	sub    $0x18,%rsp
+ 651:	e8 00 00 00 00       	callq  656 <_Z8calc_fibv+0x16>
+
+    // Fib num will exceed what int can actually store... so ignore result we can about time
+    // NOTE: CPI and IPC (this is per process not overall CPU instructions executed) 
+    tracepoint(benchmark, tracepoint, "Fib iteration metrics: execution time, cpu cycles, IPC, and CPI", 
+            pid, (int)time, (cycles - prev_cycles), ipc, cpi);
+    prev_cycles = cycles;
+ 656:	41 bc e8 03 00 00    	mov    $0x3e8,%r12d
+void calc_fib()
+{
+  int i = 0;
+  int time = 0;
+  unsigned int cycles = 0;
+  unsigned int prev_cycles = 0;
+ 65c:	45 31 ed             	xor    %r13d,%r13d
+ 65f:	eb 0a                	jmp    66b <_Z8calc_fibv+0x2b>
+ 661:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+
+    // Fib num will exceed what int can actually store... so ignore result we can about time
+    // NOTE: CPI and IPC (this is per process not overall CPU instructions executed) 
+    tracepoint(benchmark, tracepoint, "Fib iteration metrics: execution time, cpu cycles, IPC, and CPI", 
+            pid, (int)time, (cycles - prev_cycles), ipc, cpi);
+    prev_cycles = cycles;
+ 668:	45 89 fd             	mov    %r15d,%r13d
+  float ipc = 0;
+  float cpi = 0;
+
+  for (; i < NUM_FIB_CYCLES; i++)
+  {
+    clock_gettime(CLOCK_REALTIME, &start_time);
+ 66b:	31 ff                	xor    %edi,%edi
+ 66d:	be 00 00 00 00       	mov    $0x0,%esi
+ 672:	e8 00 00 00 00       	callq  677 <_Z8calc_fibv+0x37>
+    fib = fib0 + fib1;
+ 677:	8b 15 00 00 00 00    	mov    0x0(%rip),%edx        # 67d <_Z8calc_fibv+0x3d>
+ 67d:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # 683 <_Z8calc_fibv+0x43>
+    fib0 = fib1;
+    fib1 = fib;
+
+    clock_gettime(CLOCK_REALTIME, &stop_time);
+ 683:	31 ff                	xor    %edi,%edi
+ 685:	be 00 00 00 00       	mov    $0x0,%esi
+  float cpi = 0;
+
+  for (; i < NUM_FIB_CYCLES; i++)
+  {
+    clock_gettime(CLOCK_REALTIME, &start_time);
+    fib = fib0 + fib1;
+ 68a:	01 d0                	add    %edx,%eax
+    fib0 = fib1;
+ 68c:	89 15 00 00 00 00    	mov    %edx,0x0(%rip)        # 692 <_Z8calc_fibv+0x52>
+  float cpi = 0;
+
+  for (; i < NUM_FIB_CYCLES; i++)
+  {
+    clock_gettime(CLOCK_REALTIME, &start_time);
+    fib = fib0 + fib1;
+ 692:	89 05 00 00 00 00    	mov    %eax,0x0(%rip)        # 698 <_Z8calc_fibv+0x58>
+    fib0 = fib1;
+    fib1 = fib;
+ 698:	89 05 00 00 00 00    	mov    %eax,0x0(%rip)        # 69e <_Z8calc_fibv+0x5e>
+
+    clock_gettime(CLOCK_REALTIME, &stop_time);
+ 69e:	e8 00 00 00 00       	callq  6a3 <_Z8calc_fibv+0x63>
+//
+// Outputs:
+// - difference (int)
+int calc_delta(timespec* start_time, timespec* stop_time)
+{
+  int diff = (*stop_time).tv_nsec - (*start_time).tv_nsec;
+ 6a3:	48 8b 1d 00 00 00 00 	mov    0x0(%rip),%rbx        # 6aa <_Z8calc_fibv+0x6a>
+ 6aa:	2b 1d 00 00 00 00    	sub    0x0(%rip),%ebx        # 6b0 <_Z8calc_fibv+0x70>
+
+  // Sanity check 
+  if (diff < 0)
+  {
+    diff = 1000000000 + diff;
+ 6b0:	8d 83 00 ca 9a 3b    	lea    0x3b9aca00(%rbx),%eax
+ 6b6:	85 db                	test   %ebx,%ebx
+ 6b8:	0f 48 d8             	cmovs  %eax,%ebx
+
+// Get cpu cycles from cpu time stamp counter
+uint64_t get_cpu_cycles()
+{
+    unsigned int lo, hi;
+    __asm__ __volatile__("rdtsc" : "=a" (lo), "=d" (hi));
+ 6bb:	0f 31                	rdtsc  
+    return ((uint64_t)hi << 32 | lo);
+ 6bd:	49 89 d7             	mov    %rdx,%r15
+ 6c0:	89 c0                	mov    %eax,%eax
+ 6c2:	49 c1 e7 20          	shl    $0x20,%r15
+ 6c6:	49 09 c7             	or     %rax,%r15
+    ipc = (float)(instr_count) / ((float)(cycles) - (float)(prev_cycles));
+    cpi = ((float)(cycles) - (float)(prev_cycles)) / (float)(instr_count);
+
+    // Fib num will exceed what int can actually store... so ignore result we can about time
+    // NOTE: CPI and IPC (this is per process not overall CPU instructions executed) 
+    tracepoint(benchmark, tracepoint, "Fib iteration metrics: execution time, cpu cycles, IPC, and CPI", 
+ 6c9:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # 6cf <_Z8calc_fibv+0x8f>
+ 6cf:	85 c0                	test   %eax,%eax
+ 6d1:	75 15                	jne    6e8 <_Z8calc_fibv+0xa8>
+  unsigned int prev_cycles = 0;
+  unsigned int instr_count = 164;
+  float ipc = 0;
+  float cpi = 0;
+
+  for (; i < NUM_FIB_CYCLES; i++)
+ 6d3:	41 83 ec 01          	sub    $0x1,%r12d
+ 6d7:	75 8f                	jne    668 <_Z8calc_fibv+0x28>
+    // NOTE: CPI and IPC (this is per process not overall CPU instructions executed) 
+    tracepoint(benchmark, tracepoint, "Fib iteration metrics: execution time, cpu cycles, IPC, and CPI", 
+            pid, (int)time, (cycles - prev_cycles), ipc, cpi);
+    prev_cycles = cycles;
+  }
+}
+ 6d9:	48 83 c4 18          	add    $0x18,%rsp
+ 6dd:	5b                   	pop    %rbx
+ 6de:	41 5c                	pop    %r12
+ 6e0:	41 5d                	pop    %r13
+ 6e2:	41 5e                	pop    %r14
+ 6e4:	41 5f                	pop    %r15
+ 6e6:	5d                   	pop    %rbp
+ 6e7:	c3                   	retq   
+    ipc = (float)(instr_count) / ((float)(cycles) - (float)(prev_cycles));
+    cpi = ((float)(cycles) - (float)(prev_cycles)) / (float)(instr_count);
+
+    // Fib num will exceed what int can actually store... so ignore result we can about time
+    // NOTE: CPI and IPC (this is per process not overall CPU instructions executed) 
+    tracepoint(benchmark, tracepoint, "Fib iteration metrics: execution time, cpu cycles, IPC, and CPI", 
+ 6e8:	44 89 f8             	mov    %r15d,%eax
+ 6eb:	44 29 e8             	sub    %r13d,%eax
+ 6ee:	89 45 c4             	mov    %eax,-0x3c(%rbp)
+ 6f1:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # 6f7 <_Z8calc_fibv+0xb7>
+ 6f7:	89 45 c0             	mov    %eax,-0x40(%rbp)
+#if !defined(_TRACE_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
+#define _TRACE_H
+
+#include <lttng/tracepoint.h>
+
+TRACEPOINT_EVENT(
+ 6fa:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # 701 <_Z8calc_fibv+0xc1>
+ 701:	48 85 c0             	test   %rax,%rax
+ 704:	74 cd                	je     6d3 <_Z8calc_fibv+0x93>
+ 706:	48 8b 40 18          	mov    0x18(%rax),%rax
+ 70a:	48 85 c0             	test   %rax,%rax
+ 70d:	74 c4                	je     6d3 <_Z8calc_fibv+0x93>
+ 70f:	ff d0                	callq  *%rax
+ 711:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # 718 <_Z8calc_fibv+0xd8>
+ 718:	48 8b 3d 00 00 00 00 	mov    0x0(%rip),%rdi        # 71f <_Z8calc_fibv+0xdf>
+ 71f:	ff 50 28             	callq  *0x28(%rax)
+ 722:	48 85 c0             	test   %rax,%rax
+ 725:	49 89 c6             	mov    %rax,%r14
+ 728:	74 5b                	je     785 <_Z8calc_fibv+0x145>
+
+    clock_gettime(CLOCK_REALTIME, &stop_time);
+    time = calc_delta(&start_time, &stop_time);
+    cycles = get_cpu_cycles();
+
+    ipc = (float)(instr_count) / ((float)(cycles) - (float)(prev_cycles));
+ 72a:	44 89 fa             	mov    %r15d,%edx
+ 72d:	f3 49 0f 2a cd       	cvtsi2ss %r13,%xmm1
+ 732:	f3 48 0f 2a c2       	cvtsi2ss %rdx,%xmm0
+ 737:	f3 0f 10 1d 00 00 00 	movss  0x0(%rip),%xmm3        # 73f <_Z8calc_fibv+0xff>
+ 73e:	00 
+ 73f:	f3 0f 5c c1          	subss  %xmm1,%xmm0
+    cpi = ((float)(cycles) - (float)(prev_cycles)) / (float)(instr_count);
+ 743:	0f 28 d0             	movaps %xmm0,%xmm2
+
+    clock_gettime(CLOCK_REALTIME, &stop_time);
+    time = calc_delta(&start_time, &stop_time);
+    cycles = get_cpu_cycles();
+
+    ipc = (float)(instr_count) / ((float)(cycles) - (float)(prev_cycles));
+ 746:	f3 0f 5e d8          	divss  %xmm0,%xmm3
+    cpi = ((float)(cycles) - (float)(prev_cycles)) / (float)(instr_count);
+ 74a:	f3 0f 5e 15 00 00 00 	divss  0x0(%rip),%xmm2        # 752 <_Z8calc_fibv+0x112>
+ 751:	00 
+
+    clock_gettime(CLOCK_REALTIME, &stop_time);
+    time = calc_delta(&start_time, &stop_time);
+    cycles = get_cpu_cycles();
+
+    ipc = (float)(instr_count) / ((float)(cycles) - (float)(prev_cycles));
+ 752:	f3 0f 11 5d cc       	movss  %xmm3,-0x34(%rbp)
+    cpi = ((float)(cycles) - (float)(prev_cycles)) / (float)(instr_count);
+ 757:	f3 0f 11 55 c8       	movss  %xmm2,-0x38(%rbp)
+ 75c:	49 8b 7e 08          	mov    0x8(%r14),%rdi
+ 760:	f3 0f 10 4d c8       	movss  -0x38(%rbp),%xmm1
+ 765:	f3 0f 10 45 cc       	movss  -0x34(%rbp),%xmm0
+ 76a:	89 d9                	mov    %ebx,%ecx
+ 76c:	44 8b 45 c4          	mov    -0x3c(%rbp),%r8d
+ 770:	8b 55 c0             	mov    -0x40(%rbp),%edx
+ 773:	be 00 00 00 00       	mov    $0x0,%esi
+ 778:	41 ff 16             	callq  *(%r14)
+ 77b:	49 83 c6 10          	add    $0x10,%r14
+ 77f:	49 83 3e 00          	cmpq   $0x0,(%r14)
+ 783:	75 d7                	jne    75c <_Z8calc_fibv+0x11c>
+ 785:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # 78c <_Z8calc_fibv+0x14c>
+ 78c:	ff 50 20             	callq  *0x20(%rax)
+ 78f:	e9 3f ff ff ff       	jmpq   6d3 <_Z8calc_fibv+0x93>
+ 794:	66 66 66 2e 0f 1f 84 	data32 data32 nopw %cs:0x0(%rax,%rax,1)
+ 79b:	00 00 00 00 00 
+
+00000000000007a0 <_Z14calc_fib_entryPv>:
+  }
+}
+
+// Function pointer for pthreads to execute at (just calls calc_fib())
+void* calc_fib_entry(void* thread_id)
+{
+ 7a0:	55                   	push   %rbp
+ 7a1:	48 89 e5             	mov    %rsp,%rbp
+ 7a4:	48 83 ec 10          	sub    $0x10,%rsp
+ 7a8:	e8 00 00 00 00       	callq  7ad <_Z14calc_fib_entryPv+0xd>
+  calc_fib();  
+ 7ad:	e8 00 00 00 00       	callq  7b2 <_Z14calc_fib_entryPv+0x12>
+// Outputs:
+// - T/F (bool)
+bool kill_pthreads(int num_threads)
+{
+  int i = 0;
+  pthread_exit(&num_threads);
+ 7b2:	48 8d 7d fc          	lea    -0x4(%rbp),%rdi
+ 7b6:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)
+ 7bd:	e8 00 00 00 00       	callq  7c2 <_Z14calc_fib_entryPv+0x22>
+
+Disassembly of section .text.startup:
+
+0000000000000000 <__tracepoint__init_urcu_sym>:
+#ifndef _LGPL_SOURCE
+static inline void lttng_ust_notrace
+__tracepoint__init_urcu_sym(void);
+static inline void
+__tracepoint__init_urcu_sym(void)
+{
+   0:	53                   	push   %rbx
+	if (!tracepoint_dlopen_ptr)
+   1:	48 8b 1d 00 00 00 00 	mov    0x0(%rip),%rbx        # 8 <__tracepoint__init_urcu_sym+0x8>
+   8:	48 85 db             	test   %rbx,%rbx
+   b:	74 2a                	je     37 <__tracepoint__init_urcu_sym+0x37>
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+	/*
+	 * Symbols below are needed by tracepoint call sites and probe
+	 * providers.
+	 */
+	if (!tracepoint_dlopen_ptr->rcu_read_lock_sym_bp)
+   d:	48 83 7b 18 00       	cmpq   $0x0,0x18(%rbx)
+  12:	74 35                	je     49 <__tracepoint__init_urcu_sym+0x49>
+		tracepoint_dlopen_ptr->rcu_read_lock_sym_bp =
+			URCU_FORCE_CAST(void (*)(void),
+				dlsym(tracepoint_dlopen_ptr->liblttngust_handle,
+					"tp_rcu_read_lock_bp"));
+	if (!tracepoint_dlopen_ptr->rcu_read_unlock_sym_bp)
+  14:	48 83 7b 20 00       	cmpq   $0x0,0x20(%rbx)
+  19:	74 48                	je     63 <__tracepoint__init_urcu_sym+0x63>
+		tracepoint_dlopen_ptr->rcu_read_unlock_sym_bp =
+			URCU_FORCE_CAST(void (*)(void),
+				dlsym(tracepoint_dlopen_ptr->liblttngust_handle,
+					"tp_rcu_read_unlock_bp"));
+	if (!tracepoint_dlopen_ptr->rcu_dereference_sym_bp)
+  1b:	48 83 7b 28 00       	cmpq   $0x0,0x28(%rbx)
+  20:	74 02                	je     24 <__tracepoint__init_urcu_sym+0x24>
+		tracepoint_dlopen_ptr->rcu_dereference_sym_bp =
+			URCU_FORCE_CAST(void *(*)(void *p),
+				dlsym(tracepoint_dlopen_ptr->liblttngust_handle,
+					"tp_rcu_dereference_sym_bp"));
+}
+  22:	5b                   	pop    %rbx
+  23:	c3                   	retq   
+			URCU_FORCE_CAST(void (*)(void),
+				dlsym(tracepoint_dlopen_ptr->liblttngust_handle,
+					"tp_rcu_read_unlock_bp"));
+	if (!tracepoint_dlopen_ptr->rcu_dereference_sym_bp)
+		tracepoint_dlopen_ptr->rcu_dereference_sym_bp =
+			URCU_FORCE_CAST(void *(*)(void *p),
+  24:	48 8b 3b             	mov    (%rbx),%rdi
+  27:	be 00 00 00 00       	mov    $0x0,%esi
+  2c:	e8 00 00 00 00       	callq  31 <__tracepoint__init_urcu_sym+0x31>
+				dlsym(tracepoint_dlopen_ptr->liblttngust_handle,
+					"tp_rcu_dereference_sym_bp"));
+  31:	48 89 43 28          	mov    %rax,0x28(%rbx)
+}
+  35:	5b                   	pop    %rbx
+  36:	c3                   	retq   
+__tracepoint__init_urcu_sym(void);
+static inline void
+__tracepoint__init_urcu_sym(void)
+{
+	if (!tracepoint_dlopen_ptr)
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+  37:	48 c7 05 00 00 00 00 	movq   $0x0,0x0(%rip)        # 42 <__tracepoint__init_urcu_sym+0x42>
+  3e:	00 00 00 00 
+  42:	bb 00 00 00 00       	mov    $0x0,%ebx
+  47:	eb c4                	jmp    d <__tracepoint__init_urcu_sym+0xd>
+	 * Symbols below are needed by tracepoint call sites and probe
+	 * providers.
+	 */
+	if (!tracepoint_dlopen_ptr->rcu_read_lock_sym_bp)
+		tracepoint_dlopen_ptr->rcu_read_lock_sym_bp =
+			URCU_FORCE_CAST(void (*)(void),
+  49:	48 8b 3b             	mov    (%rbx),%rdi
+  4c:	be 00 00 00 00       	mov    $0x0,%esi
+  51:	e8 00 00 00 00       	callq  56 <__tracepoint__init_urcu_sym+0x56>
+				dlsym(tracepoint_dlopen_ptr->liblttngust_handle,
+					"tp_rcu_read_lock_bp"));
+  56:	48 89 43 18          	mov    %rax,0x18(%rbx)
+  5a:	48 8b 1d 00 00 00 00 	mov    0x0(%rip),%rbx        # 61 <__tracepoint__init_urcu_sym+0x61>
+  61:	eb b1                	jmp    14 <__tracepoint__init_urcu_sym+0x14>
+	if (!tracepoint_dlopen_ptr->rcu_read_unlock_sym_bp)
+		tracepoint_dlopen_ptr->rcu_read_unlock_sym_bp =
+			URCU_FORCE_CAST(void (*)(void),
+  63:	48 8b 3b             	mov    (%rbx),%rdi
+  66:	be 00 00 00 00       	mov    $0x0,%esi
+  6b:	e8 00 00 00 00       	callq  70 <__tracepoint__init_urcu_sym+0x70>
+				dlsym(tracepoint_dlopen_ptr->liblttngust_handle,
+					"tp_rcu_read_unlock_bp"));
+  70:	48 89 43 20          	mov    %rax,0x20(%rbx)
+  74:	48 8b 1d 00 00 00 00 	mov    0x0(%rip),%rbx        # 7b <__tracepoint__init_urcu_sym+0x7b>
+  7b:	eb 9e                	jmp    1b <__tracepoint__init_urcu_sym+0x1b>
+  7d:	0f 1f 00             	nopl   (%rax)
+
+0000000000000080 <__tracepoints__init>:
+static void lttng_ust_notrace __attribute__((constructor))
+__tracepoints__init(void);
+static void
+__tracepoints__init(void)
+{
+	if (__tracepoint_registered++) {
+  80:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # 86 <__tracepoints__init+0x6>
+  86:	8d 50 01             	lea    0x1(%rax),%edx
+  89:	85 c0                	test   %eax,%eax
+  8b:	89 15 00 00 00 00    	mov    %edx,0x0(%rip)        # 91 <__tracepoints__init+0x11>
+  91:	74 12                	je     a5 <__tracepoints__init+0x25>
+		if (!tracepoint_dlopen_ptr->liblttngust_handle)
+  93:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # 9a <__tracepoints__init+0x1a>
+  9a:	48 83 38 00          	cmpq   $0x0,(%rax)
+  9e:	74 43                	je     e3 <__tracepoints__init+0x63>
+			return;
+		__tracepoint__init_urcu_sym();
+  a0:	e9 5b ff ff ff       	jmpq   0 <__tracepoint__init_urcu_sym>
+		return;
+	}
+
+	if (!tracepoint_dlopen_ptr)
+  a5:	48 83 3d 00 00 00 00 	cmpq   $0x0,0x0(%rip)        # ad <__tracepoints__init+0x2d>
+  ac:	00 
+
+static void lttng_ust_notrace __attribute__((constructor))
+__tracepoints__init(void);
+static void
+__tracepoints__init(void)
+{
+  ad:	53                   	push   %rbx
+			return;
+		__tracepoint__init_urcu_sym();
+		return;
+	}
+
+	if (!tracepoint_dlopen_ptr)
+  ae:	74 34                	je     e4 <__tracepoints__init+0x64>
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+	if (!tracepoint_dlopen_ptr->liblttngust_handle)
+  b0:	48 8b 1d 00 00 00 00 	mov    0x0(%rip),%rbx        # b7 <__tracepoints__init+0x37>
+  b7:	48 83 3b 00          	cmpq   $0x0,(%rbx)
+  bb:	74 06                	je     c3 <__tracepoints__init+0x43>
+		tracepoint_dlopen_ptr->liblttngust_handle =
+			dlopen("liblttng-ust-tracepoint.so.0", RTLD_NOW | RTLD_GLOBAL);
+	if (!tracepoint_dlopen_ptr->liblttngust_handle)
+		return;
+	__tracepoint__init_urcu_sym();
+}
+  bd:	5b                   	pop    %rbx
+__tracepoints__init(void)
+{
+	if (__tracepoint_registered++) {
+		if (!tracepoint_dlopen_ptr->liblttngust_handle)
+			return;
+		__tracepoint__init_urcu_sym();
+  be:	e9 3d ff ff ff       	jmpq   0 <__tracepoint__init_urcu_sym>
+
+	if (!tracepoint_dlopen_ptr)
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+	if (!tracepoint_dlopen_ptr->liblttngust_handle)
+		tracepoint_dlopen_ptr->liblttngust_handle =
+			dlopen("liblttng-ust-tracepoint.so.0", RTLD_NOW | RTLD_GLOBAL);
+  c3:	be 02 01 00 00       	mov    $0x102,%esi
+  c8:	bf 00 00 00 00       	mov    $0x0,%edi
+  cd:	e8 00 00 00 00       	callq  d2 <__tracepoints__init+0x52>
+  d2:	48 89 03             	mov    %rax,(%rbx)
+	if (!tracepoint_dlopen_ptr->liblttngust_handle)
+  d5:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # dc <__tracepoints__init+0x5c>
+  dc:	48 83 38 00          	cmpq   $0x0,(%rax)
+  e0:	75 db                	jne    bd <__tracepoints__init+0x3d>
+		return;
+	__tracepoint__init_urcu_sym();
+}
+  e2:	5b                   	pop    %rbx
+  e3:	c3                   	retq   
+		__tracepoint__init_urcu_sym();
+		return;
+	}
+
+	if (!tracepoint_dlopen_ptr)
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+  e4:	48 c7 05 00 00 00 00 	movq   $0x0,0x0(%rip)        # ef <__tracepoints__init+0x6f>
+  eb:	00 00 00 00 
+  ef:	eb bf                	jmp    b0 <__tracepoints__init+0x30>
+  f1:	66 66 66 66 66 66 2e 	data32 data32 data32 data32 data32 nopw %cs:0x0(%rax,%rax,1)
+  f8:	0f 1f 84 00 00 00 00 
+  ff:	00 
+
+0000000000000100 <__tracepoints__ptrs_init>:
+static void lttng_ust_notrace __attribute__((constructor))
+__tracepoints__ptrs_init(void);
+static void
+__tracepoints__ptrs_init(void)
+{
+	if (__tracepoint_ptrs_registered++)
+ 100:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # 106 <__tracepoints__ptrs_init+0x6>
+ 106:	8d 50 01             	lea    0x1(%rax),%edx
+ 109:	85 c0                	test   %eax,%eax
+ 10b:	89 15 00 00 00 00    	mov    %edx,0x0(%rip)        # 111 <__tracepoints__ptrs_init+0x11>
+ 111:	0f 85 93 00 00 00    	jne    1aa <__tracepoints__ptrs_init+0xaa>
+		return;
+	if (!tracepoint_dlopen_ptr)
+ 117:	48 83 3d 00 00 00 00 	cmpq   $0x0,0x0(%rip)        # 11f <__tracepoints__ptrs_init+0x1f>
+ 11e:	00 
+
+static void lttng_ust_notrace __attribute__((constructor))
+__tracepoints__ptrs_init(void);
+static void
+__tracepoints__ptrs_init(void)
+{
+ 11f:	53                   	push   %rbx
+	if (__tracepoint_ptrs_registered++)
+		return;
+	if (!tracepoint_dlopen_ptr)
+ 120:	0f 84 85 00 00 00    	je     1ab <__tracepoints__ptrs_init+0xab>
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+	if (!tracepoint_dlopen_ptr->liblttngust_handle)
+ 126:	48 8b 1d 00 00 00 00 	mov    0x0(%rip),%rbx        # 12d <__tracepoints__ptrs_init+0x2d>
+ 12d:	48 8b 3b             	mov    (%rbx),%rdi
+ 130:	48 85 ff             	test   %rdi,%rdi
+ 133:	74 53                	je     188 <__tracepoints__ptrs_init+0x88>
+		tracepoint_dlopen_ptr->liblttngust_handle =
+			dlopen("liblttng-ust-tracepoint.so.0", RTLD_NOW | RTLD_GLOBAL);
+	if (!tracepoint_dlopen_ptr->liblttngust_handle)
+		return;
+	tracepoint_dlopen_ptr->tracepoint_register_lib =
+		URCU_FORCE_CAST(int (*)(struct lttng_ust_tracepoint * const *, int),
+ 135:	be 00 00 00 00       	mov    $0x0,%esi
+ 13a:	e8 00 00 00 00       	callq  13f <__tracepoints__ptrs_init+0x3f>
+				dlsym(tracepoint_dlopen_ptr->liblttngust_handle,
+					"tracepoint_register_lib"));
+ 13f:	48 89 43 08          	mov    %rax,0x8(%rbx)
+	tracepoint_dlopen_ptr->tracepoint_unregister_lib =
+		URCU_FORCE_CAST(int (*)(struct lttng_ust_tracepoint * const *),
+ 143:	48 8b 1d 00 00 00 00 	mov    0x0(%rip),%rbx        # 14a <__tracepoints__ptrs_init+0x4a>
+ 14a:	be 00 00 00 00       	mov    $0x0,%esi
+ 14f:	48 8b 3b             	mov    (%rbx),%rdi
+ 152:	e8 00 00 00 00       	callq  157 <__tracepoints__ptrs_init+0x57>
+				dlsym(tracepoint_dlopen_ptr->liblttngust_handle,
+					"tracepoint_unregister_lib"));
+ 157:	48 89 43 10          	mov    %rax,0x10(%rbx)
+	__tracepoint__init_urcu_sym();
+ 15b:	e8 a0 fe ff ff       	callq  0 <__tracepoint__init_urcu_sym>
+	if (tracepoint_dlopen_ptr->tracepoint_register_lib) {
+ 160:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # 167 <__tracepoints__ptrs_init+0x67>
+ 167:	48 8b 40 08          	mov    0x8(%rax),%rax
+ 16b:	48 85 c0             	test   %rax,%rax
+ 16e:	74 39                	je     1a9 <__tracepoints__ptrs_init+0xa9>
+		tracepoint_dlopen_ptr->tracepoint_register_lib(__start___tracepoints_ptrs,
+				__stop___tracepoints_ptrs -
+ 170:	be 00 00 00 00       	mov    $0x0,%esi
+				__start___tracepoints_ptrs);
+ 175:	bf 00 00 00 00       	mov    $0x0,%edi
+				dlsym(tracepoint_dlopen_ptr->liblttngust_handle,
+					"tracepoint_unregister_lib"));
+	__tracepoint__init_urcu_sym();
+	if (tracepoint_dlopen_ptr->tracepoint_register_lib) {
+		tracepoint_dlopen_ptr->tracepoint_register_lib(__start___tracepoints_ptrs,
+				__stop___tracepoints_ptrs -
+ 17a:	48 81 ee 00 00 00 00 	sub    $0x0,%rsi
+				__start___tracepoints_ptrs);
+	}
+}
+ 181:	5b                   	pop    %rbx
+				dlsym(tracepoint_dlopen_ptr->liblttngust_handle,
+					"tracepoint_unregister_lib"));
+	__tracepoint__init_urcu_sym();
+	if (tracepoint_dlopen_ptr->tracepoint_register_lib) {
+		tracepoint_dlopen_ptr->tracepoint_register_lib(__start___tracepoints_ptrs,
+				__stop___tracepoints_ptrs -
+ 182:	48 c1 fe 03          	sar    $0x3,%rsi
+				__start___tracepoints_ptrs);
+ 186:	ff e0                	jmpq   *%rax
+		return;
+	if (!tracepoint_dlopen_ptr)
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+	if (!tracepoint_dlopen_ptr->liblttngust_handle)
+		tracepoint_dlopen_ptr->liblttngust_handle =
+			dlopen("liblttng-ust-tracepoint.so.0", RTLD_NOW | RTLD_GLOBAL);
+ 188:	bf 00 00 00 00       	mov    $0x0,%edi
+ 18d:	be 02 01 00 00       	mov    $0x102,%esi
+ 192:	e8 00 00 00 00       	callq  197 <__tracepoints__ptrs_init+0x97>
+ 197:	48 89 03             	mov    %rax,(%rbx)
+	if (!tracepoint_dlopen_ptr->liblttngust_handle)
+ 19a:	48 8b 1d 00 00 00 00 	mov    0x0(%rip),%rbx        # 1a1 <__tracepoints__ptrs_init+0xa1>
+ 1a1:	48 8b 3b             	mov    (%rbx),%rdi
+ 1a4:	48 85 ff             	test   %rdi,%rdi
+ 1a7:	75 8c                	jne    135 <__tracepoints__ptrs_init+0x35>
+	if (tracepoint_dlopen_ptr->tracepoint_register_lib) {
+		tracepoint_dlopen_ptr->tracepoint_register_lib(__start___tracepoints_ptrs,
+				__stop___tracepoints_ptrs -
+				__start___tracepoints_ptrs);
+	}
+}
+ 1a9:	5b                   	pop    %rbx
+ 1aa:	c3                   	retq   
+__tracepoints__ptrs_init(void)
+{
+	if (__tracepoint_ptrs_registered++)
+		return;
+	if (!tracepoint_dlopen_ptr)
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+ 1ab:	48 c7 05 00 00 00 00 	movq   $0x0,0x0(%rip)        # 1b6 <__tracepoints__ptrs_init+0xb6>
+ 1b2:	00 00 00 00 
+ 1b6:	e9 6b ff ff ff       	jmpq   126 <__tracepoints__ptrs_init+0x26>
+ 1bb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000000001c0 <_ZL30__lttng_events_init__benchmarkv>:
+static void
+_TP_COMBINE_TOKENS(__lttng_events_init__, TRACEPOINT_PROVIDER)(void)
+{
+	int ret;
+
+	if (_TP_COMBINE_TOKENS(__probe_register_refcount___,
+ 1c0:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # 1c6 <_ZL30__lttng_events_init__benchmarkv+0x6>
+ 1c6:	8d 50 01             	lea    0x1(%rax),%edx
+ 1c9:	85 c0                	test   %eax,%eax
+ 1cb:	89 15 00 00 00 00    	mov    %edx,0x0(%rip)        # 1d1 <_ZL30__lttng_events_init__benchmarkv+0x11>
+ 1d1:	74 01                	je     1d4 <_ZL30__lttng_events_init__benchmarkv+0x14>
+	ret = lttng_probe_register(&_TP_COMBINE_TOKENS(__probe_desc___, TRACEPOINT_PROVIDER));
+	if (ret) {
+		fprintf(stderr, "LTTng-UST: Error (%d) while registering tracepoint probe. Duplicate registration of tracepoint probes having the same name is not allowed.\n", ret);
+		abort();
+	}
+}
+ 1d3:	c3                   	retq   
+#include <lttng/ust-tracepoint-event-reset.h>
+static void lttng_ust_notrace __attribute__((constructor))
+_TP_COMBINE_TOKENS(__lttng_events_init__, TRACEPOINT_PROVIDER)(void);
+static void
+_TP_COMBINE_TOKENS(__lttng_events_init__, TRACEPOINT_PROVIDER)(void)
+{
+ 1d4:	52                   	push   %rdx
+	 * calls empty static inline functions, and therefore has no
+	 * runtime effect. However, if it detects an error, a linker
+	 * error will appear.
+	 */
+	_TP_COMBINE_TOKENS(__tracepoint_provider_check_, TRACEPOINT_PROVIDER)();
+	ret = lttng_probe_register(&_TP_COMBINE_TOKENS(__probe_desc___, TRACEPOINT_PROVIDER));
+ 1d5:	bf 00 00 00 00       	mov    $0x0,%edi
+ 1da:	e8 00 00 00 00       	callq  1df <_ZL30__lttng_events_init__benchmarkv+0x1f>
+	if (ret) {
+ 1df:	85 c0                	test   %eax,%eax
+ 1e1:	75 02                	jne    1e5 <_ZL30__lttng_events_init__benchmarkv+0x25>
+		fprintf(stderr, "LTTng-UST: Error (%d) while registering tracepoint probe. Duplicate registration of tracepoint probes having the same name is not allowed.\n", ret);
+		abort();
+	}
+}
+ 1e3:	58                   	pop    %rax
+ 1e4:	c3                   	retq   
+# ifdef __va_arg_pack
+__fortify_function int
+fprintf (FILE *__restrict __stream, const char *__restrict __fmt, ...)
+{
+  return __fprintf_chk (__stream, __USE_FORTIFY_LEVEL - 1, __fmt,
+			__va_arg_pack ());
+ 1e5:	48 8b 3d 00 00 00 00 	mov    0x0(%rip),%rdi        # 1ec <_ZL30__lttng_events_init__benchmarkv+0x2c>
+ 1ec:	89 c1                	mov    %eax,%ecx
+ 1ee:	ba 00 00 00 00       	mov    $0x0,%edx
+ 1f3:	be 01 00 00 00       	mov    $0x1,%esi
+ 1f8:	31 c0                	xor    %eax,%eax
+ 1fa:	e8 00 00 00 00       	callq  1ff <_ZL30__lttng_events_init__benchmarkv+0x3f>
+	 */
+	_TP_COMBINE_TOKENS(__tracepoint_provider_check_, TRACEPOINT_PROVIDER)();
+	ret = lttng_probe_register(&_TP_COMBINE_TOKENS(__probe_desc___, TRACEPOINT_PROVIDER));
+	if (ret) {
+		fprintf(stderr, "LTTng-UST: Error (%d) while registering tracepoint probe. Duplicate registration of tracepoint probes having the same name is not allowed.\n", ret);
+		abort();
+ 1ff:	e8 00 00 00 00       	callq  204 <_ZL30__lttng_events_init__benchmarkv+0x44>
+ 204:	66 66 66 2e 0f 1f 84 	data32 data32 nopw %cs:0x0(%rax,%rax,1)
+ 20b:	00 00 00 00 00 
+
+0000000000000210 <main>:
+3) high priority single core smp
+4) normal priority single core smp
+-- DEFAULT is SMP and whatever core Linux wants the process to run on
+*/
+int main (int argc, char *argv[])
+{
+ 210:	55                   	push   %rbp
+ 211:	48 89 e5             	mov    %rsp,%rbp
+ 214:	41 54                	push   %r12
+ 216:	53                   	push   %rbx
+ 217:	e8 00 00 00 00       	callq  21c <main+0xc>
+ 21c:	48 89 f3             	mov    %rsi,%rbx
+  pid = getpid();
+ 21f:	e8 00 00 00 00       	callq  224 <main+0x14>
+}
+
+__fortify_function int
+printf (const char *__restrict __fmt, ...)
+{
+  return __printf_chk (__USE_FORTIFY_LEVEL - 1, __fmt, __va_arg_pack ());
+ 224:	be 00 00 00 00       	mov    $0x0,%esi
+ 229:	89 c2                	mov    %eax,%edx
+ 22b:	89 05 00 00 00 00    	mov    %eax,0x0(%rip)        # 231 <main+0x21>
+ 231:	bf 01 00 00 00       	mov    $0x1,%edi
+ 236:	31 c0                	xor    %eax,%eax
+ 238:	e8 00 00 00 00       	callq  23d <main+0x2d>
+  printf("FIB pid %d\n", pid);
+  int num_procs = get_nprocs_conf();
+ 23d:	e8 00 00 00 00       	callq  242 <main+0x32>
+  bool hprio = false;
+  
+  if (argv[1] == NULL)
+ 242:	48 8b 5b 08          	mov    0x8(%rbx),%rbx
+*/
+int main (int argc, char *argv[])
+{
+  pid = getpid();
+  printf("FIB pid %d\n", pid);
+  int num_procs = get_nprocs_conf();
+ 246:	41 89 c4             	mov    %eax,%r12d
+  bool hprio = false;
+  
+  if (argv[1] == NULL)
+ 249:	48 85 db             	test   %rbx,%rbx
+ 24c:	0f 84 bf 00 00 00    	je     311 <main+0x101>
+  {
+    printf("INFO: Calculating default fib sequence\n");
+  }
+  else if (strcmp(argv[1], "1") == 0)
+ 252:	bf 00 00 00 00       	mov    $0x0,%edi
+ 257:	b9 02 00 00 00       	mov    $0x2,%ecx
+ 25c:	48 89 de             	mov    %rbx,%rsi
+ 25f:	f3 a6                	repz cmpsb %es:(%rdi),%ds:(%rsi)
+ 261:	74 4b                	je     2ae <main+0x9e>
+  {
+    printf("INFO: Calculating fib sequence with process at high priority in a multicore environment\n");
+    hprio = true;
+  }    
+  else if (strcmp(argv[1], "2") == 0)
+ 263:	be 00 00 00 00       	mov    $0x0,%esi
+ 268:	48 89 df             	mov    %rbx,%rdi
+ 26b:	e8 00 00 00 00       	callq  270 <main+0x60>
+ 270:	85 c0                	test   %eax,%eax
+ 272:	74 6d                	je     2e1 <main+0xd1>
+  {
+    printf("INFO: Calculating fib sequence with process at normal priority in a multicore environment\n");
+  }
+  else if (strcmp(argv[1], "3") == 0)
+ 274:	be 00 00 00 00       	mov    $0x0,%esi
+ 279:	48 89 df             	mov    %rbx,%rdi
+ 27c:	e8 00 00 00 00       	callq  281 <main+0x71>
+ 281:	85 c0                	test   %eax,%eax
+ 283:	74 68                	je     2ed <main+0xdd>
+  {
+    printf("INFO: Calculating fib sequence with process at high priority in a unicore environment\n");
+    hprio = true;
+    num_procs = 1;
+  }
+  else if (strcmp(argv[1], "4") == 0)
+ 285:	be 00 00 00 00       	mov    $0x0,%esi
+ 28a:	48 89 df             	mov    %rbx,%rdi
+ 28d:	e8 00 00 00 00       	callq  292 <main+0x82>
+ 292:	85 c0                	test   %eax,%eax
+ 294:	74 69                	je     2ff <main+0xef>
+  {
+    printf("INFO: Calculating fib sequence with process at normal priority in a uniicore environment\n");
+    num_procs = 1;
+  }
+  
+  if (setup_affinity(num_procs) == false)
+ 296:	44 89 e7             	mov    %r12d,%edi
+ 299:	e8 00 00 00 00       	callq  29e <main+0x8e>
+ 29e:	84 c0                	test   %al,%al
+ 2a0:	74 22                	je     2c4 <main+0xb4>
+      exit(-1);
+    }
+  }
+  else
+  {
+    calc_fib();
+ 2a2:	e8 00 00 00 00       	callq  2a7 <main+0x97>
+  }
+
+  exit(0);
+ 2a7:	31 ff                	xor    %edi,%edi
+ 2a9:	e8 00 00 00 00       	callq  2ae <main+0x9e>
+ 2ae:	bf 00 00 00 00       	mov    $0x0,%edi
+ 2b3:	e8 00 00 00 00       	callq  2b8 <main+0xa8>
+  {
+    printf("INFO: Calculating fib sequence with process at normal priority in a uniicore environment\n");
+    num_procs = 1;
+  }
+  
+  if (setup_affinity(num_procs) == false)
+ 2b8:	44 89 e7             	mov    %r12d,%edi
+ 2bb:	e8 00 00 00 00       	callq  2c0 <main+0xb0>
+ 2c0:	84 c0                	test   %al,%al
+ 2c2:	75 08                	jne    2cc <main+0xbc>
+  {
+    exit(-1);
+ 2c4:	83 cf ff             	or     $0xffffffff,%edi
+ 2c7:	e8 00 00 00 00       	callq  2cc <main+0xbc>
+  }
+
+  if (hprio == true)
+  {
+    if (create_pthreads(1, calc_fib_entry) == false)
+ 2cc:	be 00 00 00 00       	mov    $0x0,%esi
+ 2d1:	bf 01 00 00 00       	mov    $0x1,%edi
+ 2d6:	e8 00 00 00 00       	callq  2db <main+0xcb>
+ 2db:	84 c0                	test   %al,%al
+ 2dd:	75 c8                	jne    2a7 <main+0x97>
+ 2df:	eb e3                	jmp    2c4 <main+0xb4>
+ 2e1:	bf 00 00 00 00       	mov    $0x0,%edi
+ 2e6:	e8 00 00 00 00       	callq  2eb <main+0xdb>
+ 2eb:	eb a9                	jmp    296 <main+0x86>
+ 2ed:	bf 00 00 00 00       	mov    $0x0,%edi
+  }
+  else if (strcmp(argv[1], "3") == 0)
+  {
+    printf("INFO: Calculating fib sequence with process at high priority in a unicore environment\n");
+    hprio = true;
+    num_procs = 1;
+ 2f2:	41 bc 01 00 00 00    	mov    $0x1,%r12d
+ 2f8:	e8 00 00 00 00       	callq  2fd <main+0xed>
+ 2fd:	eb b9                	jmp    2b8 <main+0xa8>
+ 2ff:	bf 00 00 00 00       	mov    $0x0,%edi
+  }
+  else if (strcmp(argv[1], "4") == 0)
+  {
+    printf("INFO: Calculating fib sequence with process at normal priority in a uniicore environment\n");
+    num_procs = 1;
+ 304:	41 bc 01 00 00 00    	mov    $0x1,%r12d
+ 30a:	e8 00 00 00 00       	callq  30f <main+0xff>
+ 30f:	eb 85                	jmp    296 <main+0x86>
+ 311:	bf 00 00 00 00       	mov    $0x0,%edi
+ 316:	e8 00 00 00 00       	callq  31b <main+0x10b>
+ 31b:	e9 76 ff ff ff       	jmpq   296 <main+0x86>
+
+Disassembly of section .text.exit:
+
+0000000000000000 <__tracepoints__destroy>:
+static void
+__tracepoints__destroy(void)
+{
+	int ret;
+
+	if (--__tracepoint_registered)
+   0:	83 2d 00 00 00 00 01 	subl   $0x1,0x0(%rip)        # 7 <__tracepoints__destroy+0x7>
+   7:	75 2b                	jne    34 <__tracepoints__destroy+0x34>
+		return;
+	if (!tracepoint_dlopen_ptr)
+   9:	48 83 3d 00 00 00 00 	cmpq   $0x0,0x0(%rip)        # 11 <__tracepoints__destroy+0x11>
+  10:	00 
+  11:	74 5f                	je     72 <__tracepoints__destroy+0x72>
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+	if (!__tracepoints__disable_destructors
+  13:	83 3d 00 00 00 00 00 	cmpl   $0x0,0x0(%rip)        # 1a <__tracepoints__destroy+0x1a>
+  1a:	75 18                	jne    34 <__tracepoints__destroy+0x34>
+			&& tracepoint_dlopen_ptr->liblttngust_handle
+  1c:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # 23 <__tracepoints__destroy+0x23>
+  23:	48 8b 38             	mov    (%rax),%rdi
+  26:	48 85 ff             	test   %rdi,%rdi
+  29:	74 09                	je     34 <__tracepoints__destroy+0x34>
+			&& !__tracepoint_ptrs_registered) {
+  2b:	83 3d 00 00 00 00 00 	cmpl   $0x0,0x0(%rip)        # 32 <__tracepoints__destroy+0x32>
+  32:	74 01                	je     35 <__tracepoints__destroy+0x35>
+			fprintf(stderr, "Error (%d) in dlclose\n", ret);
+			abort();
+		}
+		memset(tracepoint_dlopen_ptr, 0, sizeof(*tracepoint_dlopen_ptr));
+	}
+}
+  34:	c3                   	retq   
+
+static void lttng_ust_notrace __attribute__((destructor))
+__tracepoints__destroy(void);
+static void
+__tracepoints__destroy(void)
+{
+  35:	52                   	push   %rdx
+	if (!tracepoint_dlopen_ptr)
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+	if (!__tracepoints__disable_destructors
+			&& tracepoint_dlopen_ptr->liblttngust_handle
+			&& !__tracepoint_ptrs_registered) {
+		ret = dlclose(tracepoint_dlopen_ptr->liblttngust_handle);
+  36:	e8 00 00 00 00       	callq  3b <__tracepoints__destroy+0x3b>
+		if (ret) {
+  3b:	85 c0                	test   %eax,%eax
+  3d:	0f 1f 00             	nopl   (%rax)
+  40:	75 49                	jne    8b <__tracepoints__destroy+0x8b>
+      && (!__builtin_constant_p (__ch) || __ch != 0))
+    {
+      __warn_memset_zero_len ();
+      return __dest;
+    }
+  return __builtin___memset_chk (__dest, __ch, __len, __bos0 (__dest));
+  42:	48 8b 3d 00 00 00 00 	mov    0x0(%rip),%rdi        # 49 <__tracepoints__destroy+0x49>
+  49:	31 c0                	xor    %eax,%eax
+  4b:	ba 30 00 00 00       	mov    $0x30,%edx
+  50:	40 f6 c7 01          	test   $0x1,%dil
+  54:	75 29                	jne    7f <__tracepoints__destroy+0x7f>
+  56:	40 f6 c7 02          	test   $0x2,%dil
+  5a:	75 28                	jne    84 <__tracepoints__destroy+0x84>
+  5c:	89 d1                	mov    %edx,%ecx
+  5e:	c1 e9 02             	shr    $0x2,%ecx
+  61:	f6 c2 02             	test   $0x2,%dl
+  64:	f3 ab                	rep stos %eax,%es:(%rdi)
+  66:	74 02                	je     6a <__tracepoints__destroy+0x6a>
+  68:	66 ab                	stos   %ax,%es:(%rdi)
+  6a:	80 e2 01             	and    $0x1,%dl
+  6d:	74 01                	je     70 <__tracepoints__destroy+0x70>
+  6f:	aa                   	stos   %al,%es:(%rdi)
+			fprintf(stderr, "Error (%d) in dlclose\n", ret);
+			abort();
+		}
+		memset(tracepoint_dlopen_ptr, 0, sizeof(*tracepoint_dlopen_ptr));
+	}
+}
+  70:	58                   	pop    %rax
+  71:	c3                   	retq   
+	int ret;
+
+	if (--__tracepoint_registered)
+		return;
+	if (!tracepoint_dlopen_ptr)
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+  72:	48 c7 05 00 00 00 00 	movq   $0x0,0x0(%rip)        # 7d <__tracepoints__destroy+0x7d>
+  79:	00 00 00 00 
+  7d:	eb 94                	jmp    13 <__tracepoints__destroy+0x13>
+  7f:	aa                   	stos   %al,%es:(%rdi)
+  80:	b2 2f                	mov    $0x2f,%dl
+  82:	eb d2                	jmp    56 <__tracepoints__destroy+0x56>
+  84:	66 ab                	stos   %ax,%es:(%rdi)
+  86:	83 ea 02             	sub    $0x2,%edx
+  89:	eb d1                	jmp    5c <__tracepoints__destroy+0x5c>
+# ifdef __va_arg_pack
+__fortify_function int
+fprintf (FILE *__restrict __stream, const char *__restrict __fmt, ...)
+{
+  return __fprintf_chk (__stream, __USE_FORTIFY_LEVEL - 1, __fmt,
+			__va_arg_pack ());
+  8b:	48 8b 3d 00 00 00 00 	mov    0x0(%rip),%rdi        # 92 <__tracepoints__destroy+0x92>
+  92:	89 c1                	mov    %eax,%ecx
+  94:	ba 00 00 00 00       	mov    $0x0,%edx
+  99:	be 01 00 00 00       	mov    $0x1,%esi
+  9e:	31 c0                	xor    %eax,%eax
+  a0:	e8 00 00 00 00       	callq  a5 <__tracepoints__destroy+0xa5>
+			&& tracepoint_dlopen_ptr->liblttngust_handle
+			&& !__tracepoint_ptrs_registered) {
+		ret = dlclose(tracepoint_dlopen_ptr->liblttngust_handle);
+		if (ret) {
+			fprintf(stderr, "Error (%d) in dlclose\n", ret);
+			abort();
+  a5:	e8 00 00 00 00       	callq  aa <__tracepoints__destroy+0xaa>
+  aa:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+00000000000000b0 <__tracepoints__ptrs_destroy>:
+static void
+__tracepoints__ptrs_destroy(void)
+{
+	int ret;
+
+	if (--__tracepoint_ptrs_registered)
+  b0:	83 2d 00 00 00 00 01 	subl   $0x1,0x0(%rip)        # b7 <__tracepoints__ptrs_destroy+0x7>
+  b7:	75 44                	jne    fd <__tracepoints__ptrs_destroy+0x4d>
+
+static void lttng_ust_notrace __attribute__((destructor))
+__tracepoints__ptrs_destroy(void);
+static void
+__tracepoints__ptrs_destroy(void)
+{
+  b9:	52                   	push   %rdx
+	int ret;
+
+	if (--__tracepoint_ptrs_registered)
+		return;
+	if (!tracepoint_dlopen_ptr)
+  ba:	48 83 3d 00 00 00 00 	cmpq   $0x0,0x0(%rip)        # c2 <__tracepoints__ptrs_destroy+0x12>
+  c1:	00 
+  c2:	74 74                	je     138 <__tracepoints__ptrs_destroy+0x88>
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+	if (tracepoint_dlopen_ptr->tracepoint_unregister_lib)
+  c4:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # cb <__tracepoints__ptrs_destroy+0x1b>
+  cb:	48 8b 40 10          	mov    0x10(%rax),%rax
+  cf:	48 85 c0             	test   %rax,%rax
+  d2:	74 07                	je     db <__tracepoints__ptrs_destroy+0x2b>
+		tracepoint_dlopen_ptr->tracepoint_unregister_lib(__start___tracepoints_ptrs);
+  d4:	bf 00 00 00 00       	mov    $0x0,%edi
+  d9:	ff d0                	callq  *%rax
+	if (!__tracepoints__disable_destructors
+  db:	83 3d 00 00 00 00 00 	cmpl   $0x0,0x0(%rip)        # e2 <__tracepoints__ptrs_destroy+0x32>
+  e2:	75 18                	jne    fc <__tracepoints__ptrs_destroy+0x4c>
+			&& tracepoint_dlopen_ptr->liblttngust_handle
+  e4:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # eb <__tracepoints__ptrs_destroy+0x3b>
+  eb:	48 8b 38             	mov    (%rax),%rdi
+  ee:	48 85 ff             	test   %rdi,%rdi
+  f1:	74 09                	je     fc <__tracepoints__ptrs_destroy+0x4c>
+			&& !__tracepoint_ptrs_registered) {
+  f3:	83 3d 00 00 00 00 00 	cmpl   $0x0,0x0(%rip)        # fa <__tracepoints__ptrs_destroy+0x4a>
+  fa:	74 02                	je     fe <__tracepoints__ptrs_destroy+0x4e>
+			fprintf(stderr, "Error (%d) in dlclose\n", ret);
+			abort();
+		}
+		memset(tracepoint_dlopen_ptr, 0, sizeof(*tracepoint_dlopen_ptr));
+	}
+}
+  fc:	58                   	pop    %rax
+  fd:	c3                   	retq   
+	if (tracepoint_dlopen_ptr->tracepoint_unregister_lib)
+		tracepoint_dlopen_ptr->tracepoint_unregister_lib(__start___tracepoints_ptrs);
+	if (!__tracepoints__disable_destructors
+			&& tracepoint_dlopen_ptr->liblttngust_handle
+			&& !__tracepoint_ptrs_registered) {
+		ret = dlclose(tracepoint_dlopen_ptr->liblttngust_handle);
+  fe:	e8 00 00 00 00       	callq  103 <__tracepoints__ptrs_destroy+0x53>
+		if (ret) {
+ 103:	85 c0                	test   %eax,%eax
+ 105:	75 4d                	jne    154 <__tracepoints__ptrs_destroy+0xa4>
+ 107:	48 8b 3d 00 00 00 00 	mov    0x0(%rip),%rdi        # 10e <__tracepoints__ptrs_destroy+0x5e>
+ 10e:	31 c0                	xor    %eax,%eax
+ 110:	ba 30 00 00 00       	mov    $0x30,%edx
+ 115:	40 f6 c7 01          	test   $0x1,%dil
+ 119:	75 2d                	jne    148 <__tracepoints__ptrs_destroy+0x98>
+ 11b:	40 f6 c7 02          	test   $0x2,%dil
+ 11f:	75 2c                	jne    14d <__tracepoints__ptrs_destroy+0x9d>
+ 121:	89 d1                	mov    %edx,%ecx
+ 123:	c1 e9 02             	shr    $0x2,%ecx
+ 126:	f6 c2 02             	test   $0x2,%dl
+ 129:	f3 ab                	rep stos %eax,%es:(%rdi)
+ 12b:	74 02                	je     12f <__tracepoints__ptrs_destroy+0x7f>
+ 12d:	66 ab                	stos   %ax,%es:(%rdi)
+ 12f:	80 e2 01             	and    $0x1,%dl
+ 132:	74 c8                	je     fc <__tracepoints__ptrs_destroy+0x4c>
+ 134:	aa                   	stos   %al,%es:(%rdi)
+			fprintf(stderr, "Error (%d) in dlclose\n", ret);
+			abort();
+		}
+		memset(tracepoint_dlopen_ptr, 0, sizeof(*tracepoint_dlopen_ptr));
+	}
+}
+ 135:	58                   	pop    %rax
+ 136:	eb c5                	jmp    fd <__tracepoints__ptrs_destroy+0x4d>
+	int ret;
+
+	if (--__tracepoint_ptrs_registered)
+		return;
+	if (!tracepoint_dlopen_ptr)
+		tracepoint_dlopen_ptr = &tracepoint_dlopen;
+ 138:	48 c7 05 00 00 00 00 	movq   $0x0,0x0(%rip)        # 143 <__tracepoints__ptrs_destroy+0x93>
+ 13f:	00 00 00 00 
+ 143:	e9 7c ff ff ff       	jmpq   c4 <__tracepoints__ptrs_destroy+0x14>
+ 148:	aa                   	stos   %al,%es:(%rdi)
+ 149:	b2 2f                	mov    $0x2f,%dl
+ 14b:	eb ce                	jmp    11b <__tracepoints__ptrs_destroy+0x6b>
+ 14d:	66 ab                	stos   %ax,%es:(%rdi)
+ 14f:	83 ea 02             	sub    $0x2,%edx
+ 152:	eb cd                	jmp    121 <__tracepoints__ptrs_destroy+0x71>
+ 154:	48 8b 3d 00 00 00 00 	mov    0x0(%rip),%rdi        # 15b <__tracepoints__ptrs_destroy+0xab>
+ 15b:	89 c1                	mov    %eax,%ecx
+ 15d:	ba 00 00 00 00       	mov    $0x0,%edx
+ 162:	be 01 00 00 00       	mov    $0x1,%esi
+ 167:	31 c0                	xor    %eax,%eax
+ 169:	e8 00 00 00 00       	callq  16e <__tracepoints__ptrs_destroy+0xbe>
+			&& tracepoint_dlopen_ptr->liblttngust_handle
+			&& !__tracepoint_ptrs_registered) {
+		ret = dlclose(tracepoint_dlopen_ptr->liblttngust_handle);
+		if (ret) {
+			fprintf(stderr, "Error (%d) in dlclose\n", ret);
+			abort();
+ 16e:	e8 00 00 00 00       	callq  173 <__tracepoints__ptrs_destroy+0xc3>
+ 173:	66 66 66 66 2e 0f 1f 	data32 data32 data32 nopw %cs:0x0(%rax,%rax,1)
+ 17a:	84 00 00 00 00 00 
+
+0000000000000180 <_ZL30__lttng_events_exit__benchmarkv>:
+static void lttng_ust_notrace __attribute__((destructor))
+_TP_COMBINE_TOKENS(__lttng_events_exit__, TRACEPOINT_PROVIDER)(void);
+static void
+_TP_COMBINE_TOKENS(__lttng_events_exit__, TRACEPOINT_PROVIDER)(void)
+{
+	if (--_TP_COMBINE_TOKENS(__probe_register_refcount___,
+ 180:	83 2d 00 00 00 00 01 	subl   $0x1,0x0(%rip)        # 187 <_ZL30__lttng_events_exit__benchmarkv+0x7>
+ 187:	74 01                	je     18a <_ZL30__lttng_events_exit__benchmarkv+0xa>
+ 189:	c3                   	retq   
+			TRACEPOINT_PROVIDER)) {
+		return;
+	}
+	lttng_probe_unregister(&_TP_COMBINE_TOKENS(__probe_desc___, TRACEPOINT_PROVIDER));
+ 18a:	bf 00 00 00 00       	mov    $0x0,%edi
+ 18f:	e9 00 00 00 00       	jmpq   194 <_ZL30__lttng_events_exit__benchmarkv+0x14>

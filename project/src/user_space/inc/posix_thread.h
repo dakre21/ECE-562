@@ -76,6 +76,7 @@ bool create_pthreads(int num_threads, void* (*entry_point)(void*))
   int rt_max_prio = sched_get_priority_max(SCHED_FIFO);
 
   pthread_attr_init(&sched_attr[0]); // Init thread attributes
+  pthread_attr_setscope(&sched_attr[0], PTHREAD_SCOPE_SYSTEM);
   pthread_attr_setinheritsched(&sched_attr[0], PTHREAD_EXPLICIT_SCHED); // Set inherit sched policy
   pthread_attr_setschedpolicy(&sched_attr[0], SCHED_FIFO); // Set sched policy to FIFO
 

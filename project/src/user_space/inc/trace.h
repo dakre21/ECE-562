@@ -20,16 +20,22 @@
 
 TRACEPOINT_EVENT(
     benchmark,
-    my_tracepoint,
+    tracepoint,
     TP_ARGS(
+        char*, trace_description,
+        unsigned int, pid,
         int, timestamp,
         unsigned int, cpu_cycles,
-        char*, trace_description
+        float, cpi,
+        float, ipc
     ),
     TP_FIELDS(
+        ctf_string(trace_description_field, trace_description)
+        ctf_integer(unsigned int, pid_field, pid)
         ctf_integer(int, timestamp_field, timestamp)
         ctf_integer(unsigned int, cpu_cycles_field, cpu_cycles)
-        ctf_string(trace_description_field, trace_description)
+        ctf_float(float, cpi_field, cpi)
+        ctf_float(float, ipc_field, ipc)
     )
 )
 
