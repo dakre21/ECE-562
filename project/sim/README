@@ -18,7 +18,7 @@ Build Steps:
 
 Run Steps:
 1) Userspace
-- ./sim_lttng_rt.py -i <benchmark-executable> -t userspace
+- ./sim_lttng_rt.py -i <benchmark-executable> -t userspace -opt 2 -o fib-2
 2) Kernel
 - ./sim_lttng_rt.py -i <benchmark-executable> -t kernel -f <optional-filter>
 ** Advanced Steps for kernel:
@@ -37,8 +37,4 @@ Getting output from traces:
 - babeltrace ~/lttng-traces/<trace-output-dir>
 -- You can also grep certain results from the stdout
 - lttng view ~/lttng-traces/<trace-output-dir>
-
-TODOs:
-1) Make a gem5 script to work with fib (maybe first w/ nrt version)
-
 

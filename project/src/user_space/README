@@ -1,0 +1,29 @@
+Userspace
+
+SRC
+x86
+- Benchmarks
+-- Fibonacci sequence 
+--- Run make on Makefile to build 
+-- TODO: <IO Intensive>
+-- TODO: <Memory Intensive>
+
+ARM
+- Benchmarks
+-- Fibonacci sequence
+-- TODO: <IO Intensive>
+-- TODO: <Memory Intensive>
+
+lib
+- Library
+-- m5threads
+
+inc
+- Includes
+-- Custom libs/interfaces shared for ARM/x86:
+--- calc_delta.h
+--- cpu_stats.h
+--- posix_thread.h
+--- set_affinity.h
+--- stall_cpu.h
+--- trace.h

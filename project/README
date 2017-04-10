@@ -12,21 +12,23 @@ DOCS
 - Contains project related research documents
 
 TODOs:
-Benchmarks
-- Might need more than just fib to test against (i.e. add more benchmarks)
+Benchmarks (C/C++)
+- Create RT IO intensive benchmark (ARM/x86)
+- Create RT Memory intensive benchmark (ARM/x86)
 
 Simulation
-- Start running different "add-context" combinations against the executables
--- Fix error "Error: perf:cpu:cycles: Add kernel context failed" or any input filter to script... 
-currently not adding a second context for some reason
-- Make a customized gem5 script to run against benchmarks
-- Additionally, run simulations on ARM targets like the pi or tegra (get metrics noting ARM target to be used for analytics)
+- Get metrics similarly to how x86 is done for ARM targets
+- Try to get GEM5 working for benchmarks (may not happen.. m5threads doesn't work out well enough- no thread scheduler facade)
 
 Analytics
-- Roll out script to correlate metrics produced from simulations into csv & potentially graph results
+- CSV being generated for x86; need do the same for ARM
+- Start making graphs of results 
 
 Kernel
-- Look into a suitable kernel to potentially look into improvements to make it more RT
--- Debian might be easier since its relatively small and easier to debug w/ when
-making improvements (i.e. sideload onto raspberry pi)
+- Look into a suitable kernel to potentially look into improvements to make it more RT 
+-- Generally looking for the following:
+--- Each process has its own page table (ideally page size should be smal... lower context switching time)
+--- Context switching ring buffers have userspace/kernel protection
+--- NUMA/distributed memory better for process pinned to separate core (locking cache on those cores ideal)
+--- UMA better for process running system wide on all cores/shared memory
 
