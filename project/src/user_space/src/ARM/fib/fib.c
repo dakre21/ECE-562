@@ -3,6 +3,7 @@
 #include <posix_thread.h>
 #include <stall_cpu.h>
 #include <string.h>
+#include <cpu_stats.h>
 
 /*
  * Author: David Akre
@@ -14,44 +15,60 @@
  *
  */
 
-#define NUM_FIB_CYCLES 1000
+#define NUM_FIB_CYCLES 10000
 
 // Fwd declaration of vars
 struct timespec start_time = {0, 0};
 struct timespec stop_time = {0, 0};
 uint32_t fib = 0, fib0 = 0, fib1 = 1;
 
+pmu_counters counters
+{
+    ccnt: 0,
+    event0: 0,
+    event1: 0,
+    event2: 0
+};
+
 // Function to calculate fibonacci sequence
 void calc_fib()
 {
-  int i = 0;
-  int time = 0;
+    int i = 0;
+    int time = 0;
 
-  for (; i < NUM_FIB_CYCLES; i++)
-  {
-    clock_gettime(CLOCK_REALTIME, &start_time);
-    fib = fib0 + fib1;
-    fib0 = fib1;
-    fib1 = fib;
-    clock_gettime(CLOCK_REALTIME, &stop_time);
-    time = calc_delta(&start_time, &stop_time);
+    for (; i < NUM_FIB_CYCLES; i++)
+    {
+        // Enable PMUs and clock counter
+        enable_pmus();
+        clock_gettime(CLOCK_REALTIME, &start_time);
 
-    // Fib num will exceed what int can actually store... so ignore result we can about time
-    printf("INFO: Fib num = %u at position %d and total process took %d\n", fib, i, time);
-  }
+        fib = fib0 + fib1;
+        fib0 = fib1;
+        fib1 = fib;
+
+        clock_gettime(CLOCK_REALTIME, &stop_time);
+        time = calc_delta(&start_time, &stop_time);
+
+        get_cpu_cycles(&counters);
+
+        // Fib num will exceed what int can actually store... so ignore result we can about time
+        printf("INFO: Fib num = %u at position %d, total process took %d, cpu cycles are %u\n", fib, i, time, counters.ccnt);
+
+        reset_pmus();
+    }
 }
 
 // Function pointer for pthreads to execute at (just calls calc_fib())
 void* calc_fib_entry(void* thread_id)
 {
-  calc_fib();  
+    calc_fib();  
 
-  if (kill_pthreads(1) == false)
-  {
-    exit(-1);
-  }
+    if (kill_pthreads(1) == false)
+    {
+      exit(-1);
+    }
 
-  return thread_id;
+    return thread_id;
 }
 
 /*
@@ -63,51 +80,57 @@ void* calc_fib_entry(void* thread_id)
 */
 int main (int argc, char *argv[])
 {
-  printf("FIB pid %d\n", getpid());
-  int num_procs = get_nprocs_conf();
-  bool hprio = false;
-  
-  if (argv[1] == NULL)
-  {
-    printf("INFO: Calculating default fib sequence\n");
-  }
-  else if (strcmp(argv[1], "1") == 0)
-  {
-    printf("INFO: Calculating fib sequence with process at high priority in a multicore environment\n");
-    hprio = true;
-  }    
-  else if (strcmp(argv[1], "2") == 0)
-  {
-    printf("INFO: Calculating fib sequence with process at normal priority in a multicore environment\n");
-  }
-  else if (strcmp(argv[1], "3") == 0)
-  {
-    printf("INFO: Calculating fib sequence with process at high priority in a unicore environment\n");
-    hprio = true;
-    num_procs = 1;
-  }
-  else if (strcmp(argv[1], "4") == 0)
-  {
-    printf("INFO: Calculating fib sequence with process at normal priority in a uniicore environment\n");
-    num_procs = 1;
-  }
-  
-  if (setup_affinity(num_procs) == false)
-  {
-    exit(-1);
-  }
+    printf("FIB pid %d\n", getpid());
 
-  if (hprio == true)
-  {
-    if (create_pthreads(1, calc_fib_entry) == false)
+    // Setup
+    int num_procs = get_nprocs_conf();
+
+    bool hprio = false;
+  
+    if (argv[1] == NULL)
     {
-      exit(-1);
+        printf("INFO: Calculating default fib sequence\n");
     }
-  }
-  else
-  {
-    calc_fib();
-  }
+    else if (strcmp(argv[1], "1") == 0)
+    {
+        printf("INFO: Calculating fib sequence with process at high priority in a multicore environment\n");
+        hprio = true;
+    }    
+    else if (strcmp(argv[1], "2") == 0)
+    {
+        printf("INFO: Calculating fib sequence with process at normal priority in a multicore environment\n");
+    }
+    else if (strcmp(argv[1], "3") == 0)
+    {
+        printf("INFO: Calculating fib sequence with process at high priority in a unicore environment\n");
+        hprio = true;
+        num_procs = 1;
+    }
+    else if (strcmp(argv[1], "4") == 0)
+    {
+        printf("INFO: Calculating fib sequence with process at normal priority in a uniicore environment\n");
+        num_procs = 1;
+    }
+  
+    if (setup_affinity(num_procs) == false)
+    {
+        exit(-1);
+    }
 
-  exit(0);
+    if (hprio == true)
+    {
+        if (create_pthreads(1, calc_fib_entry) == false)
+        {
+          exit(-1);
+        }
+    }
+    else
+    {
+        calc_fib();
+    }
+
+    // Disable all pmus
+    disable_pmus();
+  
+    exit(0);
 }

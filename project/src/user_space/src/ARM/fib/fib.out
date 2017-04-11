@@ -1,0 +1,952 @@
+
+./fib.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <_Z14setup_affinityi>:
+// - req_cpus (int)
+//
+// Outputs:
+// - T/F (bool)
+bool setup_affinity(int req_cpus)
+{
+   0:	a9b47bfd 	stp	x29, x30, [sp,#-192]!
+   4:	910003fd 	mov	x29, sp
+   8:	a90153f3 	stp	x19, x20, [sp,#16]
+   c:	f90013f5 	str	x21, [sp,#32]
+  10:	2a0003f3 	mov	w19, w0
+  14:	aa1e03e0 	mov	x0, x30
+  18:	90000014 	adrp	x20, 0 <__stack_chk_guard>
+  1c:	94000000 	bl	0 <_mcount>
+  20:	91000280 	add	x0, x20, #0x0
+  24:	f9400001 	ldr	x1, [x0]
+  28:	f9005fa1 	str	x1, [x29,#184]
+  2c:	d2800001 	mov	x1, #0x0                   	// #0
+  cpu_set_t set;
+  CPU_ZERO(&set); // Clear cpu set
+  30:	9100e3a0 	add	x0, x29, #0x38
+  34:	a9007c1f 	stp	xzr, xzr, [x0]
+  38:	910123a0 	add	x0, x29, #0x48
+  3c:	a9007c1f 	stp	xzr, xzr, [x0]
+  40:	910163a0 	add	x0, x29, #0x58
+  44:	a9007c1f 	stp	xzr, xzr, [x0]
+  48:	9101a3a0 	add	x0, x29, #0x68
+  4c:	a9007c1f 	stp	xzr, xzr, [x0]
+  50:	9101e3a0 	add	x0, x29, #0x78
+  54:	a9007c1f 	stp	xzr, xzr, [x0]
+  58:	910223a0 	add	x0, x29, #0x88
+  5c:	a9007c1f 	stp	xzr, xzr, [x0]
+  60:	910263a0 	add	x0, x29, #0x98
+  64:	a9007c1f 	stp	xzr, xzr, [x0]
+  68:	9102a3a0 	add	x0, x29, #0xa8
+  6c:	a9007c1f 	stp	xzr, xzr, [x0]
+  int num_of_cpus = get_nprocs_conf(); // Get & set the number of available CPUs
+  70:	94000000 	bl	0 <get_nprocs_conf>
+
+  if (req_cpus > num_of_cpus)
+  74:	6b13001f 	cmp	w0, w19
+  78:	5400038b 	b.lt	e8 <_Z14setup_affinityi+0xe8>
+  }
+
+  int i = 0;
+
+  // Add all available cpus to set  
+  for (; i < req_cpus; i++)
+  7c:	7100027f 	cmp	w19, #0x0
+  80:	9100e3b5 	add	x21, x29, #0x38
+  84:	d2800000 	mov	x0, #0x0                   	// #0
+  {
+    CPU_SET(i, &set); // Add CPU to set
+  88:	d2800021 	mov	x1, #0x1                   	// #1
+  }
+
+  int i = 0;
+
+  // Add all available cpus to set  
+  for (; i < req_cpus; i++)
+  8c:	540000cd 	b.le	a4 <_Z14setup_affinityi+0xa4>
+  {
+    CPU_SET(i, &set); // Add CPU to set
+  90:	f10ffc1f 	cmp	x0, #0x3ff
+  94:	54000409 	b.ls	114 <_Z14setup_affinityi+0x114>
+  98:	91000400 	add	x0, x0, #0x1
+  }
+
+  int i = 0;
+
+  // Add all available cpus to set  
+  for (; i < req_cpus; i++)
+  9c:	6b00027f 	cmp	w19, w0
+  a0:	54ffff8c 	b.gt	90 <_Z14setup_affinityi+0x90>
+  {
+    CPU_SET(i, &set); // Add CPU to set
+  }
+
+  // Use all available CPUs for current process
+  if (sched_setaffinity(getpid(), sizeof(set), &set) == -1)
+  a4:	94000000 	bl	0 <getpid>
+  a8:	aa1503e2 	mov	x2, x21
+  ac:	d2801001 	mov	x1, #0x80                  	// #128
+  b0:	94000000 	bl	0 <sched_setaffinity>
+  b4:	3100041f 	cmn	w0, #0x1
+  b8:	54000240 	b.eq	100 <_Z14setup_affinityi+0x100>
+  {
+    printf("ERROR: Could not set affinity properly.. check if you are running as root\n");  
+    return false;
+  }
+
+  return true;
+  bc:	52800020 	mov	w0, #0x1                   	// #1
+}
+  c0:	91000294 	add	x20, x20, #0x0
+  c4:	f9405fa2 	ldr	x2, [x29,#184]
+  c8:	f9400281 	ldr	x1, [x20]
+  cc:	ca010041 	eor	x1, x2, x1
+  d0:	b5000301 	cbnz	x1, 130 <_Z14setup_affinityi+0x130>
+  d4:	a94153f3 	ldp	x19, x20, [sp,#16]
+  d8:	f94013f5 	ldr	x21, [sp,#32]
+  dc:	a8cc7bfd 	ldp	x29, x30, [sp],#192
+  e0:	d65f03c0 	ret
+  e4:	d503201f 	nop
+}
+
+__fortify_function int
+printf (const char *__restrict __fmt, ...)
+{
+  return __printf_chk (__USE_FORTIFY_LEVEL - 1, __fmt, __va_arg_pack ());
+  e8:	90000000 	adrp	x0, 0 <_Z14setup_affinityi>
+  ec:	91000000 	add	x0, x0, #0x0
+  f0:	94000000 	bl	0 <puts>
+  int num_of_cpus = get_nprocs_conf(); // Get & set the number of available CPUs
+
+  if (req_cpus > num_of_cpus)
+  {
+    printf("Error: Requested number of CPUs that is greater than the amount available\n");
+    return false;
+  f4:	52800000 	mov	w0, #0x0                   	// #0
+  f8:	17fffff2 	b	c0 <_Z14setup_affinityi+0xc0>
+  fc:	d503201f 	nop
+ 100:	90000000 	adrp	x0, 0 <_Z14setup_affinityi>
+ 104:	91000000 	add	x0, x0, #0x0
+ 108:	94000000 	bl	0 <puts>
+ 10c:	52800000 	mov	w0, #0x0                   	// #0
+ 110:	17ffffec 	b	c0 <_Z14setup_affinityi+0xc0>
+  int i = 0;
+
+  // Add all available cpus to set  
+  for (; i < req_cpus; i++)
+  {
+    CPU_SET(i, &set); // Add CPU to set
+ 114:	d346fc03 	lsr	x3, x0, #6
+ 118:	12001402 	and	w2, w0, #0x3f
+ 11c:	f8637aa4 	ldr	x4, [x21,x3,lsl #3]
+ 120:	9ac22022 	lsl	x2, x1, x2
+ 124:	aa020082 	orr	x2, x4, x2
+ 128:	f8237aa2 	str	x2, [x21,x3,lsl #3]
+ 12c:	17ffffdb 	b	98 <_Z14setup_affinityi+0x98>
+    printf("ERROR: Could not set affinity properly.. check if you are running as root\n");  
+    return false;
+  }
+
+  return true;
+}
+ 130:	94000000 	bl	0 <__stack_chk_fail>
+ 134:	d503201f 	nop
+
+0000000000000138 <_Z10calc_deltaP8timespecS0_>:
+// - timespec stop_time
+//
+// Outputs:
+// - difference (int)
+int calc_delta(timespec* start_time, timespec* stop_time)
+{
+ 138:	a9be7bfd 	stp	x29, x30, [sp,#-32]!
+ 13c:	910003fd 	mov	x29, sp
+ 140:	a90153f3 	stp	x19, x20, [sp,#16]
+ 144:	aa0003f3 	mov	x19, x0
+ 148:	aa1e03e0 	mov	x0, x30
+ 14c:	aa0103f4 	mov	x20, x1
+ 150:	94000000 	bl	0 <_mcount>
+  int diff = (*stop_time).tv_nsec - (*start_time).tv_nsec;
+ 154:	f9400661 	ldr	x1, [x19,#8]
+ 158:	f9400680 	ldr	x0, [x20,#8]
+
+  // Sanity check 
+  if (diff < 0)
+ 15c:	6b010000 	subs	w0, w0, w1
+ 160:	54000085 	b.pl	170 <_Z10calc_deltaP8timespecS0_+0x38>
+  {
+    diff = 1000000000 + diff;
+ 164:	52994001 	mov	w1, #0xca00                	// #51712
+ 168:	72a77341 	movk	w1, #0x3b9a, lsl #16
+ 16c:	0b010000 	add	w0, w0, w1
+  }
+
+  return diff;
+}
+ 170:	a94153f3 	ldp	x19, x20, [sp,#16]
+ 174:	a8c27bfd 	ldp	x29, x30, [sp],#32
+ 178:	d65f03c0 	ret
+ 17c:	d503201f 	nop
+
+0000000000000180 <_Z13kill_pthreadsi>:
+// - num_threads (int)
+//
+// Outputs:
+// - T/F (bool)
+bool kill_pthreads(int num_threads)
+{
+ 180:	a9bd7bfd 	stp	x29, x30, [sp,#-48]!
+ 184:	910003fd 	mov	x29, sp
+ 188:	f9000bf3 	str	x19, [sp,#16]
+ 18c:	9100c3b3 	add	x19, x29, #0x30
+ 190:	b81fce60 	str	w0, [x19,#-4]!
+ 194:	aa1e03e0 	mov	x0, x30
+ 198:	94000000 	bl	0 <_mcount>
+  int i = 0;
+  pthread_exit(&num_threads);
+ 19c:	aa1303e0 	mov	x0, x19
+ 1a0:	94000000 	bl	0 <pthread_exit>
+ 1a4:	d503201f 	nop
+
+00000000000001a8 <_Z15create_pthreadsiPFPvS_E>:
+// - entry_point (void*)
+//
+// Outputs:
+// - T/F (bool)
+bool create_pthreads(int num_threads, void* (*entry_point)(void*))
+{
+ 1a8:	a9bb7bfd 	stp	x29, x30, [sp,#-80]!
+ 1ac:	910003fd 	mov	x29, sp
+ 1b0:	a90153f3 	stp	x19, x20, [sp,#16]
+ 1b4:	a9025bf5 	stp	x21, x22, [sp,#32]
+ 1b8:	a90363f7 	stp	x23, x24, [sp,#48]
+ 1bc:	a9046bf9 	stp	x25, x26, [sp,#64]
+ 1c0:	2a0003f8 	mov	w24, w0
+ 1c4:	aa1e03e0 	mov	x0, x30
+ 1c8:	aa0103f9 	mov	x25, x1
+ 1cc:	94000000 	bl	0 <_mcount>
+  if (num_threads > MAX_THREADS)
+ 1d0:	71002b1f 	cmp	w24, #0xa
+ 1d4:	540006ac 	b.gt	2a8 <_Z15create_pthreadsiPFPvS_E+0x100>
+  {
+    printf("ERROR: Number of threads requested exceeds maximum %d\n", MAX_THREADS);
+    return false;
+  }
+
+  int rt_max_prio = sched_get_priority_max(SCHED_FIFO);
+ 1d8:	52800020 	mov	w0, #0x1                   	// #1
+
+  pthread_attr_init(&sched_attr[0]); // Init thread attributes
+ 1dc:	90000017 	adrp	x23, 0 <_Z14setup_affinityi>
+ 1e0:	910002f7 	add	x23, x23, #0x0
+  {
+    printf("ERROR: Number of threads requested exceeds maximum %d\n", MAX_THREADS);
+    return false;
+  }
+
+  int rt_max_prio = sched_get_priority_max(SCHED_FIFO);
+ 1e4:	94000000 	bl	0 <sched_get_priority_max>
+ 1e8:	2a0003fa 	mov	w26, w0
+
+  pthread_attr_init(&sched_attr[0]); // Init thread attributes
+ 1ec:	aa1703e0 	mov	x0, x23
+ 1f0:	94000000 	bl	0 <pthread_attr_init>
+  pthread_attr_setscope(&sched_attr[0], PTHREAD_SCOPE_SYSTEM);
+ 1f4:	aa1703e0 	mov	x0, x23
+ 1f8:	52800001 	mov	w1, #0x0                   	// #0
+ 1fc:	94000000 	bl	0 <pthread_attr_setscope>
+  pthread_attr_setinheritsched(&sched_attr[0], PTHREAD_EXPLICIT_SCHED); // Set inherit sched policy
+ 200:	aa1703e0 	mov	x0, x23
+ 204:	52800021 	mov	w1, #0x1                   	// #1
+ 208:	94000000 	bl	0 <pthread_attr_setinheritsched>
+  pthread_attr_setschedpolicy(&sched_attr[0], SCHED_FIFO); // Set sched policy to FIFO
+ 20c:	aa1703e0 	mov	x0, x23
+ 210:	52800021 	mov	w1, #0x1                   	// #1
+ 214:	94000000 	bl	0 <pthread_attr_setschedpolicy>
+
+  int i = 0;
+  int rc;
+  for (; i < num_threads; i++)
+ 218:	7100031f 	cmp	w24, #0x0
+ 21c:	540005ed 	b.le	2d8 <_Z15create_pthreadsiPFPvS_E+0x130>
+ 220:	910a02f5 	add	x21, x23, #0x280
+ 224:	910ac2f4 	add	x20, x23, #0x2b0
+ 228:	910b82f6 	add	x22, x23, #0x2e0
+ 22c:	52800013 	mov	w19, #0x0                   	// #0
+ 230:	14000004 	b	240 <_Z15create_pthreadsiPFPvS_E+0x98>
+ 234:	d503201f 	nop
+ 238:	6b13031f 	cmp	w24, w19
+ 23c:	540004e0 	b.eq	2d8 <_Z15create_pthreadsiPFPvS_E+0x130>
+  {
+    params[i].thread_id = i;
+    rt_params[i].sched_priority = rt_max_prio - i; 	       // Set sched prio
+ 240:	4b130342 	sub	w2, w26, w19
+    pthread_attr_setschedparam(&sched_attr[0], &rt_params[i]); // Set sched params & attr
+ 244:	aa1403e1 	mov	x1, x20
+ 248:	aa1703e0 	mov	x0, x23
+  int i = 0;
+  int rc;
+  for (; i < num_threads; i++)
+  {
+    params[i].thread_id = i;
+    rt_params[i].sched_priority = rt_max_prio - i; 	       // Set sched prio
+ 24c:	b9000282 	str	w2, [x20]
+
+  int i = 0;
+  int rc;
+  for (; i < num_threads; i++)
+  {
+    params[i].thread_id = i;
+ 250:	b90002b3 	str	w19, [x21]
+ 254:	91001294 	add	x20, x20, #0x4
+  pthread_attr_setinheritsched(&sched_attr[0], PTHREAD_EXPLICIT_SCHED); // Set inherit sched policy
+  pthread_attr_setschedpolicy(&sched_attr[0], SCHED_FIFO); // Set sched policy to FIFO
+
+  int i = 0;
+  int rc;
+  for (; i < num_threads; i++)
+ 258:	11000673 	add	w19, w19, #0x1
+  {
+    params[i].thread_id = i;
+    rt_params[i].sched_priority = rt_max_prio - i; 	       // Set sched prio
+    pthread_attr_setschedparam(&sched_attr[0], &rt_params[i]); // Set sched params & attr
+ 25c:	94000000 	bl	0 <pthread_attr_setschedparam>
+    rc = pthread_create(&threads[i], 	           	       // ptr to thread descriptor
+		   	&sched_attr[0],            	       // thread attributes
+ 		   	entry_point,               	       // thread fn entry pt (same for each thread)
+		   	(void*)&(params[i]) 	   	       // params to pass in
+		   	);
+ 260:	aa1503e3 	mov	x3, x21
+ 264:	aa1603e0 	mov	x0, x22
+ 268:	aa1903e2 	mov	x2, x25
+ 26c:	aa1703e1 	mov	x1, x23
+ 270:	910022d6 	add	x22, x22, #0x8
+ 274:	910012b5 	add	x21, x21, #0x4
+ 278:	94000000 	bl	0 <pthread_create>
+    if (rc)
+ 27c:	34fffde0 	cbz	w0, 238 <_Z15create_pthreadsiPFPvS_E+0x90>
+ 280:	90000000 	adrp	x0, 0 <_Z14setup_affinityi>
+ 284:	91000000 	add	x0, x0, #0x0
+ 288:	94000000 	bl	0 <puts>
+    {
+      printf("ERROR: Failed to create pthread... make sure you are running as root\n");
+      return false;
+ 28c:	52800000 	mov	w0, #0x0                   	// #0
+    }
+  } 
+
+  return true;
+}
+ 290:	a94153f3 	ldp	x19, x20, [sp,#16]
+ 294:	a9425bf5 	ldp	x21, x22, [sp,#32]
+ 298:	a94363f7 	ldp	x23, x24, [sp,#48]
+ 29c:	a9446bf9 	ldp	x25, x26, [sp,#64]
+ 2a0:	a8c57bfd 	ldp	x29, x30, [sp],#80
+ 2a4:	d65f03c0 	ret
+ 2a8:	90000001 	adrp	x1, 0 <_Z14setup_affinityi>
+ 2ac:	52800142 	mov	w2, #0xa                   	// #10
+ 2b0:	91000021 	add	x1, x1, #0x0
+ 2b4:	52800020 	mov	w0, #0x1                   	// #1
+ 2b8:	94000000 	bl	0 <__printf_chk>
+ 2bc:	52800000 	mov	w0, #0x0                   	// #0
+ 2c0:	a94153f3 	ldp	x19, x20, [sp,#16]
+ 2c4:	a9425bf5 	ldp	x21, x22, [sp,#32]
+ 2c8:	a94363f7 	ldp	x23, x24, [sp,#48]
+ 2cc:	a9446bf9 	ldp	x25, x26, [sp,#64]
+ 2d0:	a8c57bfd 	ldp	x29, x30, [sp],#80
+ 2d4:	d65f03c0 	ret
+      printf("ERROR: Failed to create pthread... make sure you are running as root\n");
+      return false;
+    }
+  } 
+
+  return true;
+ 2d8:	52800020 	mov	w0, #0x1                   	// #1
+}
+ 2dc:	a94153f3 	ldp	x19, x20, [sp,#16]
+ 2e0:	a9425bf5 	ldp	x21, x22, [sp,#32]
+ 2e4:	a94363f7 	ldp	x23, x24, [sp,#48]
+ 2e8:	a9446bf9 	ldp	x25, x26, [sp,#64]
+ 2ec:	a8c57bfd 	ldp	x29, x30, [sp],#80
+ 2f0:	d65f03c0 	ret
+ 2f4:	d503201f 	nop
+
+00000000000002f8 <_Z9stall_cpuj>:
+// - time (uint)
+//
+// Outputs:
+// - N/A
+void stall_cpu(unsigned int time)
+{
+ 2f8:	a9bb7bfd 	stp	x29, x30, [sp,#-80]!
+ 2fc:	910003fd 	mov	x29, sp
+ 300:	a90153f3 	stp	x19, x20, [sp,#16]
+ 304:	2a0003f4 	mov	w20, w0
+ 308:	aa1e03e0 	mov	x0, x30
+ 30c:	90000013 	adrp	x19, 0 <__stack_chk_guard>
+ 310:	94000000 	bl	0 <_mcount>
+ 314:	91000260 	add	x0, x19, #0x0
+ 318:	f9400001 	ldr	x1, [x0]
+ 31c:	f90027a1 	str	x1, [x29,#72]
+ 320:	d2800001 	mov	x1, #0x0                   	// #0
+  if (time <= 0)
+ 324:	35000134 	cbnz	w20, 348 <_Z9stall_cpuj+0x50>
+
+  struct timespec sleep_time = {0, time};
+  struct timespec remaining_time = {0, 0};
+
+  nanosleep(&sleep_time, &remaining_time);
+}
+ 328:	91000273 	add	x19, x19, #0x0
+ 32c:	f94027a1 	ldr	x1, [x29,#72]
+ 330:	f9400260 	ldr	x0, [x19]
+ 334:	ca000020 	eor	x0, x1, x0
+ 338:	b5000160 	cbnz	x0, 364 <_Z9stall_cpuj+0x6c>
+ 33c:	a94153f3 	ldp	x19, x20, [sp,#16]
+ 340:	a8c57bfd 	ldp	x29, x30, [sp],#80
+ 344:	d65f03c0 	ret
+  }
+
+  struct timespec sleep_time = {0, time};
+  struct timespec remaining_time = {0, 0};
+
+  nanosleep(&sleep_time, &remaining_time);
+ 348:	9100a3a0 	add	x0, x29, #0x28
+ 34c:	9100e3a1 	add	x1, x29, #0x38
+  {
+    return;
+  }
+
+  struct timespec sleep_time = {0, time};
+  struct timespec remaining_time = {0, 0};
+ 350:	f90023bf 	str	xzr, [x29,#64]
+  if (time <= 0)
+  {
+    return;
+  }
+
+  struct timespec sleep_time = {0, time};
+ 354:	a9007c1f 	stp	xzr, xzr, [x0]
+  struct timespec remaining_time = {0, 0};
+ 358:	a9037fb4 	stp	x20, xzr, [x29,#48]
+
+  nanosleep(&sleep_time, &remaining_time);
+ 35c:	94000000 	bl	0 <nanosleep>
+ 360:	17fffff2 	b	328 <_Z9stall_cpuj+0x30>
+}
+ 364:	94000000 	bl	0 <__stack_chk_fail>
+
+0000000000000368 <_Z14get_cpu_cyclesP12pmu_counters>:
+    uint64_t event2;
+} pmu_counters;
+
+// Get cpu cycles from ARM PMU counters
+void get_cpu_cycles(pmu_counters* counters)
+{
+ 368:	a9be7bfd 	stp	x29, x30, [sp,#-32]!
+ 36c:	910003fd 	mov	x29, sp
+ 370:	f9000bf3 	str	x19, [sp,#16]
+ 374:	aa0003f3 	mov	x19, x0
+ 378:	aa1e03e0 	mov	x0, x30
+ 37c:	94000000 	bl	0 <_mcount>
+    uint32_t lo, hi;
+    // Read ccnt
+    __asm__ __volatile__("mrs %0, pmccntr_el0" : "=r" (counters->ccnt));
+ 380:	d53b9d00 	mrs	x0, pmccntr_el0
+ 384:	f9000260 	str	x0, [x19]
+    __asm__ __volatile__("mrs %0, pmevcntr4_el0" : "=r" (lo));
+    __asm__ __volatile__("ISB");
+    __asm__ __volatile__("mrs %0, pmevcntr5_el0" : "=r" (hi));
+    __asm__ __volatile__("ISB");
+    counters->event2 = ((uint64_t)hi << 32 | lo);*/
+}
+ 388:	f9400bf3 	ldr	x19, [sp,#16]
+ 38c:	a8c27bfd 	ldp	x29, x30, [sp],#32
+ 390:	d65f03c0 	ret
+ 394:	d503201f 	nop
+
+0000000000000398 <_Z11enable_pmusv>:
+
+// INFO:
+// Below is assmebly code based on the ARM v8 architecture 64 bit (use MCR/MRC for 32 bit)
+// Enable PMUs
+void enable_pmus()
+{
+ 398:	a9bf7bfd 	stp	x29, x30, [sp,#-16]!
+ 39c:	910003fd 	mov	x29, sp
+ 3a0:	aa1e03e0 	mov	x0, x30
+ 3a4:	94000000 	bl	0 <_mcount>
+    uint32_t val;
+    // Enable control register
+    __asm__ __volatile__("mrs %0, pmcr_el0" : "=r" (val)); 
+ 3a8:	d53b9c00 	mrs	x0, pmcr_el0
+    val |= 0x1;
+    __asm__ __volatile__("msr pmcr_el0, %0" : : "r" (val));
+ 3ac:	32000000 	orr	w0, w0, #0x1
+ 3b0:	d51b9c00 	msr	pmcr_el0, x0
+
+    // Enable user access
+    //__asm__ __volatile__("msr pmuserenr_el0, %0" : : "r" (0xF));
+    
+    // Enable all pmu counters
+    __asm__ __volatile__("msr pmcntenset_el0, %0" : : "r" (0x8000000F));   
+ 3b4:	320113e0 	mov	w0, #0x8000000f            	// #-2147483633
+ 3b8:	d51b9c20 	msr	pmcntenset_el0, x0
+}
+ 3bc:	a8c17bfd 	ldp	x29, x30, [sp],#16
+ 3c0:	d65f03c0 	ret
+ 3c4:	d503201f 	nop
+
+00000000000003c8 <_Z10reset_pmusv>:
+
+// Reset pmus + ccnt
+void reset_pmus()
+{
+ 3c8:	a9bf7bfd 	stp	x29, x30, [sp,#-16]!
+ 3cc:	910003fd 	mov	x29, sp
+ 3d0:	aa1e03e0 	mov	x0, x30
+ 3d4:	94000000 	bl	0 <_mcount>
+    uint32_t val;
+    __asm__ __volatile__("mrs %0, pmcr_el0" : "=r" (val)); 
+ 3d8:	d53b9c00 	mrs	x0, pmcr_el0
+    val |= 0x7;
+    __asm__ __volatile__("msr pmcr_el0, %0" : : "r" (val));
+ 3dc:	32000800 	orr	w0, w0, #0x7
+ 3e0:	d51b9c00 	msr	pmcr_el0, x0
+
+    //__asm__ __volatile__("mrs %0, pmcntenclr_el0" : "=r" (val));
+    //val |= 0x80000001;
+    //__asm__ __volatile__("msr pmcntenclr_el0, %0" : : "r" (val));
+    __asm__ __volatile__("msr pmovsclr_el0, %0" : : "r" (0x8000000F)); 
+ 3e4:	320113e0 	mov	w0, #0x8000000f            	// #-2147483633
+ 3e8:	d51b9c60 	msr	pmovsclr_el0, x0
+}
+ 3ec:	a8c17bfd 	ldp	x29, x30, [sp],#16
+ 3f0:	d65f03c0 	ret
+ 3f4:	d503201f 	nop
+
+00000000000003f8 <_Z12disable_pmusv>:
+
+// Disable pmus + ccnt
+void disable_pmus()
+{
+ 3f8:	a9bf7bfd 	stp	x29, x30, [sp,#-16]!
+ 3fc:	910003fd 	mov	x29, sp
+ 400:	aa1e03e0 	mov	x0, x30
+ 404:	94000000 	bl	0 <_mcount>
+    uint32_t val;
+    // Disable control register
+    __asm__ __volatile__("mrs %0, pmcr_el0" : "=r" (val)); 
+ 408:	d53b9c00 	mrs	x0, pmcr_el0
+    val |= 0x0;
+    __asm__ __volatile__("msr pmcr_el0, %0" : : "r" (val));
+ 40c:	d51b9c00 	msr	pmcr_el0, x0
+
+    // Disable user access
+    //__asm__ __volatile__("msr pmuserenr_el0, %0" : : "r" (0x1));
+    
+    // Disable all pmu counters
+    __asm__ __volatile__("msr pmcntenset_el0, %0" : : "r" (0x0));
+ 410:	52800000 	mov	w0, #0x0                   	// #0
+ 414:	d51b9c20 	msr	pmcntenset_el0, x0
+}
+ 418:	a8c17bfd 	ldp	x29, x30, [sp],#16
+ 41c:	d65f03c0 	ret
+
+0000000000000420 <_Z8calc_fibv>:
+    event2: 0
+};
+
+// Function to calculate fibonacci sequence
+void calc_fib()
+{
+ 420:	a9bb7bfd 	stp	x29, x30, [sp,#-80]!
+ 424:	910003fd 	mov	x29, sp
+ 428:	a90153f3 	stp	x19, x20, [sp,#16]
+ 42c:	a9025bf5 	stp	x21, x22, [sp,#32]
+ 430:	a90363f7 	stp	x23, x24, [sp,#48]
+ 434:	a9046bf9 	stp	x25, x26, [sp,#64]
+ 438:	aa1e03e0 	mov	x0, x30
+ 43c:	90000013 	adrp	x19, 0 <_Z14setup_affinityi>
+  int diff = (*stop_time).tv_nsec - (*start_time).tv_nsec;
+
+  // Sanity check 
+  if (diff < 0)
+  {
+    diff = 1000000000 + diff;
+ 440:	52994019 	mov	w25, #0xca00                	// #51712
+ 444:	90000015 	adrp	x21, 0 <_Z14setup_affinityi>
+
+    for (; i < NUM_FIB_CYCLES; i++)
+    {
+        // Enable PMUs and clock counter
+        enable_pmus();
+        clock_gettime(CLOCK_REALTIME, &start_time);
+ 448:	91000273 	add	x19, x19, #0x0
+};
+
+// Function to calculate fibonacci sequence
+void calc_fib()
+{
+    int i = 0;
+ 44c:	52800014 	mov	w20, #0x0                   	// #0
+ 450:	90000018 	adrp	x24, 0 <_Z14setup_affinityi>
+
+    // Enable user access
+    //__asm__ __volatile__("msr pmuserenr_el0, %0" : : "r" (0xF));
+    
+    // Enable all pmu counters
+    __asm__ __volatile__("msr pmcntenset_el0, %0" : : "r" (0x8000000F));   
+ 454:	320113f7 	mov	w23, #0x8000000f            	// #-2147483633
+ 458:	72a77359 	movk	w25, #0x3b9a, lsl #16
+    event2: 0
+};
+
+// Function to calculate fibonacci sequence
+void calc_fib()
+{
+ 45c:	94000000 	bl	0 <_mcount>
+
+    for (; i < NUM_FIB_CYCLES; i++)
+    {
+        // Enable PMUs and clock counter
+        enable_pmus();
+        clock_gettime(CLOCK_REALTIME, &start_time);
+ 460:	910cc276 	add	x22, x19, #0x330
+
+        fib = fib0 + fib1;
+ 464:	910002b5 	add	x21, x21, #0x0
+ 468:	14000012 	b	4b0 <_Z8calc_fibv+0x90>
+ 46c:	d503201f 	nop
+// Get cpu cycles from ARM PMU counters
+void get_cpu_cycles(pmu_counters* counters)
+{
+    uint32_t lo, hi;
+    // Read ccnt
+    __asm__ __volatile__("mrs %0, pmccntr_el0" : "=r" (counters->ccnt));
+ 470:	d53b9d06 	mrs	x6, pmccntr_el0
+ 474:	b9434662 	ldr	w2, [x19,#836]
+ 478:	aa0603e5 	mov	x5, x6
+ 47c:	2a1403e3 	mov	w3, w20
+ 480:	91000301 	add	x1, x24, #0x0
+ 484:	52800020 	mov	w0, #0x1                   	// #1
+ 488:	f901ae66 	str	x6, [x19,#856]
+ 48c:	94000000 	bl	0 <__printf_chk>
+
+// Reset pmus + ccnt
+void reset_pmus()
+{
+    uint32_t val;
+    __asm__ __volatile__("mrs %0, pmcr_el0" : "=r" (val)); 
+ 490:	d53b9c00 	mrs	x0, pmcr_el0
+    val |= 0x7;
+    __asm__ __volatile__("msr pmcr_el0, %0" : : "r" (val));
+ 494:	32000800 	orr	w0, w0, #0x7
+ 498:	d51b9c00 	msr	pmcr_el0, x0
+
+    //__asm__ __volatile__("mrs %0, pmcntenclr_el0" : "=r" (val));
+    //val |= 0x80000001;
+    //__asm__ __volatile__("msr pmcntenclr_el0, %0" : : "r" (val));
+    __asm__ __volatile__("msr pmovsclr_el0, %0" : : "r" (0x8000000F)); 
+ 49c:	d51b9c77 	msr	pmovsclr_el0, x23
+void calc_fib()
+{
+    int i = 0;
+    int time = 0;
+
+    for (; i < NUM_FIB_CYCLES; i++)
+ 4a0:	5284e200 	mov	w0, #0x2710                	// #10000
+ 4a4:	11000694 	add	w20, w20, #0x1
+ 4a8:	6b00029f 	cmp	w20, w0
+ 4ac:	54000320 	b.eq	510 <_Z8calc_fibv+0xf0>
+// Enable PMUs
+void enable_pmus()
+{
+    uint32_t val;
+    // Enable control register
+    __asm__ __volatile__("mrs %0, pmcr_el0" : "=r" (val)); 
+ 4b0:	d53b9c00 	mrs	x0, pmcr_el0
+    val |= 0x1;
+    __asm__ __volatile__("msr pmcr_el0, %0" : : "r" (val));
+ 4b4:	32000000 	orr	w0, w0, #0x1
+ 4b8:	d51b9c00 	msr	pmcr_el0, x0
+
+    // Enable user access
+    //__asm__ __volatile__("msr pmuserenr_el0, %0" : : "r" (0xF));
+    
+    // Enable all pmu counters
+    __asm__ __volatile__("msr pmcntenset_el0, %0" : : "r" (0x8000000F));   
+ 4bc:	d51b9c37 	msr	pmcntenset_el0, x23
+    {
+        // Enable PMUs and clock counter
+        enable_pmus();
+        clock_gettime(CLOCK_REALTIME, &start_time);
+ 4c0:	aa1603e1 	mov	x1, x22
+ 4c4:	52800000 	mov	w0, #0x0                   	// #0
+
+        fib = fib0 + fib1;
+        fib0 = fib1;
+        fib1 = fib;
+
+        clock_gettime(CLOCK_REALTIME, &stop_time);
+ 4c8:	910d227a 	add	x26, x19, #0x348
+
+    for (; i < NUM_FIB_CYCLES; i++)
+    {
+        // Enable PMUs and clock counter
+        enable_pmus();
+        clock_gettime(CLOCK_REALTIME, &start_time);
+ 4cc:	94000000 	bl	0 <clock_gettime>
+
+        fib = fib0 + fib1;
+ 4d0:	b94002a3 	ldr	w3, [x21]
+        fib0 = fib1;
+        fib1 = fib;
+
+        clock_gettime(CLOCK_REALTIME, &stop_time);
+ 4d4:	aa1a03e1 	mov	x1, x26
+    {
+        // Enable PMUs and clock counter
+        enable_pmus();
+        clock_gettime(CLOCK_REALTIME, &start_time);
+
+        fib = fib0 + fib1;
+ 4d8:	b9434262 	ldr	w2, [x19,#832]
+        fib0 = fib1;
+        fib1 = fib;
+
+        clock_gettime(CLOCK_REALTIME, &stop_time);
+ 4dc:	52800000 	mov	w0, #0x0                   	// #0
+        // Enable PMUs and clock counter
+        enable_pmus();
+        clock_gettime(CLOCK_REALTIME, &start_time);
+
+        fib = fib0 + fib1;
+        fib0 = fib1;
+ 4e0:	b9034263 	str	w3, [x19,#832]
+    {
+        // Enable PMUs and clock counter
+        enable_pmus();
+        clock_gettime(CLOCK_REALTIME, &start_time);
+
+        fib = fib0 + fib1;
+ 4e4:	0b020062 	add	w2, w3, w2
+ 4e8:	b9034662 	str	w2, [x19,#836]
+        fib0 = fib1;
+        fib1 = fib;
+ 4ec:	b90002a2 	str	w2, [x21]
+
+        clock_gettime(CLOCK_REALTIME, &stop_time);
+ 4f0:	94000000 	bl	0 <clock_gettime>
+//
+// Outputs:
+// - difference (int)
+int calc_delta(timespec* start_time, timespec* stop_time)
+{
+  int diff = (*stop_time).tv_nsec - (*start_time).tv_nsec;
+ 4f4:	f941aa64 	ldr	x4, [x19,#848]
+ 4f8:	f94006c0 	ldr	x0, [x22,#8]
+
+  // Sanity check 
+  if (diff < 0)
+ 4fc:	6b000084 	subs	w4, w4, w0
+ 500:	54fffb85 	b.pl	470 <_Z8calc_fibv+0x50>
+  {
+    diff = 1000000000 + diff;
+ 504:	0b190084 	add	w4, w4, w25
+ 508:	17ffffda 	b	470 <_Z8calc_fibv+0x50>
+ 50c:	d503201f 	nop
+        // Fib num will exceed what int can actually store... so ignore result we can about time
+        printf("INFO: Fib num = %u at position %d, total process took %d, cpu cycles are %u\n", fib, i, time, counters.ccnt);
+
+        reset_pmus();
+    }
+}
+ 510:	a94153f3 	ldp	x19, x20, [sp,#16]
+ 514:	a9425bf5 	ldp	x21, x22, [sp,#32]
+ 518:	a94363f7 	ldp	x23, x24, [sp,#48]
+ 51c:	a9446bf9 	ldp	x25, x26, [sp,#64]
+ 520:	a8c57bfd 	ldp	x29, x30, [sp],#80
+ 524:	d65f03c0 	ret
+
+0000000000000528 <_Z14calc_fib_entryPv>:
+
+// Function pointer for pthreads to execute at (just calls calc_fib())
+void* calc_fib_entry(void* thread_id)
+{
+ 528:	a9be7bfd 	stp	x29, x30, [sp,#-32]!
+ 52c:	910003fd 	mov	x29, sp
+ 530:	aa1e03e0 	mov	x0, x30
+ 534:	94000000 	bl	0 <_mcount>
+ 538:	90000000 	adrp	x0, 0 <__stack_chk_guard>
+ 53c:	91000000 	add	x0, x0, #0x0
+ 540:	f9400001 	ldr	x1, [x0]
+ 544:	f9000fa1 	str	x1, [x29,#24]
+ 548:	d2800001 	mov	x1, #0x0                   	// #0
+    calc_fib();  
+ 54c:	94000000 	bl	420 <_Z8calc_fibv>
+ 550:	910083a0 	add	x0, x29, #0x20
+ 554:	52800021 	mov	w1, #0x1                   	// #1
+ 558:	b81f4c01 	str	w1, [x0,#-12]!
+// Outputs:
+// - T/F (bool)
+bool kill_pthreads(int num_threads)
+{
+  int i = 0;
+  pthread_exit(&num_threads);
+ 55c:	94000000 	bl	0 <pthread_exit>
+
+Disassembly of section .text.startup:
+
+0000000000000000 <main>:
+// - req_cpus (int)
+//
+// Outputs:
+// - T/F (bool)
+bool setup_affinity(int req_cpus)
+{
+   0:	a9be7bfd 	stp	x29, x30, [sp,#-32]!
+   4:	910003fd 	mov	x29, sp
+   8:	a90153f3 	stp	x19, x20, [sp,#16]
+   c:	aa1e03e0 	mov	x0, x30
+  10:	aa0103f3 	mov	x19, x1
+  14:	94000000 	bl	0 <_mcount>
+  18:	94000000 	bl	0 <getpid>
+  1c:	2a0003e2 	mov	w2, w0
+  20:	90000001 	adrp	x1, 0 <main>
+  24:	52800020 	mov	w0, #0x1                   	// #1
+  28:	91000021 	add	x1, x1, #0x0
+  2c:	94000000 	bl	0 <__printf_chk>
+  cpu_set_t set;
+  CPU_ZERO(&set); // Clear cpu set
+  30:	94000000 	bl	0 <get_nprocs_conf>
+  34:	f9400673 	ldr	x19, [x19,#8]
+  38:	2a0003f4 	mov	w20, w0
+  3c:	b4000793 	cbz	x19, 12c <main+0x12c>
+  40:	90000001 	adrp	x1, 0 <main>
+  44:	aa1303e0 	mov	x0, x19
+  48:	91000021 	add	x1, x1, #0x0
+  4c:	94000000 	bl	0 <strcmp>
+  50:	34000340 	cbz	w0, b8 <main+0xb8>
+  54:	90000001 	adrp	x1, 0 <main>
+  58:	aa1303e0 	mov	x0, x19
+  5c:	91000021 	add	x1, x1, #0x0
+  60:	94000000 	bl	0 <strcmp>
+  64:	34000480 	cbz	w0, f4 <main+0xf4>
+  68:	90000001 	adrp	x1, 0 <main>
+  6c:	aa1303e0 	mov	x0, x19
+  int num_of_cpus = get_nprocs_conf(); // Get & set the number of available CPUs
+  70:	91000021 	add	x1, x1, #0x0
+
+  if (req_cpus > num_of_cpus)
+  74:	94000000 	bl	0 <strcmp>
+  78:	34000460 	cbz	w0, 104 <main+0x104>
+  }
+
+  int i = 0;
+
+  // Add all available cpus to set  
+  for (; i < req_cpus; i++)
+  7c:	90000001 	adrp	x1, 0 <main>
+  80:	aa1303e0 	mov	x0, x19
+  84:	91000021 	add	x1, x1, #0x0
+  {
+    CPU_SET(i, &set); // Add CPU to set
+  88:	94000000 	bl	0 <strcmp>
+  }
+
+  int i = 0;
+
+  // Add all available cpus to set  
+  for (; i < req_cpus; i++)
+  8c:	34000460 	cbz	w0, 118 <main+0x118>
+  {
+    CPU_SET(i, &set); // Add CPU to set
+  90:	2a1403e0 	mov	w0, w20
+  94:	94000000 	bl	0 <main>
+  98:	72001c1f 	tst	w0, #0xff
+  }
+
+  int i = 0;
+
+  // Add all available cpus to set  
+  for (; i < req_cpus; i++)
+  9c:	54000280 	b.eq	ec <main+0xec>
+  a0:	94000000 	bl	420 <_Z8calc_fibv>
+  {
+    CPU_SET(i, &set); // Add CPU to set
+  }
+
+  // Use all available CPUs for current process
+  if (sched_setaffinity(getpid(), sizeof(set), &set) == -1)
+  a4:	d53b9c00 	mrs	x0, pmcr_el0
+  a8:	d51b9c00 	msr	pmcr_el0, x0
+  ac:	52800000 	mov	w0, #0x0                   	// #0
+  b0:	d51b9c20 	msr	pmcntenset_el0, x0
+  b4:	94000000 	bl	0 <exit>
+  b8:	90000000 	adrp	x0, 0 <main>
+  {
+    printf("ERROR: Could not set affinity properly.. check if you are running as root\n");  
+    return false;
+  }
+
+  return true;
+  bc:	91000000 	add	x0, x0, #0x0
+}
+  c0:	94000000 	bl	0 <puts>
+  c4:	2a1403e0 	mov	w0, w20
+  c8:	94000000 	bl	0 <main>
+  cc:	72001c1f 	tst	w0, #0xff
+  d0:	540000e0 	b.eq	ec <main+0xec>
+  d4:	90000001 	adrp	x1, 528 <_Z14calc_fib_entryPv>
+  d8:	52800020 	mov	w0, #0x1                   	// #1
+  dc:	91000021 	add	x1, x1, #0x0
+  e0:	94000000 	bl	1a8 <_Z15create_pthreadsiPFPvS_E>
+  e4:	72001c1f 	tst	w0, #0xff
+  e8:	54fffde1 	b.ne	a4 <main+0xa4>
+  ec:	12800000 	mov	w0, #0xffffffff            	// #-1
+  f0:	94000000 	bl	0 <exit>
+  int num_of_cpus = get_nprocs_conf(); // Get & set the number of available CPUs
+
+  if (req_cpus > num_of_cpus)
+  {
+    printf("Error: Requested number of CPUs that is greater than the amount available\n");
+    return false;
+  f4:	90000000 	adrp	x0, 0 <main>
+  f8:	91000000 	add	x0, x0, #0x0
+  fc:	94000000 	bl	0 <puts>
+ 100:	17ffffe4 	b	90 <main+0x90>
+ 104:	90000000 	adrp	x0, 0 <main>
+ 108:	52800034 	mov	w20, #0x1                   	// #1
+ 10c:	91000000 	add	x0, x0, #0x0
+ 110:	94000000 	bl	0 <puts>
+  int i = 0;
+
+  // Add all available cpus to set  
+  for (; i < req_cpus; i++)
+  {
+    CPU_SET(i, &set); // Add CPU to set
+ 114:	17ffffec 	b	c4 <main+0xc4>
+ 118:	90000000 	adrp	x0, 0 <main>
+ 11c:	52800034 	mov	w20, #0x1                   	// #1
+ 120:	91000000 	add	x0, x0, #0x0
+ 124:	94000000 	bl	0 <puts>
+ 128:	17ffffda 	b	90 <main+0x90>
+ 12c:	90000000 	adrp	x0, 0 <main>
+    printf("ERROR: Could not set affinity properly.. check if you are running as root\n");  
+    return false;
+  }
+
+  return true;
+}
+ 130:	91000000 	add	x0, x0, #0x0
+ 134:	94000000 	bl	0 <puts>
+// - timespec stop_time
+//
+// Outputs:
+// - difference (int)
+int calc_delta(timespec* start_time, timespec* stop_time)
+{
+ 138:	17ffffd6 	b	90 <main+0x90>
