@@ -20,6 +20,12 @@ Simulation
 - Get metrics similarly to how x86 is done for ARM targets
 - Try to get GEM5 working for benchmarks (may not happen.. m5threads doesn't work out well enough- no thread scheduler facade)
 
+SRC
+- Fix high prio/multi core ARM seg fault/bombing out issue
+- Get instr count ARM
+- Switch up printfs to syslogs ARM
+- Fix high prio multi core trace x86 (perhaps use sys logs if ust doesn't workout)
+
 Analytics
 - CSV being generated for x86; need do the same for ARM
 - Start making graphs of results 
