@@ -4,6 +4,7 @@
 #include <stall_cpu.h>
 #include <string.h>
 #include <cpu_stats.h>
+#include <syslog.h>
 
 /*
  * Author: David Akre
@@ -16,11 +17,13 @@
  */
 
 #define NUM_FIB_CYCLES 10000
+#define NSECS_PER_CC   0.526
 
 // Fwd declaration of vars
 struct timespec start_time = {0, 0};
 struct timespec stop_time = {0, 0};
 uint32_t fib = 0, fib0 = 0, fib1 = 1;
+unsigned int pid;
 
 pmu_counters counters
 {
@@ -31,10 +34,20 @@ pmu_counters counters
 };
 
 // Function to calculate fibonacci sequence
+// Instruction count (done statically looking through asm code):
+// 1. Calc delta = 13 instructions 
+// 2. Get cpu cycles = 11 instructions 
+// 3. Clock gettime = 2 instruction
+// 4. Fib sequence = 15 instructions (+6 for printf, +4 for loop)
+// 5. Enable PMUs + Rest PMUs = 24 instructions 
+// Total instructions for the loop = 75 instructions
 void calc_fib()
 {
     int i = 0;
     int time = 0;
+    unsigned int instr_count = 75;
+    float ipc = 0;
+    float cpi = 0;
 
     for (; i < NUM_FIB_CYCLES; i++)
     {
@@ -51,9 +64,13 @@ void calc_fib()
 
         get_cpu_cycles(&counters);
 
-        // Fib num will exceed what int can actually store... so ignore result we can about time
-        printf("INFO: Fib num = %u at position %d, total process took %d, cpu cycles are %u\n", fib, i, time, counters.ccnt);
+	cpi = ((float)time / ((float)instr_count *NSECS_PER_CC));
+	ipc = (1/ cpi);
 
+        // Fib num will exceed what int can actually store... so ignore result we can about time
+        //printf("INFO: PID %u, Fib num = %u at position %d, total process took %d, cpu cycles are %u, cpi %f, ipc %f\n", pid, fib, i, time, counters.ccnt, cpi, ipc);
+        syslog(LOG_INFO, "INFO: PID %u, Fib num = %u at position %d, total process took %d, cpu cycles are %u, cpi %f, ipc %f\n", pid, fib, i, time, counters.ccnt, cpi, ipc);
+     
         reset_pmus();
     }
 }
@@ -80,7 +97,8 @@ void* calc_fib_entry(void* thread_id)
 */
 int main (int argc, char *argv[])
 {
-    printf("FIB pid %d\n", getpid());
+    pid = getpid();
+    printf("FIB pid %d\n", pid);
 
     // Setup
     int num_procs = get_nprocs_conf();

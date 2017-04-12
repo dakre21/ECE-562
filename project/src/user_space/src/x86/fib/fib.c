@@ -58,7 +58,7 @@ void calc_fib()
     time = calc_delta(&start_time, &stop_time);
     cycles = get_cpu_cycles();
 
-    cpi = ((float)time / ((float)instr_count * 0.357));
+    cpi = ((float)time / ((float)instr_count *NSECS_PER_CC));
     ipc = (1 / cpi);
 
     // Fib num will exceed what int can actually store... so ignore result we can about time
