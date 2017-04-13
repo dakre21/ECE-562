@@ -43,13 +43,13 @@ def trace_process():
   # Part 2 Start lttng trace
   print "Starting lttng trace"
   subprocess.call("lttng start", shell=True)
-  handle = subprocess.Popen("top -d 0.01 > ./../lttng_sim_outputs/temp.out", shell=True)
+  #handle = subprocess.Popen("top -d 0.01 > ./../lttng_sim_outputs/temp.out", shell=True)
   if opts == None:
     subprocess.call("sudo ./../../../src/user_space/src/x86/" + str(in_file) + "/" + str(in_file), shell=True)
   else:
     subprocess.call("sudo ./../../../src/user_space/src/x86/" + str(in_file) + "/" + str(in_file) + " " + str(opts), shell=True)
-  handle.terminate()
-  handle.kill()
+  #handle.terminate()
+  #handle.kill()
 
   # Part 3 Stop lttng trace
   subprocess.call("lttng stop", shell=True)
@@ -58,10 +58,10 @@ def trace_process():
   # Part 4 Redirect output to csv file & clean up
   print "Stopping lttng trace and starting up babeltrace to redirect tracing output to csv"
   subprocess.call("babeltrace ~/lttng-traces/* > " + "./../lttng_sim_outputs/" + str(out_file) + ".csv", shell=True)
-  print "Redirecting cpu and memory utilization to output file"
-  subprocess.call("grep " + str(in_file) + " ./../lttng_sim_outputs/temp.out > ./../lttng_sim_outputs/" + str(out_file) + ".out", shell=True)
-  print "Cleaning up work area"
-  subprocess.call("sudo rm -f ./../lttng_sim_outputs/temp.out", shell=True)
+  #print "Redirecting cpu and memory utilization to output file"
+  #subprocess.call("grep " + str(in_file) + " ./../lttng_sim_outputs/temp.out > ./../lttng_sim_outputs/" + str(out_file) + ".out", shell=True)
+  #print "Cleaning up work area"
+  #subprocess.call("sudo rm -f ./../lttng_sim_outputs/temp.out", shell=True)
   subprocess.call("sudo rm -rf ~/lttng-traces/*", shell=True)
   subprocess.call("sudo rm -rf gmon.out", shell=True)
 

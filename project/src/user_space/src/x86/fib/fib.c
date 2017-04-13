@@ -19,7 +19,7 @@
  *
  */
 
-#define NUM_FIB_CYCLES 1000000
+#define NUM_FIB_CYCLES 67
 #define NSECS_PER_CC   0.357 // 2.8 GHz CPU Clock
 
 // Fwd declaration of vars
@@ -46,6 +46,9 @@ void calc_fib()
   unsigned int instr_count = 208;
   float ipc = 0;
   float cpi = 0;
+
+  // Flush out eax reg
+  prev_cycles = get_cpu_cycles();
 
   for (; i < NUM_FIB_CYCLES; i++)
   {
