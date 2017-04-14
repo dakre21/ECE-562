@@ -16,8 +16,9 @@
  *
  */
 
-#define NUM_FIB_CYCLES 10000
-#define NSECS_PER_CC   0.526
+#define NUM_FIB_CYCLES 55
+#define NSECS_PER_CC   0.526 // Tegra X1
+//#define NSECS_PER_CC   0.833 // Pi Model 3 Rev B
 
 // Fwd declaration of vars
 struct timespec start_time = {0, 0};
@@ -64,11 +65,11 @@ void calc_fib()
 
         get_cpu_cycles(&counters);
 
-	cpi = ((float)time / ((float)instr_count *NSECS_PER_CC));
+	cpi = ((float)time / ((float)instr_count * NSECS_PER_CC));
 	ipc = (1/ cpi);
 
         // Fib num will exceed what int can actually store... so ignore result we can about time
-        //printf("INFO: PID %u, Fib num = %u at position %d, total process took %d, cpu cycles are %u, cpi %f, ipc %f\n", pid, fib, i, time, counters.ccnt, cpi, ipc);
+        //printf("INFO: PID %u, total process took %d, cpu cycles are %u, cpi %f, ipc %f\n", pid, time, counters.ccnt, cpi, ipc);
         syslog(LOG_INFO, "INFO: PID %u, Fib num = %u at position %d, total process took %d, cpu cycles are %u, cpi %f, ipc %f\n", pid, fib, i, time, counters.ccnt, cpi, ipc);
      
         reset_pmus();
