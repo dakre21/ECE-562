@@ -2,7 +2,6 @@ Layout:
 
 SRC
 - Contains relative benchmarks, libraries, and interfaces in c/c++
-- Soon to contain a kernel...
 
 SIM
 - Contains gem5 simulator and relative scripts to run against different executables
@@ -10,17 +9,4 @@ SIM
 
 DOCS
 - Contains project related research documents
-
-TODOs:
-Benchmarks (C/C++)
-- Create RT IO intensive benchmark (ARM)
-- Create RT Memory intensive benchmark (ARM)
-
-Kernel
-- Look into a suitable kernel to potentially look into improvements to make it more RT 
--- Generally looking for the following:
---- Each process has its own page table (ideally page size should be smal... lower context switching time)
---- Context switching ring buffers have userspace/kernel protection
---- NUMA/distributed memory better for process pinned to separate core (locking cache on those cores ideal)
---- UMA better for process running system wide on all cores/shared memory
 
